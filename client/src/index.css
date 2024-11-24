@@ -1,0 +1,9 @@
+:root {
+    --orange: #F59839;
+    --blue: #2C75FF;
+    --white: #FEFEFE;
+    --black: #000000;
+}
+*{
+    box-sizing: border-box;
+}
