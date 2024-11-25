@@ -26,7 +26,7 @@
     gap: 10px;
   }
   
-  .btn-login, .btn-signup {
+  .btn-login {
     padding: 10px 15px;
     border: 2px solid black;
     border-radius: 5px;
@@ -34,15 +34,32 @@
     font-size: 17px;
     font-family: Gilroy-Semibold;
   }
-  .btn-login a{
-    text-decoration: none;
-    color: black;
-  }
+.btn-login a{
+    text-decoration: none;  
+    color: inherit
+}
 
-  .btn-signup a {
+.btn-signup a{
     text-decoration: none;
+    color: inherit
+}
+  .btn-login:hover {
+    background-color:black;
     color: white;
   }
+  
+  .btn-signup {
+      padding: 10px 20px;
+      border: 2px solid black;
+      border-radius: 5px;
+      background-color: orange;
+      font-size: 17px;
+      font-family: Gilroy-Semibold;
+    }
+    
+    .btn-signup:hover {
+      background-color:orange;
+    }
 
   .list a{
     text-decoration: none;
