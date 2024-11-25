@@ -1,0 +1,50 @@
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 17px;
+  }
+  
+  .logo img {
+    height: 60px;
+  }
+  
+  .list {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    text-decoration: none;
+
+  }
+  
+  .cta {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn-login, .btn-signup {
+    padding: 10px 15px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 17px;
+    font-family: Gilroy-Semibold;
+  }
+  .btn-login a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .btn-signup a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .list a{
+    text-decoration: none;
+    color: black;
+  }

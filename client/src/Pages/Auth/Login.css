@@ -1,107 +1,54 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+.nav-container{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list{
+  display: flex;
+  gap: 50px;
+  list-style: none;
 }
 
-html, body {
-    height: 100%;
-    overflow: hidden;
+.btn-login{
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 600;
 }
 
-.main {
-    margin: 20px;
-    padding-left: 10px;
-    max-width: 1400px;
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.logo {
-    height: 60px;
-}
-
-.heading-text {
-    font-size: 30px;
-    font-weight: 600;
-    width: 71%;
-}
-
-.form-wrapper {
-    max-width: 610px;
-}
-
-.illustration {
-    max-width: 790px;
-    position: relative;
-}
-
-.line-1 {
-    position: relative;
-    top: -43px;
-    left: 146px;
-    width: 69%;
-}
-
-.main-illustration {
-    width: 90%;
-    z-index: -1;
-    position: relative;
-    left: 76px;
-    bottom: 205px;
+.btn-login{
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 600;
 }
 
 
-.input-space {
-    width: 100%;
-    height: 40px;
-    border: 1px solid #b9b6b1;
-    border-radius: 5px;
-    padding: 0 20px;
-    color: #000;
-    font-size: 14px;
-    margin-bottom: 5px;
+.btn-signup{
+  padding: 10px 28px;
+  margin-right: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: black;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: white;
 }
 
-.label-form {
-    background-color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    top: 7px;
-    left: 17px;
-    position: relative;
-    color: grey;
-    padding: 2px 6px;
+.btn-login:hover{
+  background-color: black;
+  color: white
 }
-
-.login-submit {
-    margin-top: 20px;
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    color: #fff;
-    background-color: black;
-    border-radius: 5px;
-    border: none;
-}
-
-.login-submit:hover {
-    background-color: orange;
-}
-
-
-.check-agreement {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.check-agreement input {
-    margin-right: 5px;
-}
-
-.forgot-pass{
-    padding-top: 20px;
+.btn-signup:hover{
+  background-color: orange;
+  border-color: orange;
 }

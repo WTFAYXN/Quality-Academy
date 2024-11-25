@@ -1,9 +1,24 @@
+@font-face {
+    font-family: 'Gilroy-Regular';
+    src: url('./assets/fonts/Gilroy/Gilroy-Regular'),
+}
+@font-face {
+    font-family: 'Gilroy-Semibold';
+    src: url('./assets/fonts/Gilroy/Gilroy-SemiBold.ttf'),
+}
+
+
 :root {
     --orange: #F59839;
     --blue: #2C75FF;
     --white: #FEFEFE;
     --black: #000000;
 }
-*{
+
+html {
     box-sizing: border-box;
+}
+
+li{
+    font-family: Gilroy-Semibold;
 }

@@ -121,3 +121,13 @@ select.input-space {
     padding-right: 40px; /* Adjust to make room for the arrow */
 }
     
+
+
+@media (min-width: 1440px) {
+    .main{
+     align-items: center;
+    }
+    .line-1{
+     display: none;
+    }
+ }
