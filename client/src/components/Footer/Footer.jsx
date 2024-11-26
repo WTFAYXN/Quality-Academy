@@ -14,9 +14,9 @@ const Footer = () => {
       <div className="center">
         <h2 className="heading">Company</h2>
         <ul className='footer-menu'>
-          <li>Home</li>
-          <li>Terms</li>
-          <li>Privacy Policy</li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/terms">Terms</Link></li>
+          <li><Link to="/privacy">Privacy Policy</Link></li>
         </ul>
       </div>
       <div className="right">

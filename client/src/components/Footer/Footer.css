@@ -81,6 +81,10 @@
     gap: 10px;
 }
 
+.footer a{
+    text-decoration: none;
+    color: rgb(0,0,0, 0.7)
+  }
 
 @media (max-width: 480px) {
     /* Adjust Footer container */
