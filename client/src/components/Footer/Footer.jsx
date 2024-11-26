@@ -5,6 +5,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
+    <>
     <div className="footer">
       <div className="left">
         <img className="logo" src={logo} alt="logo" />
@@ -42,6 +43,8 @@ const Footer = () => {
         </div>
       </div>
     </div>
+    <div className='footer-bottom'>Designed & Developed By <Link to="www.tarlose.com">Tarlose</Link></div>
+    </>
   );
 }
 
