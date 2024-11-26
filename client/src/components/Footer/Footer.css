@@ -1,0 +1,162 @@
+*{
+    box-sizing: border-box;
+  }
+  
+  .footer{
+    font-family: sans-serif;
+    margin: 20px 240px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1280px;
+  }
+  
+  .logo{
+    width: 100px;
+  }
+  .footer-text{
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  
+  .copyright{
+    padding-top: 51px;
+    font-weight: 600;
+  }
+  
+  .footer-menu{
+    list-style: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    line-height: 3;
+    color: rgb(0,0,0, 0.7)
+  }
+  
+  .heading{
+    font-size:24px;
+    border-bottom: 4px solid orange;
+    padding-bottom: 4px;
+    max-width: 250px;
+    font-weight: 600;
+  }
+ 
+  .heading-sub{
+    margin-bottom: 20px;
+  }
+  .newsletter-label{
+    font-size: 16px;
+    font-weight: 600;
+    display:block !important;
+    margin-bottom: 9px;
+  }
+  
+  .newsletter-email{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    border: none;
+  }
+  
+  .newsletter{
+    height: 40px;
+    width: 70px;
+    font-weight: 800;
+    border-radius: 0px 5px 5px 0px !important;
+    background-color: black;
+    color: white;
+    border: none;
+    position: relative;
+    top: 14px;
+    right: 69px;
+  }
+  
+  .social-heading{
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 600
+  }
+  
+  .socials{
+    display: flex;
+    gap: 10px;
+}
+
+
+@media (max-width: 480px) {
+    /* Adjust Footer container */
+    .footer {
+      margin: 20px 10px; /* Reduced margin for mobile screens */
+      padding: 20px 10px; /* Adjust padding for mobile */
+      flex-direction: column; /* Stack the sections vertically */
+      align-items: left; /* Center-align the sections */
+    }
+  
+    /* Left section adjustments */
+    .left, .center, .right {
+      flex: 1 1 100%; /* Make each section take full width */
+      max-width: 100%; /* Ensure no max-width constraints */
+      padding: 10px; /* Adjust padding */
+      text-align: left; /* Center-align text */
+    }
+  
+    /* Footer text */
+    .footer-text {
+      font-size: 14px; /* Smaller text for mobile */
+      margin-bottom: 10px;
+    }
+  
+    .copyright {
+      font-size: 14px; /* Smaller copyright text */
+      padding-top: 15px; /* Adjust padding for mobile */
+    }
+  
+    /* Adjust headings */
+    .heading {
+      font-size: 18px; /* Smaller font size for headings */
+      margin-bottom: 15px; /* Add margin between sections */
+      max-width: 80px;
+    }
+  
+    .heading-sub {
+        max-width: 200px;
+    }
+  
+    /* Adjust list items */
+    .ul {
+      line-height: 2;
+      text-align: center; /* Center-align the list items */
+    }
+  
+    /* Input and button adjustments */
+    input {
+      width: 100%; /* Full width for input */
+      max-width: 220px; /* Limit the maximum width */
+      margin-bottom: 15px; /* Add space between input and button */
+    }
+  
+    .newsletter {
+      width: 100%; /* Full width for button */
+      max-width: 100px; /* Limit max-width for button */
+      margin-left: 0; /* Remove margin */
+      padding: 10px; /* Add padding for better touch interaction */
+      top: 5px;
+    }
+  
+    /* Social media icons */
+    .socials {
+      justify-content: left; /* Center-align social icons */
+      margin-top: 20px; /* Add spacing between social media and other content */
+    }
+  
+    .socials svg {
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s ease;
+    }
+  
+    /* Social media hover effect */
+    .socials svg:hover {
+      transform: scale(1.1); /* Slightly scale on hover */
+    }
+  }
+  
