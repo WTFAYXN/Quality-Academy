@@ -13,7 +13,6 @@ html, body {
 .main {
     margin: 20px;
     padding-left: 10px;
-    max-width: 1400px;
     display: flex;
     height: 100vh;
     overflow: hidden;
