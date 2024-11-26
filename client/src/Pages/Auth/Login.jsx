@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import line from "../../assets/svgs/Line.svg";
 import line1 from "../../assets/svgs/Line1.svg";
@@ -6,6 +7,44 @@ import loginIllustration from "../../assets/svgs/Login.svg";
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("Login successful");
+        navigate("/");
+      } else {
+        alert(`Login failed: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("An error occurred during login");
+    }
+  };
+
   return (
     <div className="main">
       <div className="form-wrapper">
@@ -19,7 +58,7 @@ const Login = () => {
         <p className="sub-text">
           New to Quality Academy? <a href="#">Sign Up</a>
         </p>
-        <form className="login-form" action="">
+        <form className="login-form" onSubmit={handleSubmit}>
           <label className="label-form" htmlFor="email">
             Email Address
           </label>
@@ -28,7 +67,8 @@ const Login = () => {
             type="email"
             id="email"
             name="email"
-            placeholder="Email Address"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
           <label className="label-form" htmlFor="password">
@@ -39,26 +79,22 @@ const Login = () => {
             type="password"
             id="password"
             name="password"
-            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
-          <div className="agreement d-flex justify-content-between align-items-center">
-            <div className="check-agreement">
-              <input type="checkbox" name="remember" id="remember" />
-              <label htmlFor="remember">Keep me logged in</label>
-            </div>
-            <a className="forgot-pass" href="#">
-              <p>Forgot Password?</p>
-            </a>
-          </div>
           <button className="login-submit" type="submit">
-            Log In
+            Login
           </button>
         </form>
       </div>
       <div className="illustration">
         <img className="line-1" src={line1} alt="Line 1" />
-        <img className="main-illustration" src={loginIllustration} alt="Login Illustration" />
+        <img
+          className="main-illustration"
+          src={loginIllustration}
+          alt="Login Illustration"
+        />
       </div>
     </div>
   );
