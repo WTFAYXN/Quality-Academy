@@ -43,6 +43,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
+    <hr></hr>
     <div className='footer-bottom'>Designed & Developed By <Link to="www.tarlose.com">Tarlose</Link></div>
     </>
   );
