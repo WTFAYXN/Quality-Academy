@@ -14,25 +14,25 @@ const Resources =() => {
 
         <Navbar />
 
-        <div class="heading-resources">
-            <h1 class="heading-resources-text">Elevate your knowledge with Our Resources</h1>
+        <div className="heading-resources">
+            <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
             <img src={line} />
-            <p class="heading-p">One solution for your Education Preparation</p>
+            <p className="heading-p">One solution for your Education Preparation</p>
         </div>
 
-<div class="resources">
-    <div class="search-filter">
+<div className="resources">
+    <div className="search-filter">
     <input className='resources-search' type="text" placeholder="Search Resources" />
-    <div class="resource-button">
+    <div className="resource-button">
     <button className='upload'> <img src={upload} /> </button>
     <button className='filter'> <img src={filter} /> </button>
     </div>
     </div>
     
-    <div class="resource-grid">
+    <div className="resource-grid">
      <div>
         <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
-            <div class="download-resources">
+            <div className="download-resources">
             <h3> Hello World</h3>
             <img src={download} />
 

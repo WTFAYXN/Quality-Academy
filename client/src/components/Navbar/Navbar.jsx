@@ -25,11 +25,11 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <ul className={`list ${isMenuOpen ? "active" : ""}`}>
-        <li><Link to="/">Overview</Link></li>
-        <li><Link to="/features">Features</Link></li>
+        <li><Link to="/#overview">Overview</Link></li>
+        <li><Link to="/#features">Features</Link></li>
         <li><Link to="/resources">Resources</Link></li>
-        <li><Link to="/testimonials">Testimonials</Link></li>
-        <li><Link to="/get-started">Get Started</Link></li>
+        <li><Link to="/#testimonials">Testimonials</Link></li>
+        <li><Link to="/#get-started">Get Started</Link></li>
       </ul>
 
       {/* Call to Action Buttons */}

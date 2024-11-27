@@ -22,7 +22,14 @@ html {
 body{
     max-width: 1400px;
     margin: 0 auto !important;
+
 }
+
+html {
+    touch-action: auto;
+    overflow-y: auto;
+  }
+  
 li a{
     font-family: Gilroy-Semibold;
 }
