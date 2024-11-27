@@ -12,12 +12,19 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true, // Ensures no duplicate emails
-            match: [/.+@.+\..+/, 'Please enter a valid email'], // Validates email format
         },
         password: {
             type: String,
             required: true,
             minlength: 6, // Ensures a minimum password length
+        },
+        profession: {
+            type: String,
+            required: true,
+        },
+        role: {
+            type: Number,
+            default: 0, // 0 for user, 1 for admin
         },
     },
     {
