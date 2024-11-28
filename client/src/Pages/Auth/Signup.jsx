@@ -61,7 +61,7 @@ const Register = () => {
           <img className="line_illustration" src={line} alt="Line" />
         </h1>
         <p className="sub-text">
-          Already have an account? <a href="#">Login</a>
+          Already have an account? <a href="/login">Login</a>
         </p>
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="label-form" htmlFor="name">

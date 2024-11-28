@@ -56,7 +56,7 @@ const Login = () => {
           </span>
         </h1>
         <p className="sub-text">
-          New to Quality Academy? <a href="#">Sign Up</a>
+          New to Quality Academy? <a href="/signup">Sign Up</a>
         </p>
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="label-form" htmlFor="email">
