@@ -7,8 +7,8 @@ const Terms =() =>{
         <>
 
         <Navbar />
-    <div className="container mt-5 Terms-container">
-        <h1 className="text-center">Privacy Policy</h1>
+    <div className="container mt-5 mb-5 Terms-container">
+        <h1 className="text-center">Terms & Conditions</h1>
         <p className=" text-center">Effective Date: 1st July 2024.</p>
 
         <div className="mt-4">
@@ -91,7 +91,8 @@ const Terms =() =>{
         </div>
 
     </div>
-    
+
+    <hr />
         <Footer />
         </>
     )

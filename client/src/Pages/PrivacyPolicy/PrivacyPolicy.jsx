@@ -7,7 +7,7 @@ const PrivacyPolicy =() =>{
         <>
 
         <Navbar />
-    <div className="container mt-5 PrivacyPolicy-container">
+    <div className="container mt-5 mb-5 PrivacyPolicy-container">
         <h1 className="text-center">Privacy Policy</h1>
         <p className=" text-center">Effective Date: 1st July 2024.</p>
 
@@ -91,6 +91,7 @@ const PrivacyPolicy =() =>{
         </div>
 
     </div>
+    <hr />
     
         <Footer />
         </>
