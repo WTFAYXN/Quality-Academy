@@ -5,7 +5,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import line from "../../assets/svgs/Line.svg";
 import download from "../../assets/images/download-icon.png";
-import filter from "../../assets/svgs/filter.svg";
+import filtera from "../../assets/svgs/ascending.svg";
+import filterb from "../../assets/svgs/descending.svg";
 import upload from "../../assets/svgs/upload.svg";
 
 const Resources =() => {
@@ -25,7 +26,8 @@ const Resources =() => {
     <input className='resources-search' type="text" placeholder="Search Resources" />
     <div className="resource-button">
     <button className='upload'> <img src={upload} /> </button>
-    <button className='filter'> <img src={filter} /> </button>
+    <button className='filter'> <img src={filtera} /> </button>
+    <button className='filter'> <img src={filterb} /> </button>
     </div>
     </div>
     
