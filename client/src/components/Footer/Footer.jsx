@@ -25,7 +25,7 @@ const Footer = () => {
         <h2 className="heading heading-sub">Subscribe & Connect</h2>
         <form>
           <label className='newsletter-label' htmlFor="newsletter">Subscribe to our newsletter</label>
-          <input className='newsletter-email' type="email" id="newsletter" />
+          <input className='newsletter-email' type="email" id="newsletter" placeholder='Enter your email' />
           <button className='newsletter' type="submit"></button>
         </form>
 
