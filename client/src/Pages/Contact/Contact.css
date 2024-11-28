@@ -1,0 +1,76 @@
+
+.shape-container {
+    position: relative;
+    bottom: 280px;
+}
+
+.shape1, .shape2{
+    position: absolute;
+    top: 25%;
+    width: 10%;
+    z-index: -1;
+}
+
+.shape1{
+
+    left: -50px;
+}
+.shape2{
+    right: -50px;
+}
+.heading-contact{
+    align-items:center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 70px;
+    margin-top: 100px;
+  }
+  
+  .heading-contact-text{
+    max-width: 1100px;
+    text-align:center;
+    margin-bottom:0;
+    font-weight: 800;
+    font-size: 70px;
+  }
+  
+  .contact-line{
+    width: 500px;
+  }
+
+  .support{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 60px;
+    padding-bottom: 50px;
+    margin-bottom: 70px;
+    border-bottom: 1px solid black;
+  }
+  
+  .product-inquiry, .support-inquiry, .developer-inquiry{
+    margin-top: 40px;
+    text-align:center;
+  }
+  
+  .support-subheading, .product-subheading, .developer-subheading{
+    font-size: 28px;
+    font-weight: 600;
+    margin: 22px 0 16px;
+  }
+  
+  .support-description, .product-description, .developer-description{
+    font-size: 20px;
+    line-height: 1.9em;
+  }
+  
+  .product-contact{
+    background-color: black;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 10%;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+  }

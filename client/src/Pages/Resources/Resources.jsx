@@ -30,16 +30,79 @@ const Resources =() => {
     </div>
     
     <div className="resource-grid">
-     <div>
+    <div>
         <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
             <div className="download-resources">
             <h3> Hello World</h3>
             <img src={download} />
 
             </div>
-        </div>
-        <div></div>
-        <div></div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    <div>
+        <img src="https://i.pinimg.com/736x/28/c1/2c/28c12c12a4e8776324f5195200d4db05.jpg" />
+            <div className="download-resources">
+            <h3> Hello World</h3>
+            <img src={download} />
+
+            </div>
+    </div>
+    
 </div>
 
 </div>

@@ -20,14 +20,14 @@ html {
 }
 
 body{
-    max-width: 1400px;
+   
     margin: 0 auto !important;
-
+    overflow-y: auto !important;
 }
 
 html {
     touch-action: auto;
-    overflow-y: auto;
+    overflow-y: auto !important;
   }
   
 li a{
@@ -36,4 +36,5 @@ li a{
 
 #root{
     margin: 0 auto;
+    max-width: 1400px;
 }

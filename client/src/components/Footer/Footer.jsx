@@ -16,6 +16,7 @@ const Footer = () => {
         <h2 className="heading">Company</h2>
         <ul className='footer-menu'>
           <li><Link to="/">Home</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
           <li><Link to="/terms">Terms</Link></li>
           <li><Link to="/privacy">Privacy Policy</Link></li>
         </ul>
