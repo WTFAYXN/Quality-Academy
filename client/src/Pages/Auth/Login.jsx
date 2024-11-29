@@ -35,6 +35,7 @@ const Login = () => {
       const result = await response.json();
       if (response.ok) {
         alert("Login successful");
+        localStorage.setItem("token", result.token);
         navigate("/");
       } else {
         alert(`Login failed: ${result.message}`);
