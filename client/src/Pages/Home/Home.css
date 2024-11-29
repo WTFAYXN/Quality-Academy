@@ -5,13 +5,13 @@
 .shape-container {
     position: relative;
     bottom: 400px;
+    z-index: 0;
 }
 
 .shape1, .shape2{
     position: absolute;
     top: 25%;
     width: 10%;
-    z-index: 0;
 }
 
 .shape1{
@@ -67,3 +67,79 @@
 
 .home-illustration{
     margin: -65px auto 65px auto;}
+
+
+
+    .get-started{
+        display: flex;
+        justify-content: center;
+        margin: 160px auto;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .get-started-heading{
+        display: flex;
+        flex-direction: column;
+        font-size: 50px;
+        font-weight: 800;
+    }
+
+    .get-started-btn{
+        width: 18%;
+    }
+
+
+
+    .about-heading{
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-heading-text{
+        font-size: 50px;
+        display: flex;
+        flex-direction: column ;
+        font-weight: 800;
+
+    }
+
+  
+    .solutions{
+        margin: 60px 50px;
+    }
+
+    .solution-heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+    }
+    .solution-title{
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .solution-text{
+        font-size: 52px;
+        font-weight: 800;
+        width: 90%;
+    }
+
+    .solution-description{
+        font-size: 22px;
+        text-align: justify;
+    }
+
+    .solution-cards{
+        display: grid;
+        justify-content: center;
+        gap: 100px;
+        grid-template-columns: 330px 330px 330px;
+        grid-template-rows: 225px 225px;
+        margin-top: 50px;
+    }
+    
