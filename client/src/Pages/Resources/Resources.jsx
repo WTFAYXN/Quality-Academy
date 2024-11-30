@@ -125,7 +125,7 @@ const Resources = () => {
       <Navbar />
       <div className="heading-resources">
         <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
-        <img src={line} alt="Line" />
+        <img className='resources-line' src={line} alt="Line" />
         <p className="heading-p">One solution for your Learning Preparation</p>
       </div>
       <div className="resources">

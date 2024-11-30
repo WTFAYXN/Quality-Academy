@@ -79,3 +79,23 @@
     display: flex;
     gap:30px;
   }
+
+    
+@media (max-width: 600px){
+  .heading-resources-text{
+      font-size: 31px;
+  }
+  .resources-line{
+      width: 230px;
+  }
+
+  .search-filter{
+    margin: 0 10px;
+
+  }
+
+  .resources-search{
+    height: 40px;
+    width: 180px;
+  }
+}
