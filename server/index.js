@@ -3,6 +3,7 @@ const app = express();             // Create an Express application
 const cors = require('cors');       // Import CORS
 const userRouter = require('./src/routes/userRoutes'); // Import the router
 const uploadRouter = require('./src/routes/uploads'); // Import the router
+const quizRouter = require('./src/routes/quiz'); // Import the router
 const path = require('path');
 const fs = require('fs');
 const port = 5000;                 // Define the port
@@ -17,6 +18,7 @@ app.use(cors());
 // Use router for all routes
 app.use("/", userRouter);
 app.use("/", uploadRouter);
+app.use("/", quizRouter);
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

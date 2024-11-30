@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { decode } from 'jwt-decode';
 import './Resources.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
@@ -30,8 +31,24 @@ const Resources = () => {
   const [resources, setResources] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isAscending, setIsAscending] = useState(true);
+// const token = localStorage.getItem('token');
+// const decoded = decode(token);
+// console.log(decoded);
+
 
   useEffect(() => {
+    // // Fetch user data from localStorage
+    // const token = localStorage.getItem('token');
+    // if (token) {
+    //   try {
+    //     const decodedToken = decode(token);
+    //     setUser({ isAuthenticated: true, role: decodedToken.isAdmin ? 'admin' : 'user' });
+    //   } catch (error) {
+    //     console.error('Error decoding token:', error);
+    //   }
+    // }
+
+
     // Fetch resources from the server when the component mounts
     const fetchResources = async () => {
       try {

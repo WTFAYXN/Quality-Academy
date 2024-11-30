@@ -8,6 +8,10 @@ import Login from './Pages/Auth/Login';
 import Signup from './Pages/Auth/Signup';
 import Resources from './Pages/Resources/Resources';
 import Contact from './Pages/Contact/Contact';
+import QuizAttempt from './components/QuizAttempt';
+import QuizList from './components/QuizList';
+import QuizCreator from './components/QuizCreator';
+
 
 function App() {
 
@@ -24,6 +28,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+
+          <Route path="/quiz" element={<QuizList />} />
+          <Route path="/quiz/:id" element={<QuizAttempt />} />
+          <Route path="/create-quiz" element={<QuizCreator />} />
         </Routes>
     </Router>
       </div>
