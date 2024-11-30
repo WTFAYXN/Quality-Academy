@@ -25,7 +25,7 @@ const Home =() =>{
             <div className="heading-home">
                 <h1 className="heading-home-text">Boost Your Education With Quality Academy</h1>
                 <img class="home-line" src={line} />
-                <p className="home-description">One solution for your Education Preparation</p>
+                <p className="home-description">One solution for your Learning Preparation</p>
                 <button className="home-button">Get Started</button>
             </div>
             <div className="shape-container">
@@ -43,11 +43,11 @@ const Home =() =>{
                 <div className="solution-heading">
                     <div className="col-lg-7">
                         <p className="solution-title">SOLUTION WE PROVIDE</p>
-                        <h1 className="solution-text">Powerful  Quiz Builder  with lots of features</h1>
+                        <h1 className="solution-text">Powerful  Questionnaire Builder  with lots of features</h1>
                     </div>
 
                     <div className="solution-description">
-                        <p>Take advantage of Quality Academy’s streamlined & effective features to create a Quiz that helps your students prepare</p>
+                        <p>Take advantage of Quality Academy’s streamlined & effective features to create a Questionnaire that helps your preparatioon</p>
                     </div>
                 </div>
 

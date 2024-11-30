@@ -18,7 +18,7 @@ const Resources =() => {
         <div className="heading-resources">
             <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
             <img src={line} />
-            <p className="heading-p">One solution for your Education Preparation</p>
+            <p className="heading-p">One solution for your Learning Preparation</p>
         </div>
 
 <div className="resources">
