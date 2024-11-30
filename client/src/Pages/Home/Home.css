@@ -231,4 +231,64 @@
         padding: 36px;
         margin: 40px auto;
     }
+
+    .resources-bg{
+        display: flex !important;
+        flex-direction: column;
+        text-align: center;
+        width: 100% !important;
+        position: static !important;
+    }
+
+    .resources-heading{
+        font-size: 20px !important;
+    }
+
+    .resources-heading > span > img {
+        width: 160px !important;
+        }
+
+    .resources-btn{
+        width: auto !important;
+    }
+
+    .about-heading-text {
+        font-size: 30px;
+    }
+
+    .about-us-illustration > img{
+        display: block;
+        width: 100%;
+    }
+
+    .testimonials{
+        display: flex !important;
+        flex-direction: column;
+        text-align: center;
+        width: 100% !important;
+        position: static !important;
+    }
+    .testimonial-cards{
+        display: block !important;
+    }
+
+    .get-started{
+        margin: 60px auto !important;
+
+    }
+
+    .get-started-heading{
+        font-size: 30px !important;
+    }
+    .get-started-heading > span > img{
+        width: 275px;
+    }
+
+    .get-started-btn{
+        width: 45% !important;
+    }
+
+    .testimonial-shape-container{
+        display: none;
+    }
 }

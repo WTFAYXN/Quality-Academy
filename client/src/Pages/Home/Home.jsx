@@ -109,7 +109,7 @@ const Home =() =>{
                     <h3 className="about-heading-text">A Few words about Quality Academy here<span><img src={line}/></span></h3>
                     <p className="about-description">Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing</p>
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-6 about-us-illustration">
                     <img src={About} alt="" />
                 </div>
             </div>
