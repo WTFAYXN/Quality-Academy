@@ -42,6 +42,7 @@ const Register = () => {
       const result = await response.json();
       if (response.ok) {
         alert("Registration successful");
+        localStorage.setItem("token", result.token);
         navigate("/");
       } else {
         alert(`Registration failed: ${result.message}`);
