@@ -75,3 +75,17 @@
     font-weight: 600;
     color: white;
   }
+
+  
+@media (max-width: 600px){
+  .heading-contact-text{
+      font-size: 31px;
+  }
+  .contact-line{
+      width: 230px;
+  }
+
+  .support{
+    display: block;
+  }
+}
