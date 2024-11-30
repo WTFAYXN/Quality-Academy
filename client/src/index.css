@@ -38,3 +38,7 @@ li a{
     margin: 0 auto;
     max-width: 1400px;
 }
+
+h1,h2,h3,h4,h6{
+    color: black !important;
+}

@@ -23,7 +23,7 @@ const Home =() =>{
 
         <div className="hero-home" id="overview">
             <div className="heading-home">
-                <h1 className="heading-home-text">Boost Your Education With Quality Academy</h1>
+                <h1 className="heading-home-text">Boost Your Learning With Quality Academy</h1>
                 <img class="home-line" src={line} />
                 <p className="home-description">One solution for your Learning Preparation</p>
                 <button className="home-button">Get Started</button>
@@ -54,45 +54,42 @@ const Home =() =>{
                 <div className="solution-cards">
                     <div className="solution-card">
                         <div className="solution-card-icon">
-                           <img className="icon-study mb-3" src={study}/>
+                           <img className="icon-quiz mb-3" src={study}/>
                         </div>
-                        <h3>Study Material</h3>
+                        <h3 className="feature-heading">Custom Quiz</h3>
+                        <p>Get access to the best study material for your preparation</p>
+                    </div>
+                    <div className="solution-card">
+                        <div className="solution-card-icon">
+                            <img className="icon-notif mb-3" src={study}/>
+                        </div>
+                        <h3 className="feature-heading">Real-time notifications</h3>
+                        <p>Get access to the best study material for your preparation</p>
+                    </div>
+                    <div className="solution-card">
+                        <div className="solution-card-icon">
+                            <img className="icon-resources mb-3" src={study}/>
+                        </div>
+                        <h3 className="feature-heading">Resources</h3>
+                        <p>Get access to the best study material for your preparation</p>
+                    </div>
+                    <div className="solution-card">
+                        <div className="solution-card-icon">
+                            <img className="icon-url mb-3" src={study}/>
+                        </div>
+                        <h3 className="feature-heading">Url-based Sharing</h3>
                         <p>Get access to the best study material for your preparation</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
                             <img className="icon-study mb-3" src={study}/>
                         </div>
-                        <h3>Study Material</h3>
+                        <h3 className="feature-heading">Study Material</h3>
                         <p>Get access to the best study material for your preparation</p>
                     </div>
-                    <div className="solution-card">
-                        <div className="solution-card-icon">
-                            <img className="icon-study mb-3" src={study}/>
-                        </div>
-                        <h3>Study Material</h3>
-                        <p>Get access to the best study material for your preparation</p>
-                    </div>
-                    <div className="solution-card">
-                        <div className="solution-card-icon">
-                            <img className="icon-study mb-3" src={study}/>
-                        </div>
-                        <h3>Study Material</h3>
-                        <p>Get access to the best study material for your preparation</p>
-                    </div>
-                    <div className="solution-card">
-                        <div className="solution-card-icon">
-                            <img className="icon-study mb-3" src={study}/>
-                        </div>
-                        <h3>Study Material</h3>
-                        <p>Get access to the best study material for your preparation</p>
-                    </div>
-                    <div className="solution-card">
-                        <div className="solution-card-icon">
-                            <img className="icon-study mb-3" src={study}/>
-                        </div>
-                        <h3>Study Material</h3>
-                        <p>Get access to the best study material for your preparation</p>
+                    <div className="solution-card know-more">
+                        <h5 >Want to find out more? Click below</h5>
+                        <button className="solution-btn">Sign up</button>
                     </div>
                 </div>
         </div>

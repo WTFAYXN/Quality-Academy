@@ -7,7 +7,7 @@ export default function Resources() {
             <div className="get-started">
                 <p className="resources-text">Resources</p>
                 <h1 className="resources-heading">Helpful Resources For all your
-                Education Needs<span> <img src={line} alt="" /></span></h1>
+                Learning Needs<span> <img src={line} alt="" /></span></h1>
                 <button className="home-button resources-btn">Get Started</button>
             </div>
 

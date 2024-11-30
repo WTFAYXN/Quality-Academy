@@ -1,3 +1,5 @@
+
+
 .hero-home{
     background-image: url('../../assets/images/Bg.png');
     background-position: center;
@@ -116,6 +118,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 100px;
     
     }
     .solution-title{
@@ -143,3 +146,89 @@
         margin-top: 50px;
     }
     
+.know-more{
+    background-color: #2C75FF;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    font-size: 27px !important;}
+
+.solution-btn {
+    padding: 10px 60px;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+}
+
+.feature-heading{
+    font-weight: 600;
+}
+
+
+
+
+@media (max-width: 600px){
+    .heading-home-text{
+        font-size: 31px;
+    }
+    .home-line{
+        width: 230px;
+    }
+    .home-description{
+        font-size: 18px;
+        text-align: center;
+        margin: 30px auto;
+    }
+    
+    .home-button{
+        padding: 15px 40px;
+        font-size: 15px;
+    }
+
+    .home-illustration{
+        max-width: 100%;
+        display: block;
+    }
+
+    .solutions{
+        margin: 20px;
+    }
+    
+    .solution-heading{
+        flex-wrap: wrap ;
+    }
+
+    .solution-title{
+        font-size: 14px;
+    }
+
+    .solution-text{
+        font-size: 22px;
+    }
+    .solution-description{
+        font-size: 16px;
+        padding-top: 4px;
+    }
+
+    .solution-cards{
+        display: block;
+        margin-top: -50px;
+    }
+
+    .solution-card{
+        padding-top: 20px;
+    }
+
+    .know-more{
+        padding: 36px;
+        margin: 40px auto;
+    }
+}

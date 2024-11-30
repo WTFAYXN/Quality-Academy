@@ -31,12 +31,6 @@ const Resources = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isAscending, setIsAscending] = useState(true);
 
-<<<<<<< HEAD
-        <div className="heading-resources">
-            <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
-            <img src={line} />
-            <p className="heading-p">One solution for your Learning Preparation</p>
-=======
   useEffect(() => {
     // Fetch resources from the server when the component mounts
     const fetchResources = async () => {
@@ -132,7 +126,7 @@ const Resources = () => {
       <div className="heading-resources">
         <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
         <img src={line} alt="Line" />
-        <p className="heading-p">One solution for your Education Preparation</p>
+        <p className="heading-p">One solution for your Learning Preparation</p>
       </div>
       <div className="resources">
         <div className="search-filter">
@@ -160,7 +154,6 @@ const Resources = () => {
               <img src={filtera} alt="Filter" />
             </button>
           </div>
->>>>>>> 91dd6beec2fd58031220c1538f50db148e31568a
         </div>
         <div className="resource-grid">
           {filteredResources.map((resource) => (
