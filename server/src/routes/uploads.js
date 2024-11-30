@@ -50,46 +50,40 @@ router.get('/resources', async (req, res) => {
 });
 
 // Delete resource endpoint
-router.delete('/resources/:id', async (req, res) => {
+router.delete("/resources/:id", async (req, res) => {
   try {
-    console.log(`Deleting resource with ID: ${req.params.id}`);
+    // console.log(`Received request to delete resource with ID: ${req.params.id}`);
+
+    // Find the resource in MongoDB
     const resource = await Resource.findById(req.params.id);
     if (!resource) {
-      console.error('Resource not found:', req.params.id);
-      return res.status(404).send('Resource not found');
+      console.error("Resource not found:", req.params.id);
+      return res.status(404).json({ error: "Resource not found" });
     }
 
-    // Extract the filename from the imageUrl
-    const filename = path.basename(resource.imageUrl);
-    const filePath = path.resolve(__dirname, '..', 'uploads', filename);
+    // Extract the file name from imageUrl
+    const fileName = path.basename(resource.imageUrl); // Extracts only "1732977017669-quiz proposal.pdf"
+    const uploadsDir = path.join(__dirname, "../../uploads"); // Correct path to uploads directory in server folder
+    const filePath = path.join(uploadsDir, fileName); // Combine uploads directory with the file name
 
-    console.log(`Deleting file: ${filePath}`);
+    // console.log("Constructed file path:", filePath);
 
-    // Check if the file exists before attempting to delete it
+    // Check if the file exists and delete it
     if (fs.existsSync(filePath)) {
-      // Delete the file from the uploads directory
-      fs.unlink(filePath, async (err) => {
-        if (err) {
-          console.error('Error deleting file:', err);
-          return res.status(500).send('Error deleting file');
-        }
-
-        // Delete the resource from the MongoDB database
-        try {
-          await Resource.findByIdAndDelete(req.params.id);
-          res.status(200).send('Resource deleted successfully');
-        } catch (error) {
-          console.error('Error deleting resource from database:', error);
-          res.status(500).send('Error deleting resource from database');
-        }
-      });
+      fs.unlinkSync(filePath);
+      // console.log("File deleted successfully from disk");
     } else {
-      console.error('File not found:', filePath);
-      res.status(404).send('File not found');
+      console.warn("File not found on disk:", filePath);
     }
+
+    // Delete the resource from MongoDB
+    await resource.deleteOne();
+    // console.log("Resource deleted from MongoDB");
+
+    res.status(200).json({ message: "Resource deleted successfully" });
   } catch (error) {
-    console.error('Error deleting resource:', error);
-    res.status(500).send('Error deleting resource');
+    console.error("Error during deletion process:", error);
+    res.status(500).json({ error: "Error deleting resource" });
   }
 });
 
