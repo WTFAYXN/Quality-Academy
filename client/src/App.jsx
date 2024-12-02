@@ -11,6 +11,7 @@ import Contact from './Pages/Contact/Contact';
 import QuizAttempt from './components/QuizAttempt';
 import QuizList from './components/QuizList';
 import QuizCreator from './components/QuizCreator';
+import User from './Questionnaire/User';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/user" element={<User />} />
 
           <Route path="/quiz" element={<QuizList />} />
           <Route path="/quiz/:id" element={<QuizAttempt />} />
