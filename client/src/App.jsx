@@ -35,6 +35,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/user" element={<User />} />
 
           <Route path="/quiz/:id" element={<QuizDetails />} />
           <Route path="/quizzes" element={<PublicQuizzes />} />

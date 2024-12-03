@@ -66,6 +66,16 @@
     color: black;
   }
 
+.user-profile{
+  height: 70px;
+  width: 70px;
+  background: url(https://s.pinimg.com/webapp/left-ccce7532.png);
+  background-size: cover;
+  border-radius: 100%;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
 
   /* Mobile styles */
 @media (max-width: 768px) {
@@ -102,3 +112,5 @@
     display: none;
   }
 }
+
+
