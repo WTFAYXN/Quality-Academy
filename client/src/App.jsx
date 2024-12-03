@@ -12,7 +12,7 @@ import QuizAttempt from './components/QuizAttempt';
 import QuizList from './components/QuizList';
 import QuizCreator from './components/QuizCreator';
 import User from './Questionnaire/User';
-
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
       <div className="App">
     <Router>
         <Routes>
-          {/* <Route path="*" element={<PageNotFound />} /> */}
+          <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resources" element={<Resources />} />

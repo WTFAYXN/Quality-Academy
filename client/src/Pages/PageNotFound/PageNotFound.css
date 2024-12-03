@@ -1,0 +1,48 @@
+.overlay{
+    background-image: url("./Bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.page-not-found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    }
+
+    .page-not-found > img{
+        padding-top: 30px;
+        height: 550px;
+    }
+
+    .page-not-found > h1 {
+        font-size: 50px;
+        font-weight: 900;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .page-not-found > h1::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        bottom: 0;
+        left: 0;
+        background-color: orange;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.5s ease-out;
+    }
+    
+    .page-not-found > h1:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+.go-back{
+    margin: 30px auto;
+    display: block;
+}
