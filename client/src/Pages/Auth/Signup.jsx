@@ -13,7 +13,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    profession: "",
+    // profession: "",
   });
 
   const handleChange = (e) => {
@@ -113,7 +113,7 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <label className="label-form" htmlFor="profession">
+          {/* <label className="label-form" htmlFor="profession">
             Profession
           </label>
           <select
@@ -130,7 +130,7 @@ const Register = () => {
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
             <option value="other">Other</option>
-          </select>
+          </select> */}
           <button className="login-submit" type="submit">
             Register
           </button>

@@ -36,6 +36,7 @@ const Login = () => {
       if (response.ok) {
         alert("Login successful");
         localStorage.setItem("token", result.token);
+        localStorage.setItem("isAdmin", result.isAdmin);
         navigate("/");
       } else {
         alert(`Login failed: ${result.message}`);
