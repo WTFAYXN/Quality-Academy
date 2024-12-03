@@ -1,36 +1,41 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-// Define the schema
-const userSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-            trim: true, // Removes extra spaces
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true, // Ensures no duplicate emails
-        },
-        password: {
-            type: String,
-            required: true,
-            minlength: 6, // Ensures a minimum password length
-        },
-        profession: {
-            type: String,
-            required: true,
-        },
-        role: {
-            type: Number,
-            default: 0, // 0 for user, 1 for admin
-        },
+// User Schema
+const userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    {
-        timestamps: true, // Automatically adds createdAt and updatedAt fields
-    }
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: Number,
+      default: 0, // "0 = user" or "1 = admin"
+    },
+    quizzesCreated: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Quiz", // Reference to quizzes created by the user
+      },
+    ],
+    quizzesAttempted: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "QuizResponse", // Reference to quizzes attempted by the user
+      },
+    ],
+  },
+  { timestamps: true }
 );
 
-// Export the model
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
+module.exports = User;

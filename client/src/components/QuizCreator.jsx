@@ -6,16 +6,23 @@ const QuizCreator = () => {
     const [description, setDescription] = useState('');
     const [questions, setQuestions] = useState([]);
 
-    // Add a new question
+    // Add a new question to the list
     const addQuestion = () => {
         setQuestions([...questions, { question: '', options: ['', '', '', ''], correctAnswer: 0 }]);
     };
 
-    // Handle quiz submission
     const handleSubmit = async () => {
-        const quizData = { title, description, questions };
-        await createQuiz(quizData);
-        alert('Quiz created successfully!');
+        try {
+            const quizData = { title, description, questions };
+            await createQuiz(quizData); // Pass quiz data to the backend
+            alert('Quiz created successfully!');
+            setTitle('');
+            setDescription('');
+            setQuestions([]);
+        } catch (error) {
+            console.error('Error creating quiz:', error);
+            alert('Failed to create quiz. Try again.');
+        }
     };
 
     return (
@@ -38,6 +45,7 @@ const QuizCreator = () => {
                     <input
                         type="text"
                         placeholder="Question"
+                        value={q.question}
                         onChange={(e) => {
                             const updatedQuestions = [...questions];
                             updatedQuestions[index].question = e.target.value;
@@ -49,6 +57,7 @@ const QuizCreator = () => {
                             key={optionIndex}
                             type="text"
                             placeholder={`Option ${optionIndex + 1}`}
+                            value={option}
                             onChange={(e) => {
                                 const updatedQuestions = [...questions];
                                 updatedQuestions[index].options[optionIndex] = e.target.value;
@@ -57,6 +66,7 @@ const QuizCreator = () => {
                         />
                     ))}
                     <select
+                        value={q.correctAnswer}
                         onChange={(e) => {
                             const updatedQuestions = [...questions];
                             updatedQuestions[index].correctAnswer = Number(e.target.value);

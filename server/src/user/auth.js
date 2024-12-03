@@ -7,7 +7,7 @@ require('dotenv').config();
 /*********************************************************
                       Register
 *********************************************************/
-const register = async (name, email, password, profession) => {
+const register = async (name, email, password ) => {
     try {
       // Check if the user already exists
       const existingUser = await User.findOne({ email });
@@ -22,7 +22,6 @@ const register = async (name, email, password, profession) => {
         name,
         email,
         password: hashedPassword,
-        profession,
       });
   
       // Save the new user to the database
@@ -30,7 +29,8 @@ const register = async (name, email, password, profession) => {
   
       // Generate a token for the new user
       const token = jwt.sign({ userId: newUser._id },process.env.JWT_SECRET);
-  
+      localStorage.setItem('token', data.token);  // Store token in localStorage
+
       // Return success message and token
       return { 
         message: "User created successfully", 
@@ -135,4 +135,51 @@ async function sendEmail(to, subject, text) {
   // console.log('Message sent: %s', info.messageId);
 }
 
-module.exports = { register, login, editUser, sendEmail };
+/*********************************************************
+                      Validate User
+*********************************************************/
+const validateUser = async (req, res, next) => {
+  try {
+    // console.log('req.headers:', req.headers)
+    // Check for the Authorization header
+    const authHeader = req.headers["authorization"];
+    if (!authHeader) {
+      return res.status(401).json({ error: "Authorization header missing" });
+    }
+    // console.log('authHeader:', authHeader)
+    // Extract the token from the Authorization header
+    const token = authHeader.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ error: "Token missing" });
+    }
+
+    // console.log('token:', token)
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { userId, isAdmin } = decoded;
+
+    // console.log('decoded:', decoded)
+    // Check if the user exists in the database
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+
+    // Attach user and admin info to the request object
+    req.user = user;
+    req.isAdmin = isAdmin;
+
+    next(); // Proceed to the next middleware or route handler
+  } catch (error) {
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({ error: "Token expired" });
+    }
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { register, login, editUser, sendEmail, validateUser };
