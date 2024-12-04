@@ -29,8 +29,7 @@ function App() {
       <div className="App">
     <Router>
         <Routes>
-          {/* <Route path="*" element={<PageNotFound />} /> */}
-          {/* <Route path="*" element={<PageNotFound />} />  */}
+          <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resources" element={<Resources />} />
