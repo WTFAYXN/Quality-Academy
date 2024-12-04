@@ -1,0 +1,49 @@
+.admin-requests {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .admin-requests h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .admin-requests ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .admin-requests li {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .admin-requests li p {
+    margin: 0;
+  }
+  
+  .admin-requests li button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-requests li button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }

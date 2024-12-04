@@ -5,6 +5,7 @@ const User = require('../models/userModel.js'); // Adjust based on your user mod
 const { sendEmail } = require('../user/auth.js'); // Implement this function based on your email sending method
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
+const { validateUser } = require('../user/auth.js');
 //const Contact = require('../model/contactModel.js'); // Adjust based on your contact model
 const router = express.Router();
 
@@ -90,6 +91,16 @@ router.post('/contactus', async (req, res) => {
     } catch (err) {
       console.error(err); // Log the error for server-side debugging
       res.status(500).json({ Status: "An error occurred on the server" });
+    }
+  });
+
+  //----------------------------------------------
+  router.get("/user", validateUser, async (req, res) => {
+    try {
+      const user = await User.findById(req.user._id);
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   });
   

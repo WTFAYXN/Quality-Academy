@@ -20,6 +20,7 @@ import PublicQuizzes from './Pages/Quiz/PublicQuizzes';
 import AttemptedQuizzes from './Pages/Quiz/AttemptedQuizzes';
 import MyQuizzes from './Pages/Quiz/MyQuizzes';
 import QuizDetails from './Pages/Quiz/QuizDetails';
+import AdminRequests from './Pages/Admin/AdminRequests';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/user" element={<User />} />
+          <Route path="/admin/requests" element={<AdminRequests />} />
 
           <Route path="/quiz/:id" element={<QuizDetails />} />
           <Route path="/quizzes" element={<PublicQuizzes />} />

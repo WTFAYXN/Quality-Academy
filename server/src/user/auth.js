@@ -167,7 +167,8 @@ const validateUser = async (req, res, next) => {
 
     // Attach user and admin info to the request object
     req.user = user;
-    req.isAdmin = isAdmin;
+    req.isAdmin = user.role === 1;
+    req.canUpload = user.canUpload;
 
     next(); // Proceed to the next middleware or route handler
   } catch (error) {
@@ -181,4 +182,31 @@ const validateUser = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login, editUser, sendEmail, validateUser };
+/*********************************************************
+                      Validate admin
+*********************************************************/
+const validateAdmin = async (req, res, next) => {
+  try {
+    const authHeader = req.headers["authorization"];
+    if (!authHeader) {
+      return res.status(401).json({ error: "Authorization header missing" });
+    }
+    const token = authHeader.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ error: "Token missing" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+    if (!user || user.role !== 1) {
+      return res.status(403).json({ error: "Access denied" });
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+module.exports = { register, login, editUser, sendEmail, validateUser, validateAdmin };

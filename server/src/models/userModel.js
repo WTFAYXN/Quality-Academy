@@ -21,6 +21,10 @@ const userSchema = new Schema(
       type: Number,
       default: 0, // "0 = user" or "1 = admin"
     },
+    canUpload: {
+      type: Boolean,
+      default: false,
+    },
     quizzesCreated: [
       {
         type: Schema.Types.ObjectId,

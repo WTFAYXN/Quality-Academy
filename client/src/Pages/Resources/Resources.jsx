@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-// import { decode } from 'jwt-decode';
+import React, { useState, useEffect, useRef } from 'react';
 import './Resources.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
-import Notification from '../../components/Notification/Notification'; // Import the Notification component
+import Notification from '../../components/Notification/Notification';
+import PermissionPopup from '../../components/PermissionPopup/PermissionPopup'; // Import the new component
 import line from '../../assets/svgs/Line.svg';
 import download from '../../assets/images/download-icon.png';
 import filtera from '../../assets/svgs/ascending.svg';
@@ -32,30 +32,16 @@ const Resources = () => {
   const [resources, setResources] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isAscending, setIsAscending] = useState(true);
+  const fileInputRef = useRef(null);
+  const [showPermissionPopup, setShowPermissionPopup] = useState(false);
   const [notification, setNotification] = useState({
     message: '',
     type: '',
     visible: false,
   });
-// const token = localStorage.getItem('token');
-// const decoded = decode(token);
-// console.log(decoded);
-
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // // Fetch user data from localStorage
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //   try {
-    //     const decodedToken = decode(token);
-    //     setUser({ isAuthenticated: true, role: decodedToken.isAdmin ? 'admin' : 'user' });
-    //   } catch (error) {
-    //     console.error('Error decoding token:', error);
-    //   }
-    // }
-
-
-    // Fetch resources from the server when the component mounts
     const fetchResources = async () => {
       try {
         const response = await fetch('http://localhost:5000/resources');
@@ -67,7 +53,27 @@ const Resources = () => {
       }
     };
 
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await fetch('http://localhost:5000/user', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const userData = await response.json();
+          if (userData.role === 1) {
+            setIsAdmin(true);
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    };
+
     fetchResources();
+    fetchUserData();
   }, []);
 
   const showNotification = (message, type) => {
@@ -78,12 +84,60 @@ const Resources = () => {
     setNotification({ ...notification, visible: false });
   };
 
+  const handleUploadButtonClick = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      showNotification('Please login to upload resources', 'error');
+      navigate("/login");
+      return;
+    }
+    try {
+      const response = await fetch('http://localhost:5000/user', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const userData = await response.json();
+      if (!userData.canUpload) {
+        setShowPermissionPopup(true);
+        return;
+      }
+
+      fileInputRef.current.click();
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      showNotification('An error occurred while checking permissions', 'error');
+    }
+  };
+
+  const handleRequestPermission = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('http://localhost:5000/request-permission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        showNotification('Permission request sent successfully', 'success');
+        setShowPermissionPopup(false);
+      } else {
+        showNotification('Failed to send permission request', 'error');
+      }
+    } catch (error) {
+      console.error('Error sending permission request:', error);
+      showNotification('An error occurred while sending permission request', 'error');
+    }
+  };
+
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
 
     if (selectedFile) {
-      // Automatically trigger upload when a file is selected
       const formData = new FormData();
       formData.append('file', selectedFile);
 
@@ -95,7 +149,6 @@ const Resources = () => {
 
         if (response.ok) {
           showNotification('File uploaded successfully', 'success');
-          // Fetch the updated list of resources after upload
           const updatedResources = await fetch('http://localhost:5000/resources');
           const data = await updatedResources.json();
           setResources(data);
@@ -129,7 +182,6 @@ const Resources = () => {
 
       if (response.ok) {
         showNotification('Resource deleted successfully', 'success');
-        // Fetch the updated list of resources after deletion
         const updatedResources = await fetch('http://localhost:5000/resources');
         const data = await updatedResources.json();
         setResources(data);
@@ -178,13 +230,14 @@ const Resources = () => {
           <div className="resource-button">
             <input
               type="file"
+              ref={fileInputRef}
               onChange={handleFileChange}
               style={{ display: 'none' }}
               id="fileInput"
             />
             <button
               className="upload"
-              onClick={() => document.getElementById('fileInput').click()}
+              onClick={handleUploadButtonClick}
             >
               <img src={upload} alt="Upload" />
             </button>
@@ -202,12 +255,18 @@ const Resources = () => {
                 <a href={resource.imageUrl} download>
                   <img src={download} alt="Download" />
                 </a>
-                <button onClick={() => handleDelete(resource._id)}>Delete</button>
+                {isAdmin && <button onClick={() => handleDelete(resource._id)}>Delete</button>} {/* Conditionally render delete button */}
               </div>
             </div>
           ))}
         </div>
       </div>
+      {showPermissionPopup && (
+        <PermissionPopup
+          onRequestPermission={handleRequestPermission}
+          onClose={() => setShowPermissionPopup(false)}
+        />
+      )}
       <Footer />
     </>
   );

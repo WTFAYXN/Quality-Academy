@@ -2,6 +2,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const PermissionRequest = require('../models/PermissionRequest');
+const {validateUser} = require('../user/auth');
 const Resource = require('../models/Resource');
 
 const router = express.Router();
@@ -84,6 +86,23 @@ router.delete("/resources/:id", async (req, res) => {
   } catch (error) {
     console.error("Error during deletion process:", error);
     res.status(500).json({ error: "Error deleting resource" });
+  }
+});
+
+// Handle permission request
+router.post("/request-permission", validateUser, async (req, res) => {
+  try {
+    const user = req.user;
+    // Add logic to save the permission request to the database
+    const permissionRequest = new PermissionRequest({
+      user: user._id,
+      name: user.name,
+      email: user.email,
+    });
+    await permissionRequest.save();
+    res.status(200).json({ message: "Permission request sent successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
