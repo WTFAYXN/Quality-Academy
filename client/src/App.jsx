@@ -12,7 +12,7 @@ import Contact from './Pages/Contact/Contact';
 // import QuizList from './components/QuizList';
 // import QuizCreator from './components/QuizCreator';
 import User from './Questionnaire/User';
-// import PageNotFound from './Pages/PageNotFound/PageNotFound';
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import AttemptQuiz from './Pages/Quiz/AttemptQuiz';
 import CreateQuiz from './Pages/Quiz/CreateQuiz';
 import EditQuiz from './Pages/Quiz/EditQuiz';
