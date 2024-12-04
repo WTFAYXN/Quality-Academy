@@ -11,6 +11,8 @@ import Contact from './Pages/Contact/Contact';
 // import QuizAttempt from './components/QuizAttempt';
 // import QuizList from './components/QuizList';
 // import QuizCreator from './components/QuizCreator';
+import User from './Questionnaire/User';
+// import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import AttemptQuiz from './Pages/Quiz/AttemptQuiz';
 import CreateQuiz from './Pages/Quiz/CreateQuiz';
 import EditQuiz from './Pages/Quiz/EditQuiz';
@@ -28,6 +30,7 @@ function App() {
     <Router>
         <Routes>
           {/* <Route path="*" element={<PageNotFound />} /> */}
+          {/* <Route path="*" element={<PageNotFound />} />  */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resources" element={<Resources />} />

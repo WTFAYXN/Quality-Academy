@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './Resources.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
+import Notification from '../../components/Notification/Notification'; // Import the Notification component
 import line from '../../assets/svgs/Line.svg';
 import download from '../../assets/images/download-icon.png';
 import filtera from '../../assets/svgs/ascending.svg';
@@ -31,6 +32,11 @@ const Resources = () => {
   const [resources, setResources] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isAscending, setIsAscending] = useState(true);
+  const [notification, setNotification] = useState({
+    message: '',
+    type: '',
+    visible: false,
+  });
 // const token = localStorage.getItem('token');
 // const decoded = decode(token);
 // console.log(decoded);
@@ -56,12 +62,21 @@ const Resources = () => {
         const data = await response.json();
         setResources(data);
       } catch (error) {
+        showNotification('Error fetching resources', 'error');
         console.error('Error fetching resources:', error);
       }
     };
 
     fetchResources();
   }, []);
+
+  const showNotification = (message, type) => {
+    setNotification({ message, type, visible: true });
+  };
+
+  const closeNotification = () => {
+    setNotification({ ...notification, visible: false });
+  };
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
@@ -79,17 +94,17 @@ const Resources = () => {
         });
 
         if (response.ok) {
-          alert('File uploaded successfully');
+          showNotification('File uploaded successfully', 'success');
           // Fetch the updated list of resources after upload
           const updatedResources = await fetch('http://localhost:5000/resources');
           const data = await updatedResources.json();
           setResources(data);
         } else {
-          alert('File upload failed');
+          showNotification('File upload failed', 'error');
         }
       } catch (error) {
         console.error('Error during file upload:', error);
-        alert('An error occurred during file upload');
+        showNotification('An error occurred during file upload', 'error');
       }
     }
   };
@@ -113,17 +128,17 @@ const Resources = () => {
       });
 
       if (response.ok) {
-        alert('Resource deleted successfully');
+        showNotification('Resource deleted successfully', 'success');
         // Fetch the updated list of resources after deletion
         const updatedResources = await fetch('http://localhost:5000/resources');
         const data = await updatedResources.json();
         setResources(data);
       } else {
-        alert('Resource deletion failed');
+        showNotification('Resource deletion failed', 'error');
       }
     } catch (error) {
       console.error('Error during resource deletion:', error);
-      alert('An error occurred during resource deletion');
+      showNotification('An error occurred during resource deletion', 'error');
     }
   };
 
@@ -140,6 +155,12 @@ const Resources = () => {
   return (
     <>
       <Navbar />
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        visible={notification.visible}
+        onClose={closeNotification}
+      />
       <div className="heading-resources">
         <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
         <img className='resources-line' src={line} alt="Line" />

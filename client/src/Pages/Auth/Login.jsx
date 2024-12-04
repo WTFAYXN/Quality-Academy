@@ -4,6 +4,7 @@ import logo from "../../assets/svgs/Quality-Academy.svg";
 import line from "../../assets/svgs/Line.svg";
 import line1 from "../../assets/svgs/Line1.svg";
 import loginIllustration from "../../assets/svgs/Login.svg";
+import Notification from "../../components/Notification/Notification";
 import "./Login.css";
 
 const Login = () => {
@@ -13,12 +14,28 @@ const Login = () => {
     password: "",
   });
 
+  const [notification, setNotification] = useState({
+    message: "",
+    type: "",
+    visible: false,
+  });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+
+
+  const showNotification = (message, type) => {
+    setNotification({ message, type, visible: true });
+  };
+
+  const closeNotification = () => {
+    setNotification({ ...notification, visible: false });
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,20 +51,27 @@ const Login = () => {
 
       const result = await response.json();
       if (response.ok) {
-        alert("Login successful");
+        showNotification("Login successful!", "success");
         localStorage.setItem("token", result.token);
         localStorage.setItem("isAdmin", result.isAdmin);
         navigate("/");
       } else {
-        alert(`Login failed: ${result.message}`);
+        showNotification(`Login failed: ${result.message}`, "error");;
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("An error occurred during login");
+      showNotification("An error occurred during login", "error");
     }
   };
 
   return (
+    <>
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        visible={notification.visible}
+        onClose={closeNotification}
+      />
     <div className="main">
       <div className="form-wrapper">
         <img className="logo mb-20" src={logo} alt="Quality Academy Logo" />
@@ -99,6 +123,7 @@ const Login = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/svgs/Quality-Academy.svg";
+import Notification from "../../components/Notification/Notification";
 import line from "../../assets/svgs/Line.svg";
 import line1 from "../../assets/svgs/Line1.svg";
 import signupIllustration from "../../assets/svgs/Signup.svg";
@@ -15,6 +16,11 @@ const Register = () => {
     confirmPassword: "",
     // profession: "",
   });
+  const [notification, setNotification] = useState({
+    message: "",
+    type: "",
+    visible: false,
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -23,10 +29,18 @@ const Register = () => {
     });
   };
 
+  const showNotification = (message, type) => {
+    setNotification({ message, type, visible: true });
+  };
+
+  const closeNotification = () => {
+    setNotification({ ...notification, visible: false });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      showNotification("Passwords do not match", "error");
       return;
     }
 
@@ -34,6 +48,7 @@ const Register = () => {
       const response = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
+          Authorization : `Bearer ${localStorage.getItem('token')}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
@@ -41,19 +56,26 @@ const Register = () => {
 
       const result = await response.json();
       if (response.ok) {
-        alert("Registration successful");
+        showNotification("Registration successful!", "success");
         localStorage.setItem("token", result.token);
         navigate("/");
       } else {
-        alert(`Registration failed: ${result.message}`);
+        showNotification(`Registration failed: ${result.message}`, "error");
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      alert("An error occurred during registration");
+      showNotification("An error occurred during registration", "error");
     }
   };
 
   return (
+    <>
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        visible={notification.visible}
+        onClose={closeNotification}
+      />
     <div className="main">
       <div className="form-wrapper">
         <img className="logo mb-20" src={logo} alt="Quality Academy Logo" />
@@ -145,6 +167,7 @@ const Register = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

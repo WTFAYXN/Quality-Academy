@@ -29,7 +29,6 @@ const register = async (name, email, password ) => {
   
       // Generate a token for the new user
       const token = jwt.sign({ userId: newUser._id },process.env.JWT_SECRET);
-      localStorage.setItem('token', data.token);  // Store token in localStorage
 
       // Return success message and token
       return { 
