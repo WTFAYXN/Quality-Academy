@@ -3,6 +3,7 @@ import "./User.css"
 
 import Upload from "../assets/svgs/Questionnaire/upload.svg";
 import Add from "../assets/svgs/Questionnaire/add.svg";
+import { Link } from "react-router-dom";
 
 const User =() => {
  return(
@@ -19,12 +20,14 @@ const User =() => {
 
         <div className="create-upload">
 
+                <Link to="/quizzes/create">
             <div className="quiz-create">
-            <div className="create-quiz-btn">
-                <img src={Add} />
+                <div className="create-quiz-btn">
+                    <img src={Add} />
+                </div>
+                <p>Create a questionnaire</p>
             </div>
-            <p>Create a questionnaire</p>
-            </div>
+            </Link>
             
             <div className="quiz-create">
             <div className="upload-resources-btn">

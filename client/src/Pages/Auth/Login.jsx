@@ -54,7 +54,7 @@ const Login = () => {
         showNotification("Login successful!", "success");
         localStorage.setItem("token", result.token);
         localStorage.setItem("isAdmin", result.isAdmin);
-        navigate("/");
+        navigate("/user");
       } else {
         showNotification(`Login failed: ${result.message}`, "error");;
       }
