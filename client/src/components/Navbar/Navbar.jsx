@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
+import userIcon from "../../assets/images/catLogo.png";
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is logged in (e.g., by checking a token in localStorage)
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -13,7 +23,7 @@ const Navbar = () => {
   return (
     <div className="nav-container">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <Link to="/"><img src={logo} alt="Logo" /></Link>
       </div>
 
       {/* Hamburger Menu Button */}
@@ -34,8 +44,14 @@ const Navbar = () => {
 
       {/* Call to Action Buttons */}
       <div className="cta">
-        <button className="btn-login"><Link to="/login">Login</Link></button>
-        <button className="btn-signup"><Link to="/signup">Signup</Link></button>
+        {isLoggedIn ? (
+          <Link to="/user"><img src={userIcon} alt="User Icon" className="user-icon" /></Link>
+        ) : (
+          <>
+            <button className="btn-login"><Link to="/login">Login</Link></button>
+            <button className="btn-signup"><Link to="/signup">Signup</Link></button>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import QuizNav from "./QuizNav";
+import Nav from "../components/Navbar/Navbar";
 import "./User.css"
 
 import Upload from "../assets/svgs/Questionnaire/upload.svg";
@@ -7,7 +7,7 @@ import Add from "../assets/svgs/Questionnaire/add.svg";
 const User =() => {
  return(
     <>
-    <QuizNav />
+    <Nav />
 
     {/* Create Quiz */}
 
