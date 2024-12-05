@@ -92,41 +92,45 @@ const QuizDetails = () => {
     // console.log("Quiz status:", quiz.status); // Log the quiz status
 
     return (
-        <div>
-            <h1>{quiz.title}</h1>
-            <p>{quiz.description}</p>
+        <div className="quiz-create-form ">
+            <div className="quiz-form">
 
-            <h2>Questions</h2>
-            {quiz.questions && (
-                <QuestionList
-                    questions={quiz.questions}
-                    onEdit={(index) => setEditingQuestion({ index, data: quiz.questions[index] })}
-                    onDelete={handleDeleteQuestion}
-                />
-            )}
 
-            {showQuestionForm && (
-                <QuestionForm
-                    onSubmit={handleAddQuestion}
-                    onCancel={() => setShowQuestionForm(false)}
-                />
-            )}
+                <h1 className="quiz-setting-h1">{quiz.title}</h1>
+                <p className="quiz-setting-description">{quiz.description}</p>
 
-            {editingQuestion && (
-                <QuestionForm
-                    initialData={editingQuestion.data}
-                    onSubmit={(data) => handleEditQuestion(editingQuestion.index, data)}
-                    onCancel={() => setEditingQuestion(null)}
-                />
-            )}
+                <h2 className="quiz-setting-h2">Questions</h2>
+                {quiz.questions && (
+                    <QuestionList
+                        questions={quiz.questions}
+                        onEdit={(index) => setEditingQuestion({ index, data: quiz.questions[index] })}
+                        onDelete={handleDeleteQuestion}
+                    />
+                )}
 
-            {!showQuestionForm && !editingQuestion && (
-                <button onClick={() => setShowQuestionForm(true)}>Add Question</button>
-            )}
+                {showQuestionForm && (
+                    <QuestionForm
+                        onSubmit={handleAddQuestion}
+                        onCancel={() => setShowQuestionForm(false)}
+                    />
+                )}
 
-            {quiz.status === "draft" && (
-                <button onClick={handlePublishQuiz}>Publish Quiz</button>
-            )}
+                {editingQuestion && (
+                    <QuestionForm
+                        initialData={editingQuestion.data}
+                        onSubmit={(data) => handleEditQuestion(editingQuestion.index, data)}
+                        onCancel={() => setEditingQuestion(null)}
+                    />
+                )}
+
+                {!showQuestionForm && !editingQuestion && (
+                    <button onClick={() => setShowQuestionForm(true)}>Add Question</button>
+                )}
+
+                {quiz.status === "draft" && (
+                    <button onClick={handlePublishQuiz}>Publish Quiz</button>
+                )}
+            </div>
         </div>
     );
 };

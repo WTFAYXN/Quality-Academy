@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import userIcon from "../../assets/images/catLogo.png";
-import adminIcon from "../../assets/images/email.png"; // Add the admin icon image
+import notification from "../../assets/svgs/Home/notification.svg"; // Add the admin icon image
 import './Navbar.css';
 
 const Navbar = () => {
@@ -67,7 +67,7 @@ const Navbar = () => {
       <div className="cta">
         {isLoggedIn ? (
           <div className="user-section">
-            {isAdmin && <Link to="/admin/requests"><img src={adminIcon} alt="Admin Icon" className="admin-icon" /></Link>} {/* Conditionally render admin icon */}
+            {isAdmin && <Link to="/admin/requests"><img src={notification} alt="Admin Icon" className="admin-icon" /></Link>} {/* Conditionally render admin icon */}
             <Link to="/user"><img src={userIcon} alt="User Icon" className="user-icon" /></Link>
           </div>
         ) : (

@@ -20,7 +20,7 @@ const User =() => {
 
         <div className="create-upload">
 
-                <Link to="/quizzes/create">
+                <Link className="quiz-create-link" to="/quizzes/create">
             <div className="quiz-create">
                 <div className="create-quiz-btn">
                     <img src={Add} />

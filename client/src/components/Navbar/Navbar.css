@@ -10,6 +10,12 @@
     height: 60px;
   }
   
+
+  .user-section{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
   .user-icon {
     width: 50px;
     height: 50px;
@@ -18,8 +24,8 @@
   }
 
   .admin-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     margin-right: 10px;
   }

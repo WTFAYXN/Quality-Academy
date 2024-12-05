@@ -49,6 +49,10 @@
     margin-bottom: 9px;
   }
   
+
+  .newsletter-form{
+    display: flex;
+  }
   .newsletter-email{
     height: 40px;
     width: 300px;
@@ -66,9 +70,9 @@
     background-color: black;
     color: white;
     border: none;
-    position: relative;
+    /* position: relative;
     top: 14px;
-    right: 69px;
+    right: 69px; */
   }
   
   .social-heading{

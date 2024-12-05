@@ -42,3 +42,103 @@ li a{
 h1,h2,h3,h4,h6{
     color: black !important;
 }
+
+
+
+/* Create Quiz CSS */
+
+.quiz-create-form{
+    font-family: sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    margin: 100px auto;
+    color: var(--black)
+  }
+  
+  .quiz-setting-h1{
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 26px;
+  }
+  .quiz-setting-h2{
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .quiz-setting-description{
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    max-width: 550px;
+    line-height: 1.4;
+}
+
+  
+  .quiz-form{
+    background-color:orange;
+    padding: 20px 50px 20px;
+    border-radius: 10px;
+  }
+  
+  .title-label, .description-label{
+    display:block;
+    font-size:20px;
+    font-weight: 600;
+  }
+  
+  .checkboxes{
+    padding:20px 0px;
+    display:flex;
+    gap: 30px;
+    font-weight: 600;
+  }
+  
+  button{
+    display:block;
+  }
+  
+  .title, .description{
+    padding-top: 20px;
+  }
+  
+  .title-input, .description-input{
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #b9b6b1;
+  }
+  
+  .title-input{
+    height:30px;
+    padding-left: 5px;
+  }
+  .description-input{
+    height:50px;
+    padding-left: 5px;
+    padding-top: 2px;
+  }
+  
+  .btn-quiz-setting{
+    width:100%;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0px;
+    display: block;
+      margin: 0 auto;
+  }
+  .isPublic, .attempts, .shuffle{
+    gap: 10px;
+    display: flex;
+
+  }
+
+  .line-quiz{
+    display: block;
+    margin: 0 auto;
+  }

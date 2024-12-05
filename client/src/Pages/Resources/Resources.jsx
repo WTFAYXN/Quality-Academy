@@ -282,12 +282,15 @@ const Resources = () => {
             </button>
           </div>
         </div>
+
+
+
         <div className="resource-grid">
           {filteredResources.map((resource) => (
             <div key={resource._id}>
               {renderPreview(resource)}
-              <div className="download-resources">
                 <h3>{resource.title}</h3>
+              <div className="download-resources">
                 <a href={resource.imageUrl} download>
                   <img src={download} alt="Download" />
                 </a>
@@ -296,6 +299,9 @@ const Resources = () => {
             </div>
           ))}
         </div>
+
+
+        
       </div>
       {showPermissionPopup && (
         <PermissionPopup

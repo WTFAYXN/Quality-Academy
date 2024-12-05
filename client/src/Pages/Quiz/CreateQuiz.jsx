@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizForm from "../../components/Quiz/QuizForm";
 import axios from "axios";
+import Navbar from "../../components/Navbar/Navbar";
 
 const CreateQuiz = () => {
   const navigate = useNavigate();
@@ -26,10 +27,14 @@ const CreateQuiz = () => {
   };
 
   return (
-    <div>
-      <h1>Create a New Quiz</h1>
-      <QuizForm onSubmit={handleQuizSubmit} />
-    </div>
+    <>
+    <Navbar/>
+    <QuizForm onSubmit={handleQuizSubmit} />
+    
+    
+    </>
+    
+   
   );
 };
 

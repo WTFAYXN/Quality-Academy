@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../../components/Navbar/Navbar";
 import "./AdminRequests.css";
-
+import pending from "./pending.svg";
 const AdminRequests = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -105,7 +105,7 @@ const AdminRequests = () => {
     <div className="admin-requests">
       <h1>Permission Requests</h1>
       {requests.length === 0 ? (
-        <p>No pending requests.</p>
+        <p className="no-req"><span><img src={pending}/></span>No pending requests.</p>
       ) : (
         <ul>
           {requests.map((request) => (
