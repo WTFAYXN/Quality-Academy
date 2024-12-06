@@ -9,18 +9,22 @@ import download from '../../assets/images/download-icon.png';
 import filtera from '../../assets/svgs/ascending.svg';
 import upload from '../../assets/svgs/upload.svg';
 import pd from '../../assets/images/pdf.png';
+import excel from '../../assets/images/excel.png';
+import docs from '../../assets/images/docs.png';
+import jpg from '../../assets/images/jpg.png';
+import mp4 from '../../assets/images/mp4.png';
 
 const fileTypeIcons = {
   pdf: pd,
-  xls: 'path/to/excel-icon.png',
-  xlsx: 'path/to/excel-icon.png',
-  doc: 'path/to/word-icon.png',
-  docx: 'path/to/word-icon.png',
-  jpg: 'path/to/image-icon.png',
-  jpeg: 'path/to/image-icon.png',
-  png: 'path/to/image-icon.png',
+  xls: excel,
+  xlsx: excel,
+  doc: docs,
+  docx: docs,
+  jpg: jpg,
+  jpeg: jpg,
+  png: jpg,
   gif: 'path/to/image-icon.png',
-  mp4: 'path/to/video-icon.png',
+  mp4: mp4,
   webm: 'path/to/video-icon.png',
   ogg: 'path/to/video-icon.png',
   mp3: 'path/to/audio-icon.png',
@@ -197,42 +201,9 @@ const Resources = () => {
   const renderPreview = (resource) => {
     const fileExtension = resource.imageUrl.split('.').pop().toLowerCase();
   
-    if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileExtension)) {
-      return <img src={resource.imageUrl} alt={resource.title} className="file-preview" />;
-    }
-  
-    if (['mp4', 'webm', 'ogg'].includes(fileExtension)) {
-      return (
-        <video className="file-preview" controls>
-          <source src={resource.imageUrl} type={`video/${fileExtension}`} />
-          Your browser does not support the video tag.
-        </video>
-      );
-    }
-  
-    if (['mp3', 'wav', 'ogg'].includes(fileExtension)) {
-      return (
-        <audio className="file-preview" controls>
-          <source src={resource.imageUrl} type={`audio/${fileExtension}`} />
-          Your browser does not support the audio tag.
-        </audio>
-      );
-    }
-  
-    if (fileExtension === 'pdf') {
-      return (
-        <iframe
-          src={resource.imageUrl}
-          title={resource.title}
-          className="file-preview"
-          style={{ width: '100%', height: '400px' }}
-        />
-      );
-    }
-  
     // Default to showing the file type icon if no specific preview is available
     const fileTypeIcon = fileTypeIcons[fileExtension] || 'path/to/default-icon.png';
-    return <img src={fileTypeIcon} alt={resource.title} className="file-preview" />;
+    return <img src={fileTypeIcon} alt={resource.title} />;
   };
   
 
@@ -289,18 +260,18 @@ const Resources = () => {
           {filteredResources.map((resource) => (
             <div key={resource._id}>
               {renderPreview(resource)}
-                <h3>{resource.title}</h3>
-              <div className="download-resources">
-                <a href={resource.imageUrl} download>
+              <div className='title-resources'>
+                <h3 className='title-resource-h3'>{resource.title}</h3>
+                <div className="download-resources">
+                 <a href={resource.imageUrl} download>
                   <img src={download} alt="Download" />
-                </a>
-                {isAdmin && <button onClick={() => handleDelete(resource._id)}>Delete</button>} {/* Conditionally render delete button */}
+                  </a>
+                  {isAdmin && <button className='delete-btn-resource' onClick={() => handleDelete(resource._id)}>Delete</button>} {/* Conditionally render delete button */}
+               </div>
               </div>
             </div>
           ))}
         </div>
-
-
         
       </div>
       {showPermissionPopup && (

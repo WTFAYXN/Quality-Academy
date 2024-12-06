@@ -36,6 +36,9 @@
 
 
   
+
+
+  
   .resource-grid {
     display: grid;
     grid-template-columns: 400px 400px 400px;
@@ -53,7 +56,7 @@
   }
   
   .resource-grid > div > img{
-    width: 400px;
+    width: 398px;
     height: 230px;
     border-radius: 15px 15px 0px 0px;
     background-size:cover;
@@ -62,13 +65,16 @@
   .download-resources{
     margin: 20px;
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
   }
   
   .download-resources > img{
     height: 25px;
   }
+
+
+
 
   .upload , .filter{
     border: none;
@@ -80,6 +86,18 @@
     gap:30px;
   }
 
+  .delete-btn-resource{
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+
+  .title-resource-h3{
+    font-size: 1.45rem;
+  }
+/* 
   .file-preview {
     max-width: 100%;
     overflow-y: hidden;
@@ -102,7 +120,16 @@
     flex-direction: column;
     align-items: center;
   }
-  
+   */
+
+   .title-resources{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+   }
+
+
     
 @media (max-width: 600px){
   .heading-resources-text{
@@ -120,5 +147,11 @@
   .resources-search{
     height: 40px;
     width: 180px;
+  }
+
+  .resource-grid{
+    display: flex;
+    flex-direction: column;
+
   }
 }

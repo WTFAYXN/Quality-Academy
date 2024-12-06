@@ -6,6 +6,7 @@ const QuestionList = ({ questions, onEdit, onDelete }) => {
       }
       
   return (
+    
     <div>
       {questions.map((question, index) => (
         <div key={index}>
@@ -23,6 +24,7 @@ const QuestionList = ({ questions, onEdit, onDelete }) => {
         </div>
       ))}
     </div>
+
   );
 };
 
