@@ -89,7 +89,7 @@
     }
 
     .get-started-btn{
-        width: 18%;
+        /* width: 18%; */
     }
 
 
@@ -103,12 +103,15 @@
     }
     .about-heading-text{
         font-size: 50px;
-        display: flex;
-        flex-direction: column ;
         font-weight: 800;
 
     }
+    .about-heading-text > span > img{
+        margin: 0 auto;
+        display: block;
+    }
 
+    .about-description{font-size: 22px;}
   
     .solutions{
         margin: 60px 50px;

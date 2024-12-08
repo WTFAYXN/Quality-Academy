@@ -264,7 +264,7 @@ const Resources = () => {
                 <h3 className='title-resource-h3'>{resource.title}</h3>
                 <div className="download-resources">
                  <a href={resource.imageUrl} download>
-                  <img src={download} alt="Download" />
+                  <img className="download-btn" src={download} alt="Download" />
                   </a>
                   {isAdmin && <button className='delete-btn-resource' onClick={() => handleDelete(resource._id)}>Delete</button>} {/* Conditionally render delete button */}
                </div>

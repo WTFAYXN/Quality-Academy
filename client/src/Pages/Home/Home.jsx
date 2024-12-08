@@ -14,6 +14,7 @@ import "./Home.css";
 import Testimonials from "./Home-subcomponents/Testimonials";
 import Resources from "./Home-subcomponents/Resources";
 import study from "../../assets/svgs/Home/study.png";
+import { Link } from "react-router-dom";
 const Home =() =>{
     return(
         <>
@@ -26,7 +27,10 @@ const Home =() =>{
                 <h1 className="heading-home-text">Boost Your Learning With Quality Academy</h1>
                 <img class="home-line" src={line} />
                 <p className="home-description">One solution for your Learning Preparation</p>
-                <button className="home-button">Get Started</button>
+
+                <Link className="text-decoration-none" to="/signup">
+                    <button className="home-button">Create Questionnaire</button>
+                </Link>
             </div>
             <div className="shape-container">
             <img className="shape1" src={Shape1} alt="" />
@@ -57,35 +61,35 @@ const Home =() =>{
                            <img className="icon-quiz mb-3" src={study}/>
                         </div>
                         <h3 className="feature-heading">Custom Quiz</h3>
-                        <p>Get access to the best study material for your preparation</p>
+                        <p>Create personalized quizzes tailored to boost your preparation!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
                             <img className="icon-notif mb-3" src={study}/>
                         </div>
                         <h3 className="feature-heading">Real-time notifications</h3>
-                        <p>Get access to the best study material for your preparation</p>
+                        <p>Stay updated instantly with real-time notifications!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
                             <img className="icon-resources mb-3" src={study}/>
                         </div>
                         <h3 className="feature-heading">Resources</h3>
-                        <p>Get access to the best study material for your preparation</p>
+                        <p>Access all the essential resources to support your journey!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
                             <img className="icon-url mb-3" src={study}/>
                         </div>
                         <h3 className="feature-heading">Url-based Sharing</h3>
-                        <p>Get access to the best study material for your preparation</p>
+                        <p>Share effortlessly with URL-based links!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
                             <img className="icon-study mb-3" src={study}/>
                         </div>
                         <h3 className="feature-heading">Study Material</h3>
-                        <p>Get access to the best study material for your preparation</p>
+                        <p>Explore top-notch study materials to enhance your learning!</p>
                     </div>
                     <div className="solution-card know-more">
                         <h5 >Want to find out more? Click below</h5>
@@ -106,8 +110,8 @@ const Home =() =>{
         <div className="container">
             <div className="row">
                 <div className="col-lg-6 about-heading">
-                    <h3 className="about-heading-text">A Few words about Quality Academy here<span><img src={line}/></span></h3>
-                    <p className="about-description">Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing</p>
+                    <h3 className="about-heading-text">Empower Learning with Quality Academy<span><img src={line}/></span></h3>
+                    <p className="about-description">Easily create questionnaires, share resources, and enhance student engagement—all in one platform, no tech skills needed!</p>
                 </div>
                 <div className="col-lg-6 about-us-illustration">
                     <img src={About} alt="" />
@@ -124,7 +128,9 @@ const Home =() =>{
 
         <div className="get-started" id="get-started">
         <h1 className="get-started-heading">Ready to get started?<span> <img src={line} alt="" /></span></h1>
-        <button className="home-button get-started-btn">Get Started</button>
+        <Link className="text-decoration-none" to="/signup">
+         <button className="home-button get-started-btn">Sign up</button>
+        </Link>
         </div>
 
         <Footer />

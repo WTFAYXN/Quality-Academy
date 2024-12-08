@@ -30,10 +30,12 @@ const User =() => {
             </Link>
             
             <div className="quiz-create">
-            <div className="upload-resources-btn">
-                <img src={Upload} />
-            </div>
-            <p>Upload Resources</p>
+                <Link className="quiz-create-link" to="/resources">
+                    <div className="upload-resources-btn">
+                        <img src={Upload} />
+                    </div>
+                    <p>Upload Resources</p>
+                </Link>
             </div>
 
     

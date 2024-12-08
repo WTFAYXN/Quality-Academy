@@ -97,6 +97,14 @@
   .title-resource-h3{
     font-size: 1.45rem;
   }
+
+  .download-btn:hover{
+    opacity: 0.6;
+  }
+
+  .delete-btn-resource:hover{
+    opacity: 0.6;
+  }
 /* 
   .file-preview {
     max-width: 100%;

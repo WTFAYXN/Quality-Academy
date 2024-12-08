@@ -50,6 +50,7 @@
 .past-quiz-lists{
     display: flex;
     gap: 50px;
+    flex-wrap: wrap;
 }
 .past-quiz-list{
     width: 265px;
@@ -60,9 +61,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .quiz-create-link{
     text-decoration: none;
     color: black;
 }
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    /* color: blue; */
+    /* background: red; */
+    padding: 3px;
+    border: 1px solid --var(blue);
+  }
