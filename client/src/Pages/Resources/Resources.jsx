@@ -13,6 +13,7 @@ import excel from '../../assets/images/excel.png';
 import docs from '../../assets/images/docs.png';
 import jpg from '../../assets/images/jpg.png';
 import mp4 from '../../assets/images/mp4.png';
+import UploadPopup from '../../subcomponents/UploadResource/Upload-popup';
 
 const fileTypeIcons = {
   pdf: pd,
@@ -46,6 +47,7 @@ const Resources = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [title, setTitle] = useState('');
   const [showTitleInput, setShowTitleInput] = useState(false);
+  
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -276,15 +278,16 @@ const Resources = () => {
         </div>
 
         {showTitleInput && (
-          <div className="title-input">
-            <input
-              type="text"
-              placeholder="Enter title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <button onClick={handleTitleSubmit}>Submit</button>
-          </div>
+          // <div className="title-input">
+          //   <input
+          //     type="text"
+          //     placeholder="Enter title"
+          //     value={title}
+          //     onChange={(e) => setTitle(e.target.value)}
+          //   />
+          //   <button onClick={handleTitleSubmit}>Submit</button>
+          // </div>
+          <UploadPopup />
         )}
 
         <div className="resource-grid">

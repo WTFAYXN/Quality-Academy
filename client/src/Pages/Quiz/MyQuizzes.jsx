@@ -23,8 +23,7 @@ const MyQuizzes = () => {
   }, []);
 
   return (
-    <div>
-      <h1>My Quizzes</h1>
+    <>
       {quizzes.length === 0 ? (
         <p>You haven't created any quizzes yet.</p>
       ) : (
@@ -34,7 +33,7 @@ const MyQuizzes = () => {
           </QuizCard>
         ))
       )}
-    </div>
+    </>
   );
 };
 

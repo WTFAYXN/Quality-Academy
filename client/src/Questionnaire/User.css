@@ -46,22 +46,47 @@
     padding-left: 20px;
 }
 
-
-.past-quiz-lists{
+.past-quiz-lists {
     display: flex;
     gap: 50px;
     flex-wrap: wrap;
 }
+
 .past-quiz-list{
-    width: 265px;
-    height: 170px;
+     width: 300px;
     border: 1px solid #D3D3D3;
     border-radius: 5px;
     background-color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+  flex-direction: column;
+   
+}
+
+.past-quiz-list > img{
+  width: 100%;
+  height: 73%;
+  border-radius: 5px;
+  max-width: 298px;
+  max-height: 179px;
+}
+
+.quiz-description{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.title-date > h4{
+  margin: 10px auto;
+  font-size: 18px;
+}
+
+
+.title-date > p{
+  margin: 10px auto;
+  font-size: 14px;
 }
 
 .quiz-create-link{

@@ -4,6 +4,7 @@ import "./User.css"
 import Upload from "../assets/svgs/Questionnaire/upload.svg";
 import Add from "../assets/svgs/Questionnaire/add.svg";
 import { Link } from "react-router-dom";
+import MyQuizzes from "../Pages/Quiz/MyQuizzes";
 
 const User =() => {
  return(
@@ -51,10 +52,7 @@ const User =() => {
 
             <div className="past-quiz-lists">
 
-                <div className="past-quiz-list"></div>
-                <div className="past-quiz-list"></div>
-                <div className="past-quiz-list"></div>
-                <div className="past-quiz-list"></div>
+            <MyQuizzes />
             </div>
         </div>
 

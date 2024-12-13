@@ -1,0 +1,103 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .popup-content {
+    height: 400px;
+    width: 700px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+ 
+
+
+
+.input-space {
+width: 100%;
+height: 40px;
+border: 1px solid #b9b6b1;
+border-radius: 5px;
+color: #000;
+font-size: 14px;
+margin-bottom: 5px;
+}
+.label-form {
+background-color: #fff;
+font-size: 20px;
+font-weight: 600;
+top: 7px;
+left: 17px;
+position: relative;
+color: grey;
+padding: 2px 6px;
+}
+
+.upload-file-resources{
+margin-top: 30px;
+width: 100%;
+height: 200px;
+border: 1px solid #b9b6b1;
+border-radius: 5px;
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.upload-file-resources > img{
+width:15%;
+}
+
+.upload-file-resources > p{
+font-size: 20px;
+font-weight: 600;
+}
+
+.cancel-submit-btn{
+display: flex;
+align-items:center;
+justify-content: center;
+gap: 100px;
+margin-top: 15px;
+}
+
+.cancel-upload{
+background-color: red;
+color: white;
+border: 2px solid red;
+}
+
+.cancel-upload:hover{
+background-color: white;
+color: black;
+}
+
+.submit-upload{
+background-color: #2C75FF;
+color: white;
+border: 2px solid black;
+}
+
+.submit-upload:hover{
+background-color: black;
+color: white;
+}
+
+.cancel-upload, .submit-upload{
+padding: 10px 15px;
+margin-right: 10px;
+border-radius: 5px;
+font-size: 14px;
+font-family: sans-serif;
+font-weight: 600;
+}
