@@ -8,6 +8,7 @@ import excel from '../../assets/images/excel.png';
 import jpg from '../../assets/images/jpg.png';
 import mp4 from '../../assets/images/mp4.png';
 import pd from '../../assets/images/pdf.png';
+import line from '../../assets/svgs/Line.svg';
 
 const AdminRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -145,23 +146,67 @@ const AdminRequests = () => {
     <>
       <Nav />
       <div className="admin-requests">
-        <h1>Pending Resources</h1>
+        <div className="heading-resources">
+          <h1 className="heading-resources-text">Pending Resource</h1>
+          <img className='resources-line' src={line} alt="Line" />
+    
+        </div>
+       
         {requests.length === 0 ? (
           <p className="no-req"><span><img src={pending} alt="Pending" /></span>No pending requests.</p>
         ) : (
-          <ul>
-            {requests.map((request) => (
-              <li key={request._id}>
-                <p>Title: <input type="text" value={editingTitle[request._id] || request.title} onChange={(e) => handleTitleChange(request._id, e.target.value)} /></p>
-                <p>Uploaded by: {request.uploadedBy.name} ({request.uploadedBy.email})</p>
 
-                <div className="preview" onClick={() => window.open(request.imageUrl, '_blank')}>
-                  {renderPreview(request)}
-                </div>
-                <button onClick={() => handlePublish(request._id)}>Publish</button>
-              </li>
-            ))}
-          </ul>
+
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Uploaded by</th>
+                <th>Email</th>
+                <th>File type</th>
+                <th>Publish?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {requests.map((request, index) => (
+                <tr key={request._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editingTitle[request._id] || request.title}
+                      onChange={(e) => handleTitleChange(request._id, e.target.value)}
+                    />
+                  </td>
+                  <td>{request.uploadedBy.name}</td>
+                  <td>{request.uploadedBy.email}</td>
+                  <td className="file-type" onClick={() => window.open(request.imageUrl, '_blank')}>
+                    {renderPreview(request)}
+                  </td>
+                  <td>
+                    <button className="publish-resource" onClick={() => handlePublish(request._id)}>Publish</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        
+          // <ol>
+          //   {requests.map((request) => (
+          //     <li key={request._id}>
+          //       <p>Title: <input type="text" value={editingTitle[request._id] || request.title} onChange={(e) => handleTitleChange(request._id, e.target.value)} /></p>
+          //       <p>Uploaded by: {request.uploadedBy.name} ({request.uploadedBy.email})</p>
+
+          //       <div className="preview" onClick={() => window.open(request.imageUrl, '_blank')}>
+          //         {renderPreview(request)}
+          //       </div>
+          //       <button onClick={() => handlePublish(request._id)}>Publish</button>
+          //     </li>
+          //   ))}
+          // </ol>
+
+
         )}
       </div>
     </>
