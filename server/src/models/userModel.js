@@ -23,7 +23,7 @@ const userSchema = new Schema(
     },
     canUpload: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     quizzesCreated: [
       {

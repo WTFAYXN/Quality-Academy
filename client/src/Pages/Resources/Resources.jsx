@@ -3,7 +3,7 @@ import './Resources.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import Notification from '../../components/Notification/Notification';
-import PermissionPopup from '../../components/PermissionPopup/PermissionPopup'; // Import the new component
+import PermissionPopup from '../../components/PermissionPopup/PermissionPopup';
 import line from '../../assets/svgs/Line.svg';
 import download from '../../assets/images/download-icon.png';
 import filtera from '../../assets/svgs/ascending.svg';
@@ -44,6 +44,8 @@ const Resources = () => {
     visible: false,
   });
   const [isAdmin, setIsAdmin] = useState(false);
+  const [title, setTitle] = useState('');
+  const [showTitleInput, setShowTitleInput] = useState(false);
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -142,27 +144,44 @@ const Resources = () => {
     setFile(selectedFile);
 
     if (selectedFile) {
-      const formData = new FormData();
-      formData.append('file', selectedFile);
+      setShowTitleInput(true);
+    }
+  };
 
-      try {
-        const response = await fetch('http://localhost:5000/upload', {
-          method: 'POST',
-          body: formData,
-        });
+  const handleTitleSubmit = async () => {
+    const token = localStorage.getItem('token');
+    if (!file || !title) {
+      showNotification('Please select a file and enter a title', 'error');
+      return;
+    }
 
-        if (response.ok) {
-          showNotification('File uploaded successfully', 'success');
-          const updatedResources = await fetch('http://localhost:5000/resources');
-          const data = await updatedResources.json();
-          setResources(data);
-        } else {
-          showNotification('File upload failed', 'error');
-        }
-      } catch (error) {
-        console.error('Error during file upload:', error);
-        showNotification('An error occurred during file upload', 'error');
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('title', title);
+
+    try {
+      const response = await fetch('http://localhost:5000/upload', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        showNotification('File uploaded successfully and pending for review', 'success');
+        const updatedResources = await fetch('http://localhost:5000/resources');
+        const data = await updatedResources.json();
+        setResources(data);
+        setShowTitleInput(false);
+        setTitle('');
+        setFile(null);
+      } else {
+        showNotification('File upload failed', 'error');
       }
+    } catch (error) {
+      console.error('Error during file upload:', error);
+      showNotification('An error occurred during file upload', 'error');
     }
   };
 
@@ -182,6 +201,9 @@ const Resources = () => {
     try {
       const response = await fetch(`http://localhost:5000/resources/${id}`, {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       });
 
       if (response.ok) {
@@ -200,12 +222,11 @@ const Resources = () => {
 
   const renderPreview = (resource) => {
     const fileExtension = resource.imageUrl.split('.').pop().toLowerCase();
-  
+
     // Default to showing the file type icon if no specific preview is available
     const fileTypeIcon = fileTypeIcons[fileExtension] || 'path/to/default-icon.png';
     return <img src={fileTypeIcon} alt={resource.title} />;
   };
-  
 
   const filteredResources = resources.filter((resource) =>
     resource.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -254,7 +275,17 @@ const Resources = () => {
           </div>
         </div>
 
-
+        {showTitleInput && (
+          <div className="title-input">
+            <input
+              type="text"
+              placeholder="Enter title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <button onClick={handleTitleSubmit}>Submit</button>
+          </div>
+        )}
 
         <div className="resource-grid">
           {filteredResources.map((resource) => (
@@ -263,16 +294,18 @@ const Resources = () => {
               <div className='title-resources'>
                 <h3 className='title-resource-h3'>{resource.title}</h3>
                 <div className="download-resources">
-                 <a href={resource.imageUrl} download>
-                  <img className="download-btn" src={download} alt="Download" />
-                  </a>
-                  {isAdmin && <button className='delete-btn-resource' onClick={() => handleDelete(resource._id)}>Delete</button>} {/* Conditionally render delete button */}
-               </div>
+                  <img
+                    className="download-btn"
+                    src={download}
+                    alt="Download"
+                    onClick={() => window.open(resource.imageUrl, '_blank')}
+                  />
+                  {isAdmin && <button className='delete-btn-resource' onClick={() => handleDelete(resource._id)}>Delete</button>}
+                </div>
               </div>
             </div>
           ))}
         </div>
-        
       </div>
       {showPermissionPopup && (
         <PermissionPopup

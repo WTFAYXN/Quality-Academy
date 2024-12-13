@@ -3,10 +3,17 @@ import { useNavigate } from "react-router-dom";
 import Nav from "../../components/Navbar/Navbar";
 import "./AdminRequests.css";
 import pending from "./pending.svg";
+import docs from '../../assets/images/docs.png';
+import excel from '../../assets/images/excel.png';
+import jpg from '../../assets/images/jpg.png';
+import mp4 from '../../assets/images/mp4.png';
+import pd from '../../assets/images/pdf.png';
+
 const AdminRequests = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editingTitle, setEditingTitle] = useState({});
   const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
@@ -47,7 +54,7 @@ const AdminRequests = () => {
           return;
         }
 
-        const response = await fetch(`${API_URL}/permission-requests`, {
+        const response = await fetch(`${API_URL}/pending-resources`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -76,23 +83,58 @@ const AdminRequests = () => {
     fetchRequests();
   }, [API_URL, navigate]);
 
-  const handleApprove = async (userId) => {
+  const handlePublish = async (resourceId) => {
     const token = localStorage.getItem("token");
+    const title = editingTitle[resourceId] || '';
     try {
-      const response = await fetch(`${API_URL}/approve-permission/${userId}`, {
+      const response = await fetch(`${API_URL}/publish-resource/${resourceId}`, {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ title }),
       });
 
       if (response.ok) {
-        setRequests((prev) => prev.filter((request) => request.user._id !== userId));
+        setRequests((prev) => prev.filter((request) => request._id !== resourceId));
       } else {
-        setError("Failed to approve the permission request.");
+        setError("Failed to publish the resource.");
       }
     } catch (error) {
-      setError("Error approving permission request.");
+      setError("Error publishing resource.");
+    }
+  };
+
+  const handleTitleChange = (resourceId, newTitle) => {
+    setEditingTitle((prev) => ({ ...prev, [resourceId]: newTitle }));
+  };
+
+  const renderPreview = (resource) => {
+    const fileExtension = resource.imageUrl.split('.').pop().toLowerCase();
+    const fileTypeIcons = {
+      pdf: pd,
+      xls: excel,
+      xlsx: excel,
+      doc: docs,
+      docx: docs,
+      jpg: jpg,
+      jpeg: jpg,
+      png: jpg,
+      gif: 'path/to/image-icon.png',
+      mp4: mp4,
+      webm: 'path/to/video-icon.png',
+      ogg: 'path/to/video-icon.png',
+      mp3: 'path/to/audio-icon.png',
+      wav: 'path/to/audio-icon.png',
+    };
+
+    const fileTypeIcon = fileTypeIcons[fileExtension] || 'path/to/default-icon.png';
+
+    if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+      return <img src={resource.imageUrl} alt={resource.title} />;
+    } else {
+      return <img src={fileTypeIcon} alt={resource.title} />;
     }
   };
 
@@ -101,23 +143,27 @@ const AdminRequests = () => {
 
   return (
     <>
-    <Nav />
-    <div className="admin-requests">
-      <h1>Permission Requests</h1>
-      {requests.length === 0 ? (
-        <p className="no-req"><span><img src={pending}/></span>No pending requests.</p>
-      ) : (
-        <ul>
-          {requests.map((request) => (
-            <li key={request._id}>
-              <p>Name: {request.user.name}</p>
-              <p>Email: {request.user.email}</p>
-              <button onClick={() => handleApprove(request.user._id)}>Approve</button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      <Nav />
+      <div className="admin-requests">
+        <h1>Pending Resources</h1>
+        {requests.length === 0 ? (
+          <p className="no-req"><span><img src={pending} alt="Pending" /></span>No pending requests.</p>
+        ) : (
+          <ul>
+            {requests.map((request) => (
+              <li key={request._id}>
+                <p>Title: <input type="text" value={editingTitle[request._id] || request.title} onChange={(e) => handleTitleChange(request._id, e.target.value)} /></p>
+                <p>Uploaded by: {request.uploadedBy.name} ({request.uploadedBy.email})</p>
+
+                <div className="preview" onClick={() => window.open(request.imageUrl, '_blank')}>
+                  {renderPreview(request)}
+                </div>
+                <button onClick={() => handlePublish(request._id)}>Publish</button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </>
   );
 };
