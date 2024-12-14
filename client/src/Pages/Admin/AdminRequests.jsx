@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Nav from "../../components/Navbar/Navbar";
-import "./AdminRequests.css";
-import pending from "./pending.svg";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Nav from '../../components/Navbar/Navbar';
+import './AdminRequests.css';
+import pending from './pending.svg';
 import docs from '../../assets/images/docs.png';
 import excel from '../../assets/images/excel.png';
 import jpg from '../../assets/images/jpg.png';
@@ -21,11 +21,11 @@ const AdminRequests = () => {
 
   useEffect(() => {
     const fetchRequests = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       if (!token) {
-        setError("No token found. Please log in.");
+        setError('No token found. Please log in.');
         setLoading(false);
-        navigate("/login");
+        navigate('/login');
         return;
       }
 
@@ -38,10 +38,10 @@ const AdminRequests = () => {
 
         if (!userResponse.ok) {
           if (userResponse.status === 401 || userResponse.status === 403) {
-            setError("Unauthorized access. Please log in as an admin.");
-            navigate("/login");
+            setError('Unauthorized access. Please log in as an admin.');
+            navigate('/login');
           } else {
-            setError("Failed to verify user.");
+            setError('Failed to verify user.');
           }
           setLoading(false);
           return;
@@ -49,9 +49,9 @@ const AdminRequests = () => {
 
         const userData = await userResponse.json();
         if (userData.role !== 1) {
-          setError("Access denied. Admins only.");
+          setError('Access denied. Admins only.');
           setLoading(false);
-          navigate("/login");
+          navigate('/login');
           return;
         }
 
@@ -63,10 +63,10 @@ const AdminRequests = () => {
 
         if (!response.ok) {
           if (response.status === 401 || response.status === 403) {
-            setError("Unauthorized access. Please log in as an admin.");
-            navigate("/login");
+            setError('Unauthorized access. Please log in as an admin.');
+            navigate('/login');
           } else {
-            setError("Failed to fetch permission requests.");
+            setError('Failed to fetch permission requests.');
           }
           setLoading(false);
           return;
@@ -76,7 +76,7 @@ const AdminRequests = () => {
         setRequests(data);
         setLoading(false);
       } catch (error) {
-        setError("Failed to fetch permission requests.");
+        setError('Failed to fetch permission requests.');
         setLoading(false);
       }
     };
@@ -85,13 +85,13 @@ const AdminRequests = () => {
   }, [API_URL, navigate]);
 
   const handlePublish = async (resourceId) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const title = editingTitle[resourceId] || '';
     try {
       const response = await fetch(`${API_URL}/publish-resource/${resourceId}`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ title }),
@@ -100,10 +100,31 @@ const AdminRequests = () => {
       if (response.ok) {
         setRequests((prev) => prev.filter((request) => request._id !== resourceId));
       } else {
-        setError("Failed to publish the resource.");
+        setError('Failed to publish the resource.');
       }
     } catch (error) {
-      setError("Error publishing resource.");
+      setError('Error publishing resource.');
+    }
+  };
+
+  const handleReject = async (resourceId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`${API_URL}/reject-resource/${resourceId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setRequests((prev) => prev.filter((request) => request._id !== resourceId));
+      } else {
+        setError('Failed to reject the resource.');
+      }
+    } catch (error) {
+      setError('Error rejecting resource.');
     }
   };
 
@@ -149,14 +170,10 @@ const AdminRequests = () => {
         <div className="heading-resources">
           <h1 className="heading-resources-text">Pending Resource</h1>
           <img className='resources-line' src={line} alt="Line" />
-    
         </div>
-       
         {requests.length === 0 ? (
           <p className="no-req"><span><img src={pending} alt="Pending" /></span>No pending requests.</p>
         ) : (
-
-
           <table>
             <thead>
               <tr>
@@ -164,8 +181,9 @@ const AdminRequests = () => {
                 <th>Title</th>
                 <th>Uploaded by</th>
                 <th>Email</th>
-                <th>File type</th>
+                <th>File</th>
                 <th>Publish?</th>
+                <th>Reject?</th>
               </tr>
             </thead>
             <tbody>
@@ -181,32 +199,21 @@ const AdminRequests = () => {
                   </td>
                   <td>{request.uploadedBy.name}</td>
                   <td>{request.uploadedBy.email}</td>
-                  <td className="file-type" onClick={() => window.open(request.imageUrl, '_blank')}>
-                    {renderPreview(request)}
+                  <td>
+                    <a href={request.imageUrl} target="_blank" rel="noopener noreferrer">
+                      View File
+                    </a>
                   </td>
                   <td>
-                    <button className="publish-resource" onClick={() => handlePublish(request._id)}>Publish</button>
+                    <button className='publish-resource' onClick={() => handlePublish(request._id)}>Publish</button>
+                  </td>
+                  <td>
+                    <button className='reject-resource' onClick={() => handleReject(request._id)}>Reject</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        
-          // <ol>
-          //   {requests.map((request) => (
-          //     <li key={request._id}>
-          //       <p>Title: <input type="text" value={editingTitle[request._id] || request.title} onChange={(e) => handleTitleChange(request._id, e.target.value)} /></p>
-          //       <p>Uploaded by: {request.uploadedBy.name} ({request.uploadedBy.email})</p>
-
-          //       <div className="preview" onClick={() => window.open(request.imageUrl, '_blank')}>
-          //         {renderPreview(request)}
-          //       </div>
-          //       <button onClick={() => handlePublish(request._id)}>Publish</button>
-          //     </li>
-          //   ))}
-          // </ol>
-
-
         )}
       </div>
     </>

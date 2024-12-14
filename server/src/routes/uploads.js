@@ -75,6 +75,38 @@ router.post('/publish-resource/:id', validateAdmin, async (req, res) => {
   }
 });
 
+// Reject resource
+router.post('/reject-resource/:id', validateAdmin, async (req, res) => {
+  try {
+    const resource = await Resource.findById(req.params.id);
+    if (!resource) {
+      return res.status(404).send('Resource not found');
+    }
+
+    // Extract the file name from imageUrl
+    const fileName = path.basename(resource.imageUrl);
+    const uploadsDir = path.join(__dirname, '../../uploads');
+    const filePath = path.join(uploadsDir, fileName);
+
+    // Check if the file exists and delete it
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      console.log('File deleted successfully from disk');
+    } else {
+      console.warn('File not found on disk:', filePath);
+    }
+
+    // Delete the resource from MongoDB
+    await resource.deleteOne();
+    console.log('Resource deleted from MongoDB');
+
+    res.status(200).send('Resource rejected and deleted successfully');
+  } catch (error) {
+    console.error('Error rejecting resource:', error);
+    res.status(500).send('Error rejecting resource');
+  }
+});
+
 // Fetch all published resources
 router.get('/resources', async (req, res) => {
   try {

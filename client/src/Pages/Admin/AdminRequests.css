@@ -118,6 +118,19 @@ tr:nth-child(even) {
     background-color: #218838;
 }
 
+.reject-resource {
+  padding: 8px 16px;
+  color: #fff;
+  background-color: rgb(255, 0, 0);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reject-resource:hover {
+  background-color: #db0303;
+}
+
 .file-type img {
   width: 70px;
   height: 30px;

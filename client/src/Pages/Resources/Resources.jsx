@@ -46,8 +46,7 @@ const Resources = () => {
   });
   const [isAdmin, setIsAdmin] = useState(false);
   const [title, setTitle] = useState('');
-  const [showTitleInput, setShowTitleInput] = useState(false);
-  
+  const [showUploadPopup, setShowUploadPopup] = useState(false);
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -111,7 +110,7 @@ const Resources = () => {
         return;
       }
 
-      fileInputRef.current.click();
+      setShowUploadPopup(true);
     } catch (error) {
       console.error('Error fetching user data:', error);
       showNotification('An error occurred while checking permissions', 'error');
@@ -141,13 +140,9 @@ const Resources = () => {
     }
   };
 
-  const handleFileChange = async (e) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-
-    if (selectedFile) {
-      setShowTitleInput(true);
-    }
   };
 
   const handleTitleSubmit = async () => {
@@ -175,7 +170,7 @@ const Resources = () => {
         const updatedResources = await fetch('http://localhost:5000/resources');
         const data = await updatedResources.json();
         setResources(data);
-        setShowTitleInput(false);
+        setShowUploadPopup(false);
         setTitle('');
         setFile(null);
       } else {
@@ -258,13 +253,6 @@ const Resources = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <div className="resource-button">
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              style={{ display: 'none' }}
-              id="fileInput"
-            />
             <button
               className="upload"
               onClick={handleUploadButtonClick}
@@ -277,17 +265,16 @@ const Resources = () => {
           </div>
         </div>
 
-        {showTitleInput && (
-          // <div className="title-input">
-          //   <input
-          //     type="text"
-          //     placeholder="Enter title"
-          //     value={title}
-          //     onChange={(e) => setTitle(e.target.value)}
-          //   />
-          //   <button onClick={handleTitleSubmit}>Submit</button>
-          // </div>
-          <UploadPopup />
+        {showUploadPopup && (
+          <UploadPopup
+            file={file}
+            setFile={setFile}
+            title={title}
+            setTitle={setTitle}
+            handleFileChange={handleFileChange}
+            handleTitleSubmit={handleTitleSubmit}
+            setShowUploadPopup={setShowUploadPopup}
+          />
         )}
 
         <div className="resource-grid">
