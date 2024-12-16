@@ -17,6 +17,7 @@ const quizResponseSchema = new Schema(
       answers: [
         {
           questionId: { type: String, required: true }, // ID of the question
+          question: { type: String, required: true }, // Question text
           selectedOption: { type: Array, required: true }, // User's selected answers
           isCorrect: { type: Boolean }, // Calculated correctness
         },

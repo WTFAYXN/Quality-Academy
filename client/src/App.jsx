@@ -20,6 +20,8 @@ import PublicQuizzes from './Pages/Quiz/PublicQuizzes';
 import AttemptedQuizzes from './Pages/Quiz/AttemptedQuizzes';
 import MyQuizzes from './Pages/Quiz/MyQuizzes';
 import QuizDetails from './Pages/Quiz/QuizDetails';
+import QuizResponses from "./Pages/Quiz/QuizResponses";
+import QuizResponseDetail from "./Pages/Quiz/QuizResponseDetail";
 import AdminRequests from './Pages/Admin/AdminRequests';
 
 
@@ -48,6 +50,8 @@ function App() {
           <Route path="/quizzes/create" element={<CreateQuiz />} />
           <Route path="/quizzes/:id/edit" element={<EditQuiz />} />
           <Route path="/quizzes/:id" element={<AttemptQuiz />} />
+          <Route path="/quizzes/:id/responses" element={<QuizResponses />} />
+          <Route path="/quizzes/:id/responses/:responseId" element={<QuizResponseDetail />} />
           
 
           {/* <Route path="/quiz" element={<QuizList />} />

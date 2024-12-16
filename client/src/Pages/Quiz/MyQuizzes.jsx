@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import QuizCard from "../../components/Quiz/QuizCard";
 import Notification from "../../components/Notification/Notification"; // Make sure to import the Notification component
 
 const MyQuizzes = () => {
   const [quizzes, setQuizzes] = useState([]);
+  const navigate = useNavigate();
   const [notification, setNotification] = useState({
     message: '',
     type: '',
@@ -20,9 +21,9 @@ const MyQuizzes = () => {
         },
       })
       .then((response) => {
-        console.log("API response:", response.data); // Log the API response
+        // console.log("API response:", response.data); // Log the API response
         setQuizzes(response.data);
-        console.log("Quizzes:", response.data); // Log the quizzes state
+        // console.log("Quizzes:", response.data); // Log the quizzes state
       })
       .catch((error) => {
         console.error("Error fetching quizzes:", error);
@@ -60,8 +61,7 @@ const MyQuizzes = () => {
   };
 
   const handleViewResponses = (quizId) => {
-    // Implement view responses logic here
-    console.log("View responses for quiz:", quizId);
+    navigate(`/quizzes/${quizId}/responses`);
   };
 
   return (

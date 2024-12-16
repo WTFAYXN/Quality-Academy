@@ -96,27 +96,20 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
     let score = 0;
     const responseAnswers = [];
 
-    // console.log("Received answers:", answers);
-
     // Validate the answers and calculate the score
     quiz.questions.forEach((q) => {
       const selectedOption = answers[q._id.toString()];
-      console.log(`Question:`, q);
-      console.log(`Selected option for question:`, selectedOption);
-
       const isCorrect = q.options.some((opt) => opt.isCorrect && opt.optionText === selectedOption);
       if (isCorrect) {
         score += q.points || 1; // Default to 1 point if not specified
       }
       responseAnswers.push({
         questionId: q._id,
+        question: q.question, // Add question text
         selectedOption,
         isCorrect,
       });
     });
-
-    // console.log("Response Answers:", responseAnswers);
-    // console.log("Total Score:", score);
 
     // Record the quiz attempt
     const quizResponse = new QuizResponse({
@@ -264,6 +257,31 @@ router.delete("/quizzes/:id/questions/:questionId", async (req, res) => {
     res.json({ message: "Question deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/quizzes/:id/responses', validateUser, async (req, res) => {
+  try {
+    // console.log("Fetching responses for quizId:", req.params.id); // Add this line for debugging
+    const responses = await QuizResponse.find({ quiz: req.params.id }).populate('user');
+    res.json(responses);
+  } catch (error) {
+    console.error('Error fetching responses:', error);
+    res.status(500).json({ message: 'Error fetching responses' });
+  }
+});
+
+router.get('/quizzes/:quizId/responses/:responseId', validateUser, async (req, res) => {
+  try {
+    // console.log("Fetching response for quizId:", req.params.quizId, "responseId:", req.params.responseId); // Add this line for debugging
+    const response = await QuizResponse.findById(req.params.responseId).populate('user');
+    if (!response) {
+      return res.status(404).json({ message: 'Response not found' });
+    }
+    res.json(response);
+  } catch (error) {
+    console.error('Error fetching response:', error);
+    res.status(500).json({ message: 'Error fetching response' });
   }
 });
 
