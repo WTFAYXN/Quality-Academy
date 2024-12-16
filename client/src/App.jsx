@@ -47,7 +47,7 @@ function App() {
           <Route path="/quizzes/created" element={<MyQuizzes />} />
           <Route path="/quizzes/create" element={<CreateQuiz />} />
           <Route path="/quizzes/:id/edit" element={<EditQuiz />} />
-          <Route path="/quizzes/:id/attempt" element={<AttemptQuiz />} />
+          <Route path="/quizzes/:id" element={<AttemptQuiz />} />
           
 
           {/* <Route path="/quiz" element={<QuizList />} />

@@ -58,19 +58,30 @@ router.put("/quizzes/:id", validateUser, async (req, res) => {
   }
 });
 
-// Delete a Quiz
-router.delete("/quizzes/:id", validateUser, async (req, res) => {
+// Delete quiz endpoint
+router.delete('/quizzes/:id', validateUser, async (req, res) => {
   try {
-    const quiz = await Quiz.findById(req.params.id);
-    if (!quiz) return res.status(404).json({ error: "Quiz not found" });
-    if (quiz.creator.toString() !== req.user._id.toString() && req.user.role !== 1) {
-      return res.status(403).json({ error: "Unauthorized" });
+    const quizId = req.params.id;
+    const quiz = await Quiz.findById(quizId);
+    if (!quiz) {
+      return res.status(404).json({ message: 'Quiz not found' });
     }
 
-    await quiz.remove();
-    res.json({ message: "Quiz deleted successfully" });
+    // Check if the createdBy field is defined
+    if (!quiz.creator) {
+      return res.status(400).json({ message: 'Quiz does not have a creator' });
+    }
+
+    // Check if the user is the owner of the quiz or an admin
+    if (!quiz.creator.equals(req.user._id) && !req.user.isAdmin) {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    await quiz.deleteOne();
+    res.status(200).json({ message: 'Quiz deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error deleting quiz:', error);
+    res.status(500).json({ message: 'Error deleting quiz' });
   }
 });
 
