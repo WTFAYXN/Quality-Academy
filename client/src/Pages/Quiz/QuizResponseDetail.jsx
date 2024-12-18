@@ -13,7 +13,6 @@ const QuizResponseDetail = () => {
   });
 
   useEffect(() => {
-   // console.log("Fetching response for quizId:", quizId, "responseId:", responseId); // Add this line for debugging
     if (quizId && responseId) {
       axios
         .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}/responses/${responseId}`, {
@@ -23,7 +22,6 @@ const QuizResponseDetail = () => {
         })
         .then((response) => {
           setResponse(response.data);
-          //console.log("Response:", response.data); // Log the response data
         })
         .catch((error) => {
           console.error("Error fetching response:", error);
@@ -58,11 +56,20 @@ const QuizResponseDetail = () => {
           <p>Completed At: {new Date(response.completedAt).toLocaleString()}</p>
           <h3>Answers:</h3>
           <ul>
-            {response.answers.map((answer, index) => (
+            {response.answers && response.answers.map((answer, index) => (
               <li key={index}>
                 <strong>Question:</strong> {answer.question}
                 <br />
-                <strong>Answer:</strong> {answer.selectedOption.join(', ')}
+                <strong>Selected Answer:</strong> {Array.isArray(answer.selectedOption) ? answer.selectedOption.join(', ') : answer.selectedOption}
+                <br />
+                <strong>Options:</strong>
+                <ul>
+                  {answer.options && answer.options.map((opt, i) => (
+                    <li key={i} style={{ color: opt.isCorrect ? 'green' : 'black' }}>
+                      {opt.optionText} {opt.isCorrect && "(Correct)"}
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const AttemptQuiz = () => {
-  const {id: quizId } = useParams();
+  const { id: quizId } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
@@ -43,8 +43,19 @@ const AttemptQuiz = () => {
     }
   }, [token, navigate, quizId]);
 
-  const handleAnswerChange = (questionId, answer) => {
-    setAnswers({ ...answers, [questionId]: answer });
+  const handleAnswerChange = (questionId, answer, isMultipleChoice) => {
+    if (isMultipleChoice) {
+      setAnswers((prevAnswers) => {
+        const currentAnswers = prevAnswers[questionId] || [];
+        if (currentAnswers.includes(answer)) {
+          return { ...prevAnswers, [questionId]: currentAnswers.filter((a) => a !== answer) };
+        } else {
+          return { ...prevAnswers, [questionId]: [...currentAnswers, answer] };
+        }
+      });
+    } else {
+      setAnswers({ ...answers, [questionId]: answer });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -80,10 +91,10 @@ const AttemptQuiz = () => {
             <div key={opt.optionText}>
               <label>
                 <input
-                  type="radio"
+                  type={q.type === "multiple" ? "checkbox" : "radio"}
                   name={`question-${q._id}`}
                   value={opt.optionText}
-                  onChange={() => handleAnswerChange(q._id, opt.optionText)}
+                  onChange={() => handleAnswerChange(q._id, opt.optionText, q.type === "multiple")}
                 />
                 {opt.optionText}
               </label>

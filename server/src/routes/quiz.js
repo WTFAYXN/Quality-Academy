@@ -99,7 +99,7 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
     // Validate the answers and calculate the score
     quiz.questions.forEach((q) => {
       const selectedOption = answers[q._id.toString()];
-      const isCorrect = q.options.some((opt) => opt.isCorrect && opt.optionText === selectedOption);
+      const isCorrect = q.options.some((opt) => opt.isCorrect && selectedOption.includes(opt.optionText));
       if (isCorrect) {
         score += q.points || 1; // Default to 1 point if not specified
       }
@@ -107,6 +107,7 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
         questionId: q._id,
         question: q.question, // Add question text
         selectedOption,
+        options: q.options, // Include options in the response
         isCorrect,
       });
     });
@@ -127,7 +128,6 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 // Get a User's Created Quizzes
 router.get("/quizzes/created", validateUser, async (req, res) => {
