@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import userIcon from "../../assets/images/catLogo.png";
-import notification from "../../assets/svgs/Home/notification.svg"; // Add the admin icon image
+import notification from "../../assets/svgs/Home/notification.svg"; 
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [adminRequests, setAdminRequests] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const Navbar = () => {
           const userData = await response.json();
           if (userData.role === 1) {
             setIsAdmin(true);
+            fetchAdminRequests();
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -37,6 +39,21 @@ const Navbar = () => {
       fetchUserData();
     }
   }, []);
+
+  const fetchAdminRequests = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/pending-resources`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log(response);
+      const data = await response.json();
+      setAdminRequests(data.length); // Assuming the response is an array of requests
+    } catch (error) {
+      console.error("Error fetching admin requests:", error);
+    }
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -75,7 +92,14 @@ const Navbar = () => {
       <div className="cta">
         {isLoggedIn ? (
           <div className="user-section">
-            {isAdmin && <Link to="/admin/requests"><img src={notification} alt="Admin Icon" className="admin-icon" /></Link>} {/* Conditionally render admin icon */}
+            {isAdmin && (
+              <div className="admin-icon-container">
+                <Link to="/admin/requests">
+                  <img src={notification} alt="Admin Icon" className="admin-icon" />
+                  {adminRequests > 0 && <span className="admin-requests-badge">{adminRequests}</span>}
+                </Link>
+              </div>
+            )}
             <Link to="/user"><img src={userIcon} alt="User Icon" className="user-icon" /></Link>
           </div>
         ) : (
