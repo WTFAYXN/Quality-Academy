@@ -127,6 +127,12 @@ const CreateQuiz = () => {
     setShowQuestionForm(true);
   };
 
+  const handleDeleteQuestion = (index) => {
+    const updatedQuestions = questions.filter((_, i) => i !== index);
+    setQuestions(updatedQuestions);
+    showNotification('Question deleted successfully', 'success');
+  };
+
   const handleOptionChange = (index, field, value) => {
     const newOptions = [...options];
     if (type === "single" && field === "isCorrect" && value) {
@@ -152,6 +158,7 @@ const CreateQuiz = () => {
   return (
     <>
       <Navbar />
+
       <div className="quiz-create-form">
         <h1 className="quiz-setting-h1">
           Setup Your Questionnaire <span><img className="line-quiz" src={line} /></span>
@@ -178,6 +185,7 @@ const CreateQuiz = () => {
               required
             />
           </div>
+          
           {/* <div className="checkboxes">
             <div className="isPublic">
               <label className="isPublic-label">Public</label>
@@ -206,8 +214,8 @@ const CreateQuiz = () => {
           </div> */}
           {showQuestionForm || questions.length === 0 ? (
             <div className="question-form">
-              <h2>Add Questions</h2>
-              {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+              <h2>{editIndex !== null ? "Edit Question" : "Add Questions"}</h2>
+              {error && <p style={{ color: "red" }}>{error}</p>}
               <div>
                 <label>Question</label>
                 <textarea
@@ -289,6 +297,9 @@ const CreateQuiz = () => {
                   <br />
                   <button type="button" onClick={() => handleEditQuestion(index)}>
                     Edit
+                  </button>
+                  <button type="button" onClick={() => handleDeleteQuestion(index)}>
+                    Delete
                   </button>
                 </li>
               ))}
