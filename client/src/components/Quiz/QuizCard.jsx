@@ -57,7 +57,7 @@ const QuizCard = ({ quiz, onDelete, onCopyUrl, onViewResponses }) => {
       <div className="quiz-description">
         <div className="title-date">
           <h4>{quiz.title}</h4>
-          <p>{quiz.description}</p>
+          <p>{new Date(quiz.createdAt).toLocaleDateString()}</p>
         </div>
         <div className="attempts-popup" onClick={handleDotClick}>
           <img src={dot} alt="Options" style={{ padding: "10px", border: "none", background: "none" }}/>

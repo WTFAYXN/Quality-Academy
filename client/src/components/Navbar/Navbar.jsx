@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import userIcon from "../../assets/images/catLogo.png";
 import notification from "../../assets/svgs/Home/notification.svg"; // Add the admin icon image
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if the user is logged in (e.g., by checking a token in localStorage)
@@ -41,6 +42,13 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+    navigate("/login");
+  };
+
   return (
     <div className="nav-container">
       <div className="logo">
@@ -60,7 +68,7 @@ const Navbar = () => {
         <li><Link to="/#features">Features</Link></li>
         <li><Link to="/resources">Resources</Link></li>
         <li><Link to="/#testimonials">Testimonials</Link></li>
-        <li><Link to="/#get-started">Get Started</Link></li>
+        {isLoggedIn && <li><Link to="#" onClick={handleLogout} className="list">Logout</Link></li>}
       </ul>
 
       {/* Call to Action Buttons */}
