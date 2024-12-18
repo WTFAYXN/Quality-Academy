@@ -1,36 +1,98 @@
-import React, { useEffect, useState } from "react";
-import QuizAttemptForm from "../../components/Quiz/QuizAttemptForm";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const AttemptQuiz = () => {
-  const { id } = useParams();
+  const {id: quizId } = useParams();
   const [quiz, setQuiz] = useState(null);
-  const url = import.meta.env.VITE_API_URL;
+  const [answers, setAnswers] = useState({});
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get(`${url}/quizzes/${id}`)
-      .then((response) => setQuiz(response.data))
-      .catch((error) => console.error(error)); 
-  }, [id]);
+    if (!token) {
+      navigate("/login", { state: { from: `/quizzes/${quizId}/attempt` } });
+    } else {
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}/attempts`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.attempted) {
+            navigate(`/quizzes/${quizId}/already-submitted`);
+          } else {
+            axios
+              .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then((response) => {
+                setQuiz(response.data);
+              })
+              .catch((error) => {
+                console.error("Error fetching quiz:", error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.error("Error checking quiz attempt:", error);
+        });
+    }
+  }, [token, navigate, quizId]);
 
-  const handleSubmit = (answers) => {
-    axios.post(`${url}/quizzes/${id}/attempt`, { answers }, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-    })
-      .then((response) => alert(`Score: ${response.data.score}`))
-      .catch((error) => console.error(error));
+  const handleAnswerChange = (questionId, answer) => {
+    setAnswers({ ...answers, [questionId]: answer });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        `${import.meta.env.VITE_API_URL}/quizzes/${quizId}/attempt`,
+        { answers },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        navigate(`/quizzes/${quizId}/already-submitted`);
+      })
+      .catch((error) => {
+        console.error("Error submitting quiz:", error);
+      });
   };
 
   if (!quiz) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>Attempt Quiz: {quiz.title}</h1>
-      <QuizAttemptForm questions={quiz.questions} onSubmit={handleSubmit} />
-    </div>
+    <form onSubmit={handleSubmit}>
+      {quiz.questions.map((q, index) => (
+        <div key={q._id}>
+          <p>
+            {index + 1}. {q.question}
+          </p>
+          {q.options.map((opt) => (
+            <div key={opt.optionText}>
+              <label>
+                <input
+                  type="radio"
+                  name={`question-${q._id}`}
+                  value={opt.optionText}
+                  onChange={() => handleAnswerChange(q._id, opt.optionText)}
+                />
+                {opt.optionText}
+              </label>
+            </div>
+          ))}
+        </div>
+      ))}
+      <button type="submit">Submit Answers</button>
+    </form>
   );
 };
 

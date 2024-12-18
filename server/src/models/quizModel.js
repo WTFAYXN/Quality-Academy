@@ -20,10 +20,10 @@ const quizSchema = new Schema(
       questions: [questionSchema], // Array of questions
       status: { type: String, default: "draft" }, // "draft" | "published"
       settings: {
-        isPublic: { type: Boolean, default: false },
+        isPublic: { type: Boolean, default: true },
         timeLimit: { type: Number },
         shuffleQuestions: { type: Boolean, default: false },
-        allowMultipleAttempts: { type: Boolean, default: true },
+        allowMultipleAttempts: { type: Boolean, default: false },
       },
     },
     { timestamps: true }

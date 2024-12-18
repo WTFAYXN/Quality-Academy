@@ -13,6 +13,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const from = location.state?.from || "/";
 
   const [notification, setNotification] = useState({
     message: "",
@@ -54,7 +55,7 @@ const Login = () => {
         showNotification("Login successful!", "success");
         localStorage.setItem("token", result.token);
         localStorage.setItem("isAdmin", result.isAdmin);
-        navigate("/user");
+        navigate(from, { replace: true });
       } else {
         showNotification(`Login failed: ${result.message}`, "error");;
       }

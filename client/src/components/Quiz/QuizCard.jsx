@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import dot from "../../assets/svgs/3dots.svg";
+import { useNavigate } from "react-router-dom";
 import "./QuizCard.css"; // Make sure to create and import the CSS file for styling
 
 const QuizCard = ({ quiz, onDelete, onCopyUrl, onViewResponses }) => {
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleDotClick = () => {
     setShowOptions(!showOptions);
+  };
+
+  const handleEditQuiz = () => {
+    navigate(`/quiz/${quiz._id}`);
   };
 
   const handleDelete = () => {
@@ -54,12 +60,13 @@ const QuizCard = ({ quiz, onDelete, onCopyUrl, onViewResponses }) => {
           <p>{quiz.description}</p>
         </div>
         <div className="attempts-popup" onClick={handleDotClick}>
-          <img src={dot} alt="Options" />
+          <img src={dot} alt="Options" style={{ padding: "10px", border: "none", background: "none" }}/>
           {showOptions && (
             <div className="options-menu" ref={optionsRef}>
               <button onClick={handleDelete}>Delete Quiz</button>
               <button onClick={handleCopyUrl}>Copy URL</button>
               <button onClick={handleViewResponses}>See Responses</button>
+              <button onClick={handleEditQuiz}>Edit</button>
             </div>
           )}
         </div>

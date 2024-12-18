@@ -157,6 +157,22 @@ router.get("/quizzes/attempted", validateUser, async (req, res) => {
   }
 });
 
+// Check if a User has Attempted a Specific Quiz
+router.get("/quizzes/:quizId/attempts", validateUser, async (req, res) => {
+  try {
+    const userId = req.user._id; // Assuming the auth middleware sets req.user
+    const quizId = req.params.quizId;
+    const attempt = await QuizResponse.findOne({ user: userId, quiz: quizId });
+
+    if (attempt) {
+      res.json({ attempted: true });
+    } else {
+      res.json({ attempted: false });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Fetch a specific quiz by ID
 router.get("/quizzes/:id", async (req, res) => {

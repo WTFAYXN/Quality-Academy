@@ -21,9 +21,8 @@ const MyQuizzes = () => {
         },
       })
       .then((response) => {
-        // console.log("API response:", response.data); // Log the API response
-        setQuizzes(response.data);
-        // console.log("Quizzes:", response.data); // Log the quizzes state
+        const sortedQuizzes = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setQuizzes(sortedQuizzes);
       })
       .catch((error) => {
         console.error("Error fetching quizzes:", error);

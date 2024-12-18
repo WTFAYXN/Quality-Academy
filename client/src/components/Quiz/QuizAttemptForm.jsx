@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-const QuizAttemptForm = ({ questions, onSubmit }) => {
+const QuizAttemptForm = ({ quizId, questions, onSubmit }) => {
   const [answers, setAnswers] = useState({});
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const handleAnswerChange = (questionId, answer) => {
     setAnswers({ ...answers, [questionId]: answer });

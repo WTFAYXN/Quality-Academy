@@ -15,14 +15,14 @@ import User from './Questionnaire/User';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import AttemptQuiz from './Pages/Quiz/AttemptQuiz';
 import CreateQuiz from './Pages/Quiz/CreateQuiz';
-import EditQuiz from './Pages/Quiz/EditQuiz';
 import PublicQuizzes from './Pages/Quiz/PublicQuizzes';
 import AttemptedQuizzes from './Pages/Quiz/AttemptedQuizzes';
 import MyQuizzes from './Pages/Quiz/MyQuizzes';
-import QuizDetails from './Pages/Quiz/QuizDetails';
+import EditQuiz from './Pages/Quiz/EditQuiz';
 import QuizResponses from "./Pages/Quiz/QuizResponses";
 import QuizResponseDetail from "./Pages/Quiz/QuizResponseDetail";
 import AdminRequests from './Pages/Admin/AdminRequests';
+import AlreadySubmittedPage from './Pages/Quiz/AlreadySubmittedPage';
 
 
 function App() {
@@ -43,15 +43,16 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/admin/requests" element={<AdminRequests />} />
 
-          <Route path="/quiz/:id" element={<QuizDetails />} />
+          <Route path="/quiz/:id" element={<EditQuiz />} />
           <Route path="/quizzes" element={<PublicQuizzes />} />
           <Route path="/quizzes/attempted" element={<AttemptedQuizzes />} />
           <Route path="/quizzes/created" element={<MyQuizzes />} />
           <Route path="/quizzes/create" element={<CreateQuiz />} />
-          <Route path="/quizzes/:id/edit" element={<EditQuiz />} />
           <Route path="/quizzes/:id" element={<AttemptQuiz />} />
           <Route path="/quizzes/:id/responses" element={<QuizResponses />} />
           <Route path="/quizzes/:id/responses/:responseId" element={<QuizResponseDetail />} />
+          <Route path="/quizzes/:quizId/already-submitted" element={<AlreadySubmittedPage />} />
+
           
 
           {/* <Route path="/quiz" element={<QuizList />} />
