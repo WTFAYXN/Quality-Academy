@@ -53,7 +53,7 @@ h1,h2,h3,h4,h6{
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    margin: 100px auto;
+    margin: 50px auto;
     color: var(--black)
   }
   
@@ -77,9 +77,28 @@ h1,h2,h3,h4,h6{
 
   
   .quiz-form{
-    background-color:orange;
-    padding: 20px 50px 20px;
-    border-radius: 10px;
+    width: 700px;
+    /* background: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(177, 177, 177, 0.25); */
+    
+  }
+
+  .quiz-title-description{
+    margin-bottom: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 17px rgba(145, 145, 145, 0.3);
+    /* box-shadow: 0px 0px 15px rgba(177, 177, 177, 0.25); */
+    border-radius: 15px;
+    padding: 20px 50px 40px;
+  }
+
+  .question-form{
+    margin-bottom: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 17px rgba(145, 145, 145, 0.3);
+    /* box-shadow: 0px 0px 15px rgba(177, 177, 177, 0.25); */
+    border-radius: 15px;
+    padding: 20px 50px 40px;
   }
   
   .title-label, .description-label{
@@ -91,7 +110,7 @@ h1,h2,h3,h4,h6{
   .checkboxes{
     padding:20px 0px;
     display:flex;
-    gap: 30px;
+    gap: 90px;
     font-weight: 600;
   }
   
@@ -100,16 +119,27 @@ h1,h2,h3,h4,h6{
   }
   
   .title, .description{
-    padding-top: 20px;
+    padding-top: 40px;
   }
   
   .title-input, .description-input{
+    height:30px;
+    font-size: 20px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
     width: 100%;
     margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #b9b6b1;
+    padding-left: 5px;
+    /* border-radius: 5px; */
+    border-bottom: 1px solid #b9b6b1;
   }
-  
+
+  .title-input:focus-visible, .title-input:focus, .description-input:focus-visible{
+    outline: none;
+    border-bottom: 1px solid #000000;
+  }
+/*   
   .title-input{
     height:30px;
     padding-left: 5px;
@@ -117,9 +147,9 @@ h1,h2,h3,h4,h6{
   .description-input{
     height:50px;
     padding-left: 5px;
-    padding-top: 2px;
+   
   }
-  
+   */
   .btn-quiz-setting{
     width:100%;
     border-radius: 10px;
@@ -142,3 +172,16 @@ h1,h2,h3,h4,h6{
     display: block;
     margin: 0 auto;
   }
+
+  .thank-you-card{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.thank-you-card h1{
+  font-weight: 800;
+  padding-bottom: 20px;
+}

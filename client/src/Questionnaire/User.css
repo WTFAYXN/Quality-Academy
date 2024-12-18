@@ -100,5 +100,5 @@ input[type="checkbox"] {
     /* color: blue; */
     /* background: red; */
     padding: 3px;
-    border: 1px solid --var(blue);
+    border: 1px solid #2C75FF;
   }

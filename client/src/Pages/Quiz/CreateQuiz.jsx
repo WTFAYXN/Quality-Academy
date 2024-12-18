@@ -163,27 +163,34 @@ const CreateQuiz = () => {
         <h1 className="quiz-setting-h1">
           Setup Your Questionnaire <span><img className="line-quiz" src={line} /></span>
         </h1>
+
+        {/* Questionnaire  */}
+
+
         <form className="quiz-form" onSubmit={handleQuizSubmit}>
-          <div className="title">
-            <label className="title-label">Title</label>
-            <input
-              placeholder="Give a suitable Title for Questionnaire"
-              className="title-input"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-          <div className="description">
-            <label className="description-label">Description</label>
-            <textarea
-              placeholder="Describe Your Questionnaire"
-              className="description-input"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
+
+          <div className="quiz-title-description">
+            <div className="title">
+              <label className="title-label">Title</label>
+              <input
+                placeholder="Give a suitable Title for Questionnaire"
+                className="title-input"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </div>
+            <div className="description">
+              <label className="description-label">Description</label>
+              <textarea
+                placeholder="Describe Your Questionnaire"
+                className="description-input"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </div>
           </div>
           
           {/* <div className="checkboxes">
