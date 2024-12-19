@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import Notification from "../../components/Notification/Notification";
 import line from "../../assets/svgs/Line.svg";
-
+import Remove from "../../assets/svgs/Questionnaire/Remove.svg";
 const CreateQuiz = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -220,63 +220,184 @@ const CreateQuiz = () => {
             </div>
           </div> */}
           {showQuestionForm || questions.length === 0 ? (
-            <div className="question-form">
-              <h2>{editIndex !== null ? "Edit Question" : "Add Questions"}</h2>
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              <div>
-                <label>Question</label>
-                <textarea
-                  value={question}
-                  onChange={(e) => setQuestion(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label>Type</label>
-                <select value={type} onChange={(e) => setType(e.target.value)}>
-                  <option value="single">Single Choice</option>
-                  <option value="multiple">Multiple Choice</option>
-                </select>
-              </div>
-              <div>
-                <label>Options</label>
-                {options.map((opt, index) => (
-                  <div key={index}>
-                    <input
-                      type="text"
-                      value={opt.optionText}
-                      onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
-                      placeholder={`Option ${index + 1}`}
-                      required
-                    />
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={opt.isCorrect}
-                        onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
-                      />
-                      Correct
-                    </label>
-                    <button type="button" onClick={() => handleRemoveOption(index)}>
-                      Remove
+            <div class="question-form-main"> 
+              <div className="question-form">
+                {/* <h2>{editIndex !== null ? "Edit Question" : "Add Questions"}</h2> */}
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                <div className="row">
+
+                    <div className="col-8">
+                      {/* <div className="title-question" contenteditable="true">Untitled Question</div> */}
+                      <input className="title-question" placeholder="Untitled Question"  value={question}
+                      onChange={(e) => setQuestion(e.target.value)}
+                      required />
+                      </div>
+                    
+                    <div className="col-4 text-center">
+                      {/* <div className="dropdown-questions">
+                        <button className="btn btn-secondary dropdown-toggle dropdown-questions" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Question Type
+                        </button>
+                        <ul className="dropdown-menu">
+                          <li><a className="dropdown-item" href="#">Multiple Choice</a></li>
+                          <li><a className="dropdown-item" href="#">Single Choice</a></li>
+                          <li><a className="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </div> */}
+
+                      
+                        <select className="btn btn-secondary dropdown-toggle dropdown-questions" value={type} onChange={(e) => setType(e.target.value)}>
+                          <option value="single">Single Choice</option>
+                          <option value="multiple">Multiple Choice</option>
+                        </select>
+                      
+                        
+              
+                    </div>
+                </div>
+                  <div class="row mt-2">
+                          <ul>
+                        {options.map((opt, index) => (
+                          <li className="d-flex mt-3" key={index}>
+                            <div className="d-flex test-div">
+                              <span className="isAnswer">
+                                <input
+                                  type="checkbox"
+                                  checked={opt.isCorrect}
+                                  onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
+                                />
+                              </span>
+                              <div
+                                className="option-outline"
+                                contentEditable="true"
+                                onInput={(e) => handleOptionChange(index, "optionText", e.target.innerText)}
+                              >
+                                {opt.optionText || `Option ${index + 1}`}
+                              </div>
+                              <span className="remove-option">
+                                <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
+                              </span>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                      <button className="add-option" type="button" onClick={handleAddOption}>
+                      Add Option
                     </button>
                   </div>
-                ))}
-                <button type="button" onClick={handleAddOption}>
-                  Add Option
-                </button>
+
+                  <hr class="separator"/>
+
+                  <div className="question-functions">
+                    <div className="set-marks-title d-flex">
+                      <span>Marks:</span>
+                      <div className="set-marks" contentEditable="true" onInput={(e) => setPoints(Number(e.target.innerText))}>
+                        {points}
+                      </div>
+                    </div>
+                    <button className="remove-question" onClick={() => handleDeleteQuestion(index)}>
+                      Remove
+                    </button>
+                </div>
+
+
+                {/* <div>
+                  <label>Question</label>
+                  <textarea
+                    value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
+                    required
+                  />
+                </div> */}
+                {/* <div>
+                  <label>Type</label>
+                  <select value={type} onChange={(e) => setType(e.target.value)}>
+                    <option value="single">Single Choice</option>
+                    <option value="multiple">Multiple Choice</option>
+                  </select>
+                </div> */}
+
+
+                {/* <div>
+                  <label>Options</label>
+                  {options.map((opt, index) => (
+                    <div key={index}>
+                      <input
+                        type="text"
+                        value={opt.optionText}
+                        onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
+                        placeholder={`Option ${index + 1}`}
+                        required
+                      />
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={opt.isCorrect}
+                          onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
+                        />
+                        Correct
+                      </label>
+                      <button type="button" onClick={() => handleRemoveOption(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={handleAddOption}>
+                    Add Option
+                  </button>
+                </div> */}
+
+                {/* <div>
+                  <div className="row mt-2">
+                    <ul>
+                      {options.map((opt, index) => (
+                        <li className="d-flex mt-3" key={index}>
+                          <div className="d-flex test-div">
+                            <span className="isAnswer">
+                              <input
+                                type="checkbox"
+                                checked={opt.isCorrect}
+                                onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
+                              />
+                            </span>
+                            <div
+                              className="option-outline"
+                              contentEditable="true"
+                              onInput={(e) => handleOptionChange(index, "optionText", e.target.innerText)}
+                            >
+                              {opt.optionText || `Option ${index + 1}`}
+                            </div>
+                            <span className="remove-option">
+                              <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
+                            </span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button type="button" onClick={handleAddOption}>
+                    Add Option
+                  </button>
+                </div> */}
+
+                {/* <div>
+                  <label>Points</label>
+                  <input
+                    type="number"
+                    value={points}
+                    onChange={(e) => setPoints(Number(e.target.value))}
+                  />
+                </div> */}
+                {/* <button type="button" onClick={handleAddQuestion}>
+                  {editIndex !== null ? "Update Question" : "Add Question"}
+                </button> */}
               </div>
-              <div>
-                <label>Points</label>
-                <input
-                  type="number"
-                  value={points}
-                  onChange={(e) => setPoints(Number(e.target.value))}
-                />
-              </div>
-              <button type="button" onClick={handleAddQuestion}>
-                {editIndex !== null ? "Update Question" : "Add Question"}
-              </button>
+              
+              <div class="add-question-preview">
+                  <button type="button">Add Question</button>
+                  <button type="button">Save</button>
+                </div>
+                
             </div>
           ) : (
             <button type="button" onClick={() => setShowQuestionForm(true)}>
