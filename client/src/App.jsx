@@ -23,6 +23,8 @@ import QuizResponses from "./Pages/Quiz/QuizResponses";
 import QuizResponseDetail from "./Pages/Quiz/QuizResponseDetail";
 import AdminRequests from './Pages/Admin/AdminRequests';
 import AlreadySubmittedPage from './Pages/Quiz/AlreadySubmittedPage';
+import ForgetPassword from './Pages/Auth/ForgetPassword';
+import ResetPassword from './Pages/Auth/ResetPassword';
 
 
 function App() {
@@ -42,6 +44,9 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/user" element={<User />} />
           <Route path="/admin/requests" element={<AdminRequests />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+
 
           <Route path="/quiz/:id" element={<EditQuiz />} />
           <Route path="/quizzes" element={<PublicQuizzes />} />
