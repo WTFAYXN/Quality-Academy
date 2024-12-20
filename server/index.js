@@ -7,7 +7,7 @@ const quizRouter = require('./src/routes/quiz'); // Import the router
 const adminRouter = require('./src/routes/admin'); // Import the router
 const path = require('path');
 const fs = require('fs');
-const port = 5000;                 // Define the port
+const port = process.env.PORT || 5000;               // Define the port
 const connectDB = require('./src/db'); // Import the connectDB function
 
 connectDB();
@@ -32,5 +32,5 @@ app.get('/', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on port ${port}`);
 });
