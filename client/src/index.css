@@ -325,3 +325,66 @@ opacity:0.9;
   font-weight: 800;
   padding-bottom: 20px;
 }
+
+body{
+  margin: 100px 100px;
+}
+
+.added-question-main{
+  width: 700px;
+   font-size: 20px;
+  
+}
+.added-question-card{
+margin-bottom: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 17px rgba(145, 145, 145, 0.3);
+    /* box-shadow: 0px 0px 15px rgba(177, 177, 177, 0.25); */
+  border-radius: 15px;
+    padding: 20px 50px 40px;
+}
+
+
+.title-questionAdded{  
+    width: 100%;
+    margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.option-list-ol > li{
+ margin: 10px auto; 
+}
+
+
+.question-functions{
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+
+
+.add-question-preview > button{
+  border-radius: 10px;
+  height:40px;
+  width: 200px;
+ font-size: 18px;
+  font-weight: 500;
+  border: none;
+  background-color: #2C75FF;
+  color:white;
+}
+
+.add-question-preview > button:hover{
+  background-color:#2c75ffcc;
+}
+
+.add-question-preview{
+  display: flex;
+  justify-content:space-between;
+  margin-top: 20px;
+}
+
+.saving-quiz{
+  margin-top: 20px;
+}

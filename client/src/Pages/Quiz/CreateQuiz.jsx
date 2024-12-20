@@ -219,6 +219,45 @@ const CreateQuiz = () => {
               />
             </div>
           </div> */}
+
+          <div className="added-question-main">
+              {questions.map((q, index) => (
+                <div className="added-question-card" key={index}>
+                  <div className="row">
+                    <div className="col-8">
+                      <div className="title-questionAdded">
+                        <strong>Question:</strong> {q.question}
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <strong>Type:</strong> {q.type}
+                      <br />
+                    </div>
+                  </div>
+                  <div className="option-list">
+                    <strong>Options:</strong>
+                    <ol className="option-list-ol">
+                      {q.options.map((opt, i) => (
+                        <li key={i}>
+                          {opt.optionText} {opt.isCorrect ? "(Correct)" : ""}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                  <strong>Points:</strong> {q.points}
+                  <br />
+                  <div className="add-question-preview">
+                    <button type="button" onClick={() => handleEditQuestion(index)}>
+                      Edit
+                    </button>
+                    <button type="button" onClick={() => handleDeleteQuestion(index)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           {showQuestionForm || questions.length === 0 ? (
             <div class="question-form-main"> 
               <div className="question-form">
@@ -388,9 +427,9 @@ const CreateQuiz = () => {
                     onChange={(e) => setPoints(Number(e.target.value))}
                   />
                 </div> */}
-                {/* <button type="button" onClick={handleAddQuestion}>
+                <button type="button" onClick={handleAddQuestion}>
                   {editIndex !== null ? "Update Question" : "Add Question"}
-                </button> */}
+                </button>
               </div>
               
               <div class="add-question-preview">
@@ -400,12 +439,16 @@ const CreateQuiz = () => {
                 
             </div>
           ) : (
+            <div class="add-question-preview">
+
             <button type="button" onClick={() => setShowQuestionForm(true)}>
               Add Another Question
             </button>
+            </div>
           )}
-          <div className="added-questions">
+          {/* <div className="added-questions">
             <h2>Added Questions</h2>
+
             <ul>
               {questions.map((q, index) => (
                 <li key={index}>
@@ -432,8 +475,47 @@ const CreateQuiz = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <button className="btn-quiz-setting" type="submit">
+          </div> */}
+
+          {/* <div className="added-question-main">
+              {questions.map((q, index) => (
+                <div className="added-question-card" key={index}>
+                  <div className="row">
+                    <div className="col-8">
+                      <div className="title-questionAdded">
+                        <strong>Question:</strong> {q.question}
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <strong>Type:</strong> {q.type}
+                      <br />
+                    </div>
+                  </div>
+                  <div className="option-list">
+                    <strong>Options:</strong>
+                    <ol className="option-list-ol">
+                      {q.options.map((opt, i) => (
+                        <li key={i}>
+                          {opt.optionText} {opt.isCorrect ? "(Correct)" : ""}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                  <strong>Points:</strong> {q.points}
+                  <br />
+                  <div className="add-question-preview">
+                    <button type="button" onClick={() => handleEditQuestion(index)}>
+                      Edit
+                    </button>
+                    <button type="button" onClick={() => handleDeleteQuestion(index)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div> */}
+
+          <button className="btn-quiz-setting saving-quiz" type="submit">
             Save Quiz
           </button>
         </form>
