@@ -388,3 +388,60 @@ margin-bottom: 20px;
 .saving-quiz{
   margin-top: 20px;
 }
+
+.response-body{
+  display: flex;
+  justify-content: center;
+  margin:  50px 0px 100px;
+}
+
+.report-questionnaire{
+
+  font-size: 16px;
+  color: grey;
+  text-align: center;
+}
+
+.report-questionnaire p{
+  margin-bottom: 5px;
+}
+
+.report-questionnaire a{
+  text-decoration: underline;
+  color: grey;
+}
+
+.attempt-question-title{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.submit-attempt-btn{
+  border-radius: 10px;
+    height: 40px;
+    width: 200px;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    background-color: #2C75FF;
+    color: white;
+}
+
+.clear-attempt-btn{
+  color: grey;
+  text-decoration: underline;
+  background-color: inherit;
+  border:none;
+}
+.submit-clear-btn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.option-attempt{
+  align-items: center;
+}
+
+.option-attempt > p{
+  margin: 0;
+}

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Notification from "../../components/Notification/Notification";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 const QuizResponses = () => {
   const { id: quizId } = useParams();
@@ -39,12 +41,15 @@ const QuizResponses = () => {
 
   return (
     <>
+    <Navbar />
+
       <Notification
         message={notification.message}
         type={notification.type}
         visible={notification.visible}
         onClose={closeNotification}
       />
+      <div className="quiz-responses">
       <h1>Quiz Responses</h1>
       {responses.length === 0 ? (
         <p>No responses yet.</p>
@@ -74,6 +79,8 @@ const QuizResponses = () => {
           </tbody>
         </table>
       )}
+      </div>
+      <Footer />
     </>
   );
 };

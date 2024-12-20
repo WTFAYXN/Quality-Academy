@@ -427,14 +427,17 @@ const CreateQuiz = () => {
                     onChange={(e) => setPoints(Number(e.target.value))}
                   />
                 </div> */}
-                <button type="button" onClick={handleAddQuestion}>
+                {/* <button type="button" onClick={handleAddQuestion}>
                   {editIndex !== null ? "Update Question" : "Add Question"}
-                </button>
+                </button> */}
               </div>
               
               <div class="add-question-preview">
-                  <button type="button">Add Question</button>
-                  <button type="button">Save</button>
+                  <button type="button" onClick={handleAddQuestion}>
+                    {editIndex !== null ? "Update Question" : "Add Question"}
+                    </button>
+                  <button type="submit" >
+                    Save</button>
                 </div>
                 
             </div>
@@ -442,8 +445,10 @@ const CreateQuiz = () => {
             <div class="add-question-preview">
 
             <button type="button" onClick={() => setShowQuestionForm(true)}>
-              Add Another Question
+              Add Question
             </button>
+            <button type="submit" >
+                    Save</button>
             </div>
           )}
           {/* <div className="added-questions">
@@ -515,9 +520,9 @@ const CreateQuiz = () => {
               ))}
             </div> */}
 
-          <button className="btn-quiz-setting saving-quiz" type="submit">
+          {/* <button className="btn-quiz-setting saving-quiz" type="submit">
             Save Quiz
-          </button>
+          </button> */}
         </form>
       </div>
       <Notification
