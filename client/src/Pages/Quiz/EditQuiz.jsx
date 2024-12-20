@@ -157,6 +157,8 @@ const EditQuiz = () => {
   return (
     <div className="quiz-create-form">
       <div className="quiz-form">
+
+        
         <h1 className="quiz-setting-h1">{quiz.title}</h1>
         <p className="quiz-setting-description">{quiz.description}</p>
 
@@ -185,10 +187,14 @@ const EditQuiz = () => {
         )}
 
         {!showQuestionForm && !editingQuestion && (
+          
           <button onClick={() => setShowQuestionForm(true)}>Add Question</button>
         )}
+        <div class="add-question-preview">
 
-        <button onClick={() => navigate(`/user`)}>Done</button>
+        <button onClick={() => navigate(`/user`)}>Publish</button>
+        </div>
+        
       </div>
       <Notification
         message={notification.message}

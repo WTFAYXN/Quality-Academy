@@ -110,7 +110,9 @@ const Login = () => {
             onChange={handleChange}
             required
           />
+          <div className="forgotPassword">
           <a href="/forgot-password">Forgot Password?</a>
+          </div>
           <button className="login-submit" type="submit">
             Login
           </button>

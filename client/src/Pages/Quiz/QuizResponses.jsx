@@ -4,7 +4,7 @@ import axios from "axios";
 import Notification from "../../components/Notification/Notification";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-
+import line from "../../assets/svgs/Line.svg"
 const QuizResponses = () => {
   const { id: quizId } = useParams();
   const [responses, setResponses] = useState([]);
@@ -50,7 +50,11 @@ const QuizResponses = () => {
         onClose={closeNotification}
       />
       <div className="quiz-responses">
-      <h1>Quiz Responses</h1>
+        <div className="quiz-responses-header">
+          <h1>Quiz Responses</h1>
+          <img src={line} alt="line" />
+         </div>
+         <div className="admin-requests">
       {responses.length === 0 ? (
         <p>No responses yet.</p>
       ) : (
@@ -79,6 +83,7 @@ const QuizResponses = () => {
           </tbody>
         </table>
       )}
+      </div>
       </div>
       <Footer />
     </>

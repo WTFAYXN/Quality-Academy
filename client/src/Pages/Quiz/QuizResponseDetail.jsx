@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Notification from "../../components/Notification/Notification";
-
+import Navbar from "../../components/Navbar/Navbar";
+import line from "../../assets/svgs/Line.svg";
 const QuizResponseDetail = () => {
   const { id: quizId, responseId } = useParams(); // Ensure this matches the route parameter
   const [response, setResponse] = useState(null);
@@ -42,41 +43,86 @@ const QuizResponseDetail = () => {
 
   return (
     <>
+    <Navbar />
       <Notification
         message={notification.message}
         type={notification.type}
         visible={notification.visible}
         onClose={closeNotification}
       />
-      <h1>Quiz Response Detail</h1>
+    <div className="quiz-create-form">
+                <h1 className="quiz-setting-h1">
+                      Check Response <span><img className="line-quiz" src={line} /></span>
+                </h1>
+            </div>
       {response ? (
-        <div>
-          <h2>{response.user.name}</h2>
-          <p>Email: {response.user.email}</p>
-          <p>Completed At: {new Date(response.completedAt).toLocaleString()}</p>
-          <h3>Answers:</h3>
-          <ul>
-            {response.answers && response.answers.map((answer, index) => (
-              <li key={index}>
-                <strong>Question:</strong> {answer.question}
-                <br />
-                <strong>Selected Answer:</strong> {Array.isArray(answer.selectedOption) ? answer.selectedOption.join(', ') : answer.selectedOption}
-                <br />
-                <strong>Options:</strong>
-                <ul>
-                  {answer.options && answer.options.map((opt, i) => (
-                    <li key={i} style={{ color: opt.isCorrect ? 'green' : 'black' }}>
-                      {opt.optionText} {opt.isCorrect && "(Correct)"}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
+         <div className="quiz-create-form">
+
+            <div className="response-detail">
+              <div className="responser-info">
+                <h2>
+                  <span className="span-responser-info">Name</span>
+                  {response.user.name}
+                </h2>
+                <p>
+                  <span className="span-responser-info">Email:</span>
+                  {response.user.email}
+                </p>
+                <p>
+                  <span className="span-responser-info">Completed At:</span>
+                  {new Date(response.completedAt).toLocaleString()}
+                </p>
+
+                </div>
+
+             <div className="row text-center">
+             <h3 className="fw-bold">Response:</h3>
+              </div>
+              <ol className="response-ol">
+                {response.answers && response.answers.map((answer, index) => (
+                  <li  key={index}>
+                    <div className="question-form">
+                      <div className="question-infoResponse">
+                        <div className="infoResponse-question">
+                          <strong>Question:</strong> {answer.question}
+                        </div>
+
+                        <div className="infoResponse-answer">
+                          <strong>Selected Answer:</strong> {Array.isArray(answer.selectedOption) ? answer.selectedOption.join(', ') : answer.selectedOption}
+                        </div>
+
+                        <div className="infoResponse-options">
+                        <strong>Options:</strong>
+                            <ul>
+                              {answer.options && answer.options.map((opt, i) => (
+                                <li key={i} style={{ color: opt.isCorrect ? 'green' : 'black' }}>
+                                  {opt.optionText} {opt.isCorrect && "(Correct)"}
+                                </li>
+                              ))}
+                            </ul>
+                        </div>
+                        
+                      </div>
+                    
+                      
+                      </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+         </div>
       ) : (
         <p>Loading response...</p>
       )}
+
+            <div className="report-questionnaire">
+     
+             <p>This content is neither created nor endorsed by Quality Academy. - <Link to="/terms">Terms of Service</Link>  - <Link to="/terms">Privacy Policy</Link></p>
+             <p>Does this form look suspicious? Report</p>
+       
+     
+             </div>
     </>
   );
 };

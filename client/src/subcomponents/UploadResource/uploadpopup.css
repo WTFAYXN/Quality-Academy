@@ -35,8 +35,13 @@
 
 .upload-file-resources {
   margin-bottom: 20px;
+  
 }
 
+.upload-file-resources > img {
+  max-width: 230px;
+  
+}
 .custom-file-upload {
   display: inline-block;
   cursor: pointer;

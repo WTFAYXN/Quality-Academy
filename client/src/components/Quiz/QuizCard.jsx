@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import dot from "../../assets/svgs/3dots.svg";
 import { useNavigate } from "react-router-dom";
 import "./QuizCard.css"; // Make sure to create and import the CSS file for styling
+import Placeholder from "../../assets/images/QuestionnairePlaceholder.png";
 
 const QuizCard = ({ quiz, onDelete, onCopyUrl, onViewResponses }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -53,7 +54,7 @@ const QuizCard = ({ quiz, onDelete, onCopyUrl, onViewResponses }) => {
 
   return (
     <div className="past-quiz-list">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/004/640/699/small/circle-upload-icon-button-isolated-on-white-background-vector.jpg" alt="Quiz" />
+      <img src={Placeholder} alt="Quiz" />
       <div className="quiz-description">
         <div className="title-date">
           <h4>{quiz.title}</h4>

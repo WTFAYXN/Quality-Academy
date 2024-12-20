@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Remove from "../../assets/svgs/Questionnaire/Remove.svg";
 
 const QuestionForm = ({ initialData = {}, onSubmit }) => {
   const [question, setQuestion] = useState(initialData.question || "");
@@ -27,49 +28,59 @@ const QuestionForm = ({ initialData = {}, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Question</label>
-        <textarea value={question} onChange={(e) => setQuestion(e.target.value)} required />
-      </div>
-      <div>
-        <label>Type</label>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="single">Single Choice</option>
-          <option value="multiple">Multiple Choice</option>
-        </select>
-      </div>
-      <div>
-        <label>Options</label>
-        {options.map((opt, index) => (
-          <div key={index}>
-            <input
-              type="text"
-              value={opt.optionText}
-              onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
-              placeholder={`Option ${index + 1}`}
-              required
-            />
-            <label>
-              <input
-                type="checkbox"
-                checked={opt.isCorrect}
-                onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
-              />
-              Correct
-            </label>
-            <button type="button" onClick={() => handleRemoveOption(index)}>
-              Remove
-            </button>
+    <form className="question-form-main" onSubmit={handleSubmit}>
+      <div className="question-form">
+
+        <div className="row">
+        <div className="col-8">
+          <input className="title-question" placeholder="Untitled Question" value={question} onChange={(e) => setQuestion(e.target.value)} required />
+        </div>
+
+          <div className="col-4 text-center">
+            <select className="btn btn-secondary dropdown-toggle dropdown-questions" value={type} onChange={(e) => setType(e.target.value)}>
+              <option value="single">Single Choice</option>
+              <option value="multiple">Multiple Choice</option>
+            </select>
           </div>
-        ))}
-        <button type="button" onClick={handleAddOption}>
-          Add Option
-        </button>
-      </div>
-      <div>
-        <label>Points</label>
-        <input type="number" value={points} onChange={(e) => setPoints(Number(e.target.value))} />
+        </div>
+
+
+        <div class="row mt-2">
+            <ul>
+                {options.map((opt, index) => (
+                <li className="d-flex mt-3" key={index}>
+                  <div className="d-flex test-div">
+                     <span className="isAnswer">
+                        <input
+                           type="checkbox"
+                           checked={opt.isCorrect}
+                           onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
+                             />
+                       </span>
+                       <input
+                       type="text"
+                       className="option-outline"
+                       style={{ border: "0px" }}
+                       value={opt.optionText}
+                       placeholder={`Option ${index + 1}`}
+                       onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
+                       />
+                       <span className="remove-option">
+                        <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
+                      </span>
+                       </div>
+                       </li>
+                    ))}
+                </ul>
+          <button className="add-option" type="button" onClick={handleAddOption}>
+            Add Option
+          </button>
+        </div>
+
+        <div className="set-marks-title mt-2">
+        <span>Marks:</span>
+          <input className="set-marks" type="number" value={points} onChange={(e) => setPoints(Number(e.target.value))} />
+        </div>
       </div>
       <button type="submit">Save Question</button>
     </form>

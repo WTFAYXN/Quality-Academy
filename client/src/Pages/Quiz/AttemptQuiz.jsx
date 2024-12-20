@@ -116,12 +116,12 @@ const AttemptQuiz = () => {
                   </div>
                 ))}
                 </div>
+              </div>
+            ))}
                 <div className="submit-clear-btn">
                 <button className="submit-attempt-btn" type="submit">Submit Answers</button>
                 <button className="clear-attempt-btn">Clear Questionnarie</button>
                 </div>
-              </div>
-            ))}
           </form>
           </div>
         </div>
