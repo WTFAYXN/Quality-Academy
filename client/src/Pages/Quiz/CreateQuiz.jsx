@@ -192,7 +192,7 @@ const CreateQuiz = () => {
               />
             </div>
           </div>
-          
+
           {/* <div className="checkboxes">
             <div className="isPublic">
               <label className="isPublic-label">Public</label>
@@ -221,59 +221,59 @@ const CreateQuiz = () => {
           </div> */}
 
           <div className="added-question-main">
-              {questions.map((q, index) => (
-                <div className="added-question-card" key={index}>
-                  <div className="row">
-                    <div className="col-8">
-                      <div className="title-questionAdded">
-                        <strong>Question:</strong> {q.question}
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <strong>Type:</strong> {q.type}
-                      <br />
+            {questions.map((q, index) => (
+              <div className="added-question-card" key={index}>
+                <div className="row">
+                  <div className="col-8">
+                    <div className="title-questionAdded">
+                      <strong>Question:</strong> {q.question}
                     </div>
                   </div>
-                  <div className="option-list">
-                    <strong>Options:</strong>
-                    <ol className="option-list-ol">
-                      {q.options.map((opt, i) => (
-                        <li key={i}>
-                          {opt.optionText} {opt.isCorrect ? "(Correct)" : ""}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                  <strong>Points:</strong> {q.points}
-                  <br />
-                  <div className="add-question-preview">
-                    <button type="button" onClick={() => handleEditQuestion(index)}>
-                      Edit
-                    </button>
-                    <button type="button" onClick={() => handleDeleteQuestion(index)}>
-                      Delete
-                    </button>
+                  <div className="col-4">
+                    <strong>Type:</strong> {q.type}
+                    <br />
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="option-list">
+                  <strong>Options:</strong>
+                  <ol className="option-list-ol">
+                    {q.options.map((opt, i) => (
+                      <li key={i}>
+                        {opt.optionText} {opt.isCorrect ? "(Correct)" : ""}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <strong>Points:</strong> {q.points}
+                <br />
+                <div className="add-question-preview">
+                  <button type="button" onClick={() => handleEditQuestion(index)}>
+                    Edit
+                  </button>
+                  <button type="button" onClick={() => handleDeleteQuestion(index)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
 
           {showQuestionForm || questions.length === 0 ? (
-            <div class="question-form-main"> 
+            <div class="question-form-main">
               <div className="question-form">
                 {/* <h2>{editIndex !== null ? "Edit Question" : "Add Questions"}</h2> */}
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="row">
 
-                    <div className="col-8">
-                      {/* <div className="title-question" contenteditable="true">Untitled Question</div> */}
-                      <input className="title-question" placeholder="Untitled Question"  value={question}
+                  <div className="col-8">
+                    {/* <div className="title-question" contenteditable="true">Untitled Question</div> */}
+                    <input className="title-question" placeholder="Untitled Question" value={question}
                       onChange={(e) => setQuestion(e.target.value)}
                       required />
-                      </div>
-                    
-                    <div className="col-4 text-center">
-                      {/* <div className="dropdown-questions">
+                  </div>
+
+                  <div className="col-4 text-center">
+                    {/* <div className="dropdown-questions">
                         <button className="btn btn-secondary dropdown-toggle dropdown-questions" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Question Type
                         </button>
@@ -284,59 +284,60 @@ const CreateQuiz = () => {
                         </ul>
                       </div> */}
 
-                      
-                        <select className="btn btn-secondary dropdown-toggle dropdown-questions" value={type} onChange={(e) => setType(e.target.value)}>
-                          <option value="single">Single Choice</option>
-                          <option value="multiple">Multiple Choice</option>
-                        </select>
-                      
-                        
-              
-                    </div>
-                </div>
-                  <div class="row mt-2">
-                          <ul>
-                        {options.map((opt, index) => (
-                          <li className="d-flex mt-3" key={index}>
-                            <div className="d-flex test-div">
-                              <span className="isAnswer">
-                                <input
-                                  type="checkbox"
-                                  checked={opt.isCorrect}
-                                  onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
-                                />
-                              </span>
-                              <div
-                                className="option-outline"
-                                contentEditable="true"
-                                onInput={(e) => handleOptionChange(index, "optionText", e.target.innerText)}
-                              >
-                                {opt.optionText || `Option ${index + 1}`}
-                              </div>
-                              <span className="remove-option">
-                                <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
-                              </span>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                      <button className="add-option" type="button" onClick={handleAddOption}>
-                      Add Option
-                    </button>
+
+                    <select className="btn btn-secondary dropdown-toggle dropdown-questions" value={type} onChange={(e) => setType(e.target.value)}>
+                      <option value="single">Single Choice</option>
+                      <option value="multiple">Multiple Choice</option>
+                    </select>
+
+
+
                   </div>
+                </div>
+                <div class="row mt-2">
+                  <ul>
+                    {options.map((opt, index) => (
+                      <li className="d-flex mt-3" key={index}>
+                        <div className="d-flex test-div">
+                          <span className="isAnswer">
+                            <input
+                              type="checkbox"
+                              checked={opt.isCorrect}
+                              onChange={(e) => handleOptionChange(index, "isCorrect", e.target.checked)}
+                            />
+                          </span>
+                          <input
+                            type="text"
+                            className="option-outline"
+                            style={{ border: "0px" }}
+                            value={opt.optionText}
+                            placeholder={`Option ${index + 1}`}
+                            onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
+                          />
+                          <span className="remove-option">
+                            <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <button className="add-option" type="button" onClick={handleAddOption}>
+                    Add Option
+                  </button>
+                </div>
 
-                  <hr class="separator"/>
+                <hr class="separator" />
 
-                  <div className="question-functions">
-                    <div className="set-marks-title d-flex">
-                      <span>Marks:</span>
-                      <div className="set-marks" contentEditable="true" onInput={(e) => setPoints(Number(e.target.innerText))}>
-                        {points}
-                      </div>
+                <div className="question-functions">
+                  <div className="set-marks-title d-flex">
+                    <span>Marks:</span>
+                    <div className="set-marks" contentEditable="true" onInput={(e) => setPoints(Number(e.target.innerText))}>
+                      {points}
                     </div>
-                    <button className="remove-question" onClick={() => handleDeleteQuestion(index)}>
-                      Remove
-                    </button>
+                  </div>
+                  <button className="remove-question" onClick={() => handleDeleteQuestion(index)}>
+                    Remove
+                  </button>
                 </div>
 
 
@@ -431,24 +432,24 @@ const CreateQuiz = () => {
                   {editIndex !== null ? "Update Question" : "Add Question"}
                 </button> */}
               </div>
-              
+
               <div class="add-question-preview">
-                  <button type="button" onClick={handleAddQuestion}>
-                    {editIndex !== null ? "Update Question" : "Add Question"}
-                    </button>
-                  <button type="submit" >
-                    Save</button>
-                </div>
-                
+                <button type="button" onClick={handleAddQuestion}>
+                  {editIndex !== null ? "Update Question" : "Add Question"}
+                </button>
+                <button type="submit" >
+                  Save</button>
+              </div>
+
             </div>
           ) : (
             <div class="add-question-preview">
 
-            <button type="button" onClick={() => setShowQuestionForm(true)}>
-              Add Question
-            </button>
-            <button type="submit" >
-                    Save</button>
+              <button type="button" onClick={() => setShowQuestionForm(true)}>
+                Add Question
+              </button>
+              <button type="submit" >
+                Save</button>
             </div>
           )}
           {/* <div className="added-questions">
