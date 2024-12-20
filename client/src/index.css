@@ -476,7 +476,7 @@ margin-bottom: 20px;
 
 .response-ol {
   list-style: none;
-  padding: none;
+  padding: 0px;
 }
 
 .question-infoResponse{
