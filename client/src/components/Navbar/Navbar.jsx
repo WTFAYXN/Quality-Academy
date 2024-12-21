@@ -47,7 +47,6 @@ const Navbar = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response);
       const data = await response.json();
       setAdminRequests(data.length); // Assuming the response is an array of requests
     } catch (error) {
