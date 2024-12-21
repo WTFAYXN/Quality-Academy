@@ -79,13 +79,12 @@ const Navbar = () => {
       </div>
 
       {/* Navigation Links */}
-      {/* <ul className={`list ${isMenuOpen ? "active" : ""}`}>
-        <li><Link to="/#overview">Overview</Link></li>
-        <li><Link to="/#features">Features</Link></li>
+      <ul className={`list ${isMenuOpen ? "active" : ""}`}>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/resources">Resources</Link></li>
-        <li><Link to="/#testimonials">Testimonials</Link></li>
+        <li><Link to="/quizzes/create">Create Quiz</Link></li>
         {isLoggedIn && <li><Link to="#" onClick={handleLogout} className="list">Logout</Link></li>}
-      </ul> */}
+      </ul> 
 
       {/* Call to Action Buttons */}
       <div className="cta">
