@@ -4,7 +4,8 @@ import axios from "axios";
 import Notification from "../../components/Notification/Notification";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import line from "../../assets/svgs/Line.svg"
+import line from "../../assets/svgs/Line.svg";
+
 const QuizResponses = () => {
   const { id: quizId } = useParams();
   const [responses, setResponses] = useState([]);
@@ -15,7 +16,6 @@ const QuizResponses = () => {
   });
 
   useEffect(() => {
-    // console.log("quizId:", quizId);
     axios
       .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}/responses`, {
         headers: {
@@ -41,7 +41,7 @@ const QuizResponses = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
 
       <Notification
         message={notification.message}
@@ -53,37 +53,39 @@ const QuizResponses = () => {
         <div className="quiz-responses-header">
           <h1>Quiz Responses</h1>
           <img src={line} alt="line" />
-         </div>
-         <div className="admin-requests">
-      {responses.length === 0 ? (
-        <p>No responses yet.</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Attempted Date</th>
-              <th>Time</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {responses.map((response) => (
-              <tr key={response._id}>
-                <td>{response.user.name}</td>
-                <td>{response.user.email}</td>
-                <td>{new Date(response.completedAt).toLocaleDateString()}</td>
-                <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
-                <td>
-                  <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      </div>
+        </div>
+        <div className="admin-requests">
+          {responses.length === 0 ? (
+            <p>No responses yet.</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Attempted Date</th>
+                  <th>Time</th>
+                  <th>Marks</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {responses.map((response) => (
+                  <tr key={response._id}>
+                    <td>{response.user.name}</td>
+                    <td>{response.user.email}</td>
+                    <td>{new Date(response.completedAt).toLocaleDateString()}</td>
+                    <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
+                    <td>{response.score}</td>
+                    <td>
+                      <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
       </div>
       <Footer />
     </>

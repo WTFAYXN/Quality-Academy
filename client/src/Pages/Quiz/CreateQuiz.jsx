@@ -58,7 +58,7 @@ const CreateQuiz = () => {
       })
       .then((response) => {
         showNotification('Quiz saved successfully', 'success');
-        navigate(`/quiz/${response.data._id}`);
+        navigate(`/user`);
       })
       .catch((error) => {
         console.error(error);
@@ -335,9 +335,9 @@ const CreateQuiz = () => {
                       {points}
                     </div>
                   </div>
-                  <button className="remove-question" onClick={() => handleDeleteQuestion(index)}>
+                  {/* <button className="remove-question" onClick={() => handleDeleteQuestion(index)}>
                     Remove
-                  </button>
+                  </button> */}
                 </div>
 
 
@@ -448,8 +448,7 @@ const CreateQuiz = () => {
               <button type="button" onClick={() => setShowQuestionForm(true)}>
                 Add Question
               </button>
-              <button type="submit" >
-                Save</button>
+              <button type="submit" >Save</button>
             </div>
           )}
           {/* <div className="added-questions">
