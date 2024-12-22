@@ -243,18 +243,13 @@ ul li a {
   opacity: 0.8;
 }
 
-.category-resource label{
-  display: block;
-  padding-bottom: 5px
+.category-label {
+  margin-left: 10px; /* Adjust the margin as needed */
 }
 
-.category-resource select{
-  padding: 2px 20px;
-    width: 90px;
-    border-radius: 6px;
-    text-align: left;
+.category-select {
+  margin-left: 5px; /* Adjust the margin as needed */
 }
-
 
     
 @media (max-width: 600px){

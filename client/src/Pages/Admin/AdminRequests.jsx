@@ -15,6 +15,7 @@ const AdminRequests = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editingTitle, setEditingTitle] = useState({});
+  const [editingCategory, setEditingCategory] = useState({});
   const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
@@ -87,6 +88,7 @@ const AdminRequests = () => {
   const handlePublish = async (resourceId) => {
     const token = localStorage.getItem('token');
     const title = editingTitle[resourceId] || '';
+    const category = editingCategory[resourceId] || '';
     try {
       const response = await fetch(`${API_URL}/publish-resource/${resourceId}`, {
         method: 'POST',
@@ -94,7 +96,7 @@ const AdminRequests = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ title }),
+        body: JSON.stringify({ title, category }),
       });
 
       if (response.ok) {
@@ -130,6 +132,10 @@ const AdminRequests = () => {
 
   const handleTitleChange = (resourceId, newTitle) => {
     setEditingTitle((prev) => ({ ...prev, [resourceId]: newTitle }));
+  };
+
+  const handleCategoryChange = (resourceId, newCategory) => {
+    setEditingCategory((prev) => ({ ...prev, [resourceId]: newCategory }));
   };
 
   const renderPreview = (resource) => {
@@ -179,6 +185,7 @@ const AdminRequests = () => {
               <tr>
                 <th>#</th>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Uploaded by</th>
                 <th>Email</th>
                 <th>File</th>
@@ -196,6 +203,16 @@ const AdminRequests = () => {
                       value={editingTitle[request._id] || request.title}
                       onChange={(e) => handleTitleChange(request._id, e.target.value)}
                     />
+                  </td>
+                  <td>
+                    <select
+                      value={editingCategory[request._id] || request.category}
+                      onChange={(e) => handleCategoryChange(request._id, e.target.value)}
+                    >
+                      <option value="Tech">Tech</option>
+                      <option value="Math">Math</option>
+                      <option value="Law">Law</option>
+                    </select>
                   </td>
                   <td>{request.uploadedBy.name}</td>
                   <td>{request.uploadedBy.email}</td>

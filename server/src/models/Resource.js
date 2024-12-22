@@ -19,6 +19,10 @@ const ResourceSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Resource', ResourceSchema);

@@ -1,119 +1,73 @@
+.filter-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-.alphabet, .alphabet li {
-    font-size: 16px;
-    float: left;
-    margin: 5px 4px;
-    list-style: none;
-  }
-   .alphabet li a { 
-    cursor:pointer; 
-    display:inline-block;
-    width:30px;
-    height:30px;
-    background-color:orange;
-    padding:3px;
-    border-radius: 5px;
-    color:white !important;
-    box-sizing:border-box;
-    text-align:center;
-    font-weight:600;
-  }
-  
-  .alphabet li:hover{
-    opacity:0.8;
-  }
-  
-  
-  
-  
-  #filter-drop{
-    padding: 10px 30px;
-    border-radius: 10px;
-    background-color: orange;
-    color: white;
-    border: none;
-  }
-  
-  #filter-drop:hover{
-    opacity: 0.7;
-  }
-  
-  
-  .filter-dropdown {
-    display: none;
-    background: #ffffff;
-    box-shadow: 0px 0px 17px rgba(145, 145, 145, 0.3);
-    max-width: 600px;
-    border-radius: 20px;
-    color: black;
-    flex-direction: column;
-  }
-  
-  .filter-dropdown.visible {
-    display: flex;
-  }
-  
-  .alphabetically{
-    margin: 20px 25px;
-  }
-  
-  .ascending-decending, .category-resource{
-    margin: 5px 25px;
-  }
-  
-  .category-resource{
-    margin: 20px 25px;
-  }
-  
-  .alphabetically label, .ascending-decending, .category-resource{
-    padding-left: 35px;
-    font-weight: 600;
-  }
-  
-  /* 
-  ul li {
-    font-size:16px;
-    float:left; 
-    margin:5px 5px;
-    list-style:none;
-  }
-  ul li a { 
-    cursor:pointer; 
-    display:inline-block;
-    width:25px;
-    height:25px;
-    background-color:orange;
-    color:white !important;
-    box-sizing:border-box;
-    text-align:center;
-    font-weight:600;
-    border-radius: 4px;
-  } */
-  
-  .ascending-decending{
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .ascending-decending label{
-    text-decoration: underline;
-    padding-bottom: 10px;
-  }
-  
-  .ascending-decending label:hover{
-    opacity: 0.8;
-  }
-  
-  .category-resource label{
-    display: block;
-    padding-bottom: 5px
-  }
-  
-  .category-resource select{
-    padding: 2px 20px;
-      width: 90px;
-      border-radius: 6px;
-      text-align: left;
-  }
+.filter-popup {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
 
-  
+.filter-popup h2 {
+  margin-top: 0;
+}
+
+.filter-popup .filter-options {
+  margin-top: 20px;
+}
+
+.filter-popup .filter-option {
+  margin-bottom: 10px;
+}
+
+.filter-popup .alphabet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.filter-popup .alphabet-button {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.filter-popup .alphabet-button.active {
+  background: blue;
+  color: white;
+  border-color: blue;
+}
+
+.filter-popup .filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.filter-popup .apply-btn,
+.filter-popup .clear-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-popup .clear-btn {
+  background: red;
+}

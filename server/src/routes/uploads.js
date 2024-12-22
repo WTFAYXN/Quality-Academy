@@ -25,14 +25,14 @@ router.post('/upload', validateUser, upload.single('file'), async (req, res) => 
   if (!req.file) {
     return res.status(400).send('No file uploaded');
   }
-
-  const { title } = req.body;
+  const { title, category } = req.body;
 
   const resource = new Resource({
     title,
     imageUrl: `http://localhost:5000/uploads/${req.file.filename}`,
     status: 'pending',
     uploadedBy: req.user._id,
+    category,
   });
 
   try {
@@ -57,7 +57,7 @@ router.get('/pending-resources', validateAdmin, async (req, res) => {
 
 // Publish resource
 router.post('/publish-resource/:id', validateAdmin, async (req, res) => {
-  const { title } = req.body;
+  const { title, category } = req.body;
   try {
     const resource = await Resource.findById(req.params.id);
     if (!resource) {
@@ -65,6 +65,9 @@ router.post('/publish-resource/:id', validateAdmin, async (req, res) => {
     }
     if (title) {
       resource.title = title;
+    }
+    if (category) {
+      resource.category = category;
     }
     resource.status = 'published';
     await resource.save();

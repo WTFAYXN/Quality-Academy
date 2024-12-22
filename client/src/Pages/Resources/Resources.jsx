@@ -6,7 +6,6 @@ import Notification from '../../components/Notification/Notification';
 import PermissionPopup from '../../components/PermissionPopup/PermissionPopup';
 import line from '../../assets/svgs/Line.svg';
 import download from '../../assets/images/download-icon.png';
-import filtera from '../../assets/svgs/ascending.svg';
 import upload from '../../assets/svgs/upload.svg';
 import pd from '../../assets/images/pdf.png';
 import excel from '../../assets/images/excel.png';
@@ -47,7 +46,9 @@ const Resources = () => {
   });
   const [isAdmin, setIsAdmin] = useState(false);
   const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
   const [showUploadPopup, setShowUploadPopup] = useState(false);
+  const [filterOptions, setFilterOptions] = useState({ alphabetFilter: "", sortOrder: "asc", category: "" });
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -146,16 +147,17 @@ const Resources = () => {
     setFile(selectedFile);
   };
 
-  const handleTitleSubmit = async () => {
+  const handleTitleSubmit = async ({ title, category }) => {
     const token = localStorage.getItem('token');
-    if (!file || !title) {
-      showNotification('Please select a file and enter a title', 'error');
+    if (!file || !title || !category) {
+      showNotification('Please select a file, enter a title, and select a category', 'error');
       return;
     }
 
     const formData = new FormData();
     formData.append('file', file);
     formData.append('title', title);
+    formData.append('category', category);
 
     try {
       const response = await fetch('http://localhost:5000/upload', {
@@ -174,6 +176,7 @@ const Resources = () => {
         setShowUploadPopup(false);
         setTitle('');
         setFile(null);
+        setCategory('');
       } else {
         showNotification('File upload failed', 'error');
       }
@@ -181,18 +184,6 @@ const Resources = () => {
       console.error('Error during file upload:', error);
       showNotification('An error occurred during file upload', 'error');
     }
-  };
-
-  const handleSort = () => {
-    const sortedResources = [...resources].sort((a, b) => {
-      if (isAscending) {
-        return a.title.localeCompare(b.title);
-      } else {
-        return b.title.localeCompare(a.title);
-      }
-    });
-    setResources(sortedResources);
-    setIsAscending(!isAscending);
   };
 
   const handleDelete = async (id) => {
@@ -226,9 +217,31 @@ const Resources = () => {
     return <img src={fileTypeIcon} alt={resource.title} />;
   };
 
-  const filteredResources = resources.filter((resource) =>
-    resource.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleApplyFilter = (options) => {
+    setFilterOptions(options);
+  };
+
+  const filteredResources = resources
+    .filter((resource) =>
+      resource.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .filter((resource) =>
+      filterOptions.alphabetFilter
+        ? resource.title.toLowerCase().startsWith(filterOptions.alphabetFilter.toLowerCase())
+        : true
+    )
+    .filter((resource) =>
+      filterOptions.category
+        ? resource.category === filterOptions.category
+        : true
+    )
+    .sort((a, b) => {
+      if (filterOptions.sortOrder === "asc") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    });
 
   return (
     <>
@@ -253,37 +266,6 @@ const Resources = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          {/* <div className='container'>
-              <ul class="alphabet">
-                      <li><a>A</a></li>
-                      <li><a>B</a></li>
-                      <li><a>C</a></li>
-                      <li><a>D</a></li>
-                      <li><a>E</a></li>
-                      <li><a>F</a></li>
-                      <li><a>G</a></li>
-                      <li><a>H</a></li>
-                      <li><a>I</a></li>
-                      <li><a>J</a></li>
-                      <li><a>K</a></li>
-                      <li><a>L</a></li>
-                      <li><a>M</a></li>
-                      <li><a>N</a></li>
-                      <li><a>O</a></li>
-                      <li><a>P</a></li>
-                      <li><a>Q</a></li>
-                      <li><a>R</a></li>
-                      <li><a>S</a></li>
-                      <li><a>T</a></li>
-                      <li><a>U</a></li>
-                      <li><a>V</a></li>
-                      <li><a>V</a></li>
-                      <li><a>W</a></li>
-                      <li><a>X</a></li>
-                      <li><a>Y</a></li>
-                      <li><a>Z</a></li>
-              </ul>
-          </div> */}
           <div className="resource-button">
             <button
               className="upload"
@@ -291,73 +273,18 @@ const Resources = () => {
             >
               <img src={upload} alt="Upload" />
             </button>
-
-            <FilterResource />
-            {/* <button className="filter" onClick={handleSort}>
-              <img src={filtera} alt="Filter" />
-            </button> */}
-{/* 
-            <div class="filter-resources">
-              <button id="filter-drop">Filters</button>
-
-              <div id="filter-dropdown" class="filter-dropdown">
-                
-                <div class="alphabetically">
-                  <label>Alphabetically</label>
-                  <ul class="alphabet">
-                                  <li><a>A</a></li>
-                                  <li><a>B</a></li>
-                                  <li><a>C</a></li>
-                                  <li><a>D</a></li>
-                                  <li><a>E</a></li>
-                                  <li><a>F</a></li>
-                                  <li><a>G</a></li>
-                                  <li><a>H</a></li>
-                                  <li><a>I</a></li>
-                                  <li><a>J</a></li>
-                                  <li><a>K</a></li>
-                                  <li><a>L</a></li>
-                                  <li><a>M</a></li>
-                                  <li><a>N</a></li>
-                                  <li><a>O</a></li>
-                                  <li><a>P</a></li>
-                                  <li><a>Q</a></li>
-                                  <li><a>R</a></li>
-                                  <li><a>S</a></li>
-                                  <li><a>T</a></li>
-                                  <li><a>U</a></li>
-                                  <li><a>V</a></li>
-                                  <li><a>V</a></li>
-                                  <li><a>W</a></li>
-                                  <li><a>X</a></li>
-                                  <li><a>Y</a></li>
-                                  <li><a>Z</a></li>
-                              </ul>
-                </div>
-                
-                <div class="ascending-decending">
-                  <label>Ascending-Descending</label>
-                  <label>Descending-Ascending</label>
-                </div>
-                    
-                    
-                <div class="category-resource">
-                  <label>Category</label>
-                  <select>
-                    <option>All</option>
-                    <option>Tech</option>
-                    <option>Math</option>
-                    <option>Law</option>
-                  </select>
-                </div>
-                    
-                    
-                </div>
-
-                
-
-            </div> */}
-
+            <label className="category-label">Category</label>
+            <select
+              className="category-select"
+              value={filterOptions.category}
+              onChange={(e) => setFilterOptions({ ...filterOptions, category: e.target.value })}
+            >
+              <option value="">All</option>
+              <option value="Tech">Tech</option>
+              <option value="Math">Math</option>
+              <option value="Law">Law</option>
+            </select>
+            <FilterResource onApplyFilter={handleApplyFilter} />
           </div>
         </div>
 
