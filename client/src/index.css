@@ -193,6 +193,9 @@ font-size: 14px;
 }
 
 .remove-option{
+  display: flex;
+  align-items: center;
+  gap: 30px;
 position: relative;
 right: 40px;
 bottom: 2px;

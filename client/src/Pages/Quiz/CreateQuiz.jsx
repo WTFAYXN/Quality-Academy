@@ -5,6 +5,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import Notification from "../../components/Notification/Notification";
 import line from "../../assets/svgs/Line.svg";
 import Remove from "../../assets/svgs/Questionnaire/Remove.svg";
+import upload from '../../assets/svgs/upload.svg';
+
 const CreateQuiz = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -315,6 +317,7 @@ const CreateQuiz = () => {
                             onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
                           />
                           <span className="remove-option">
+                            <img src={upload} alt="upload" />
                             <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
                           </span>
                         </div>

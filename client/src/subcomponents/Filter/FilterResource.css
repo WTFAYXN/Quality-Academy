@@ -1,0 +1,119 @@
+
+.alphabet, .alphabet li {
+    font-size: 16px;
+    float: left;
+    margin: 5px 4px;
+    list-style: none;
+  }
+   .alphabet li a { 
+    cursor:pointer; 
+    display:inline-block;
+    width:30px;
+    height:30px;
+    background-color:orange;
+    padding:3px;
+    border-radius: 5px;
+    color:white !important;
+    box-sizing:border-box;
+    text-align:center;
+    font-weight:600;
+  }
+  
+  .alphabet li:hover{
+    opacity:0.8;
+  }
+  
+  
+  
+  
+  #filter-drop{
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+  }
+  
+  #filter-drop:hover{
+    opacity: 0.7;
+  }
+  
+  
+  .filter-dropdown {
+    display: none;
+    background: #ffffff;
+    box-shadow: 0px 0px 17px rgba(145, 145, 145, 0.3);
+    max-width: 600px;
+    border-radius: 20px;
+    color: black;
+    flex-direction: column;
+  }
+  
+  .filter-dropdown.visible {
+    display: flex;
+  }
+  
+  .alphabetically{
+    margin: 20px 25px;
+  }
+  
+  .ascending-decending, .category-resource{
+    margin: 5px 25px;
+  }
+  
+  .category-resource{
+    margin: 20px 25px;
+  }
+  
+  .alphabetically label, .ascending-decending, .category-resource{
+    padding-left: 35px;
+    font-weight: 600;
+  }
+  
+  /* 
+  ul li {
+    font-size:16px;
+    float:left; 
+    margin:5px 5px;
+    list-style:none;
+  }
+  ul li a { 
+    cursor:pointer; 
+    display:inline-block;
+    width:25px;
+    height:25px;
+    background-color:orange;
+    color:white !important;
+    box-sizing:border-box;
+    text-align:center;
+    font-weight:600;
+    border-radius: 4px;
+  } */
+  
+  .ascending-decending{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ascending-decending label{
+    text-decoration: underline;
+    padding-bottom: 10px;
+  }
+  
+  .ascending-decending label:hover{
+    opacity: 0.8;
+  }
+  
+  .category-resource label{
+    display: block;
+    padding-bottom: 5px
+  }
+  
+  .category-resource select{
+    padding: 2px 20px;
+      width: 90px;
+      border-radius: 6px;
+      text-align: left;
+  }
+
+  

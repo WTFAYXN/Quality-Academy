@@ -14,6 +14,7 @@ import docs from '../../assets/images/docs.png';
 import jpg from '../../assets/images/jpg.png';
 import mp4 from '../../assets/images/mp4.png';
 import UploadPopup from '../../subcomponents/UploadResource/Upload-popup';
+import FilterResource from '../../subcomponents/Filter/FilterResource';
 
 const fileTypeIcons = {
   pdf: pd,
@@ -252,7 +253,7 @@ const Resources = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <div className='container'>
+          {/* <div className='container'>
               <ul class="alphabet">
                       <li><a>A</a></li>
                       <li><a>B</a></li>
@@ -282,7 +283,7 @@ const Resources = () => {
                       <li><a>Y</a></li>
                       <li><a>Z</a></li>
               </ul>
-          </div>
+          </div> */}
           <div className="resource-button">
             <button
               className="upload"
@@ -290,9 +291,73 @@ const Resources = () => {
             >
               <img src={upload} alt="Upload" />
             </button>
-            <button className="filter" onClick={handleSort}>
+
+            <FilterResource />
+            {/* <button className="filter" onClick={handleSort}>
               <img src={filtera} alt="Filter" />
-            </button>
+            </button> */}
+{/* 
+            <div class="filter-resources">
+              <button id="filter-drop">Filters</button>
+
+              <div id="filter-dropdown" class="filter-dropdown">
+                
+                <div class="alphabetically">
+                  <label>Alphabetically</label>
+                  <ul class="alphabet">
+                                  <li><a>A</a></li>
+                                  <li><a>B</a></li>
+                                  <li><a>C</a></li>
+                                  <li><a>D</a></li>
+                                  <li><a>E</a></li>
+                                  <li><a>F</a></li>
+                                  <li><a>G</a></li>
+                                  <li><a>H</a></li>
+                                  <li><a>I</a></li>
+                                  <li><a>J</a></li>
+                                  <li><a>K</a></li>
+                                  <li><a>L</a></li>
+                                  <li><a>M</a></li>
+                                  <li><a>N</a></li>
+                                  <li><a>O</a></li>
+                                  <li><a>P</a></li>
+                                  <li><a>Q</a></li>
+                                  <li><a>R</a></li>
+                                  <li><a>S</a></li>
+                                  <li><a>T</a></li>
+                                  <li><a>U</a></li>
+                                  <li><a>V</a></li>
+                                  <li><a>V</a></li>
+                                  <li><a>W</a></li>
+                                  <li><a>X</a></li>
+                                  <li><a>Y</a></li>
+                                  <li><a>Z</a></li>
+                              </ul>
+                </div>
+                
+                <div class="ascending-decending">
+                  <label>Ascending-Descending</label>
+                  <label>Descending-Ascending</label>
+                </div>
+                    
+                    
+                <div class="category-resource">
+                  <label>Category</label>
+                  <select>
+                    <option>All</option>
+                    <option>Tech</option>
+                    <option>Math</option>
+                    <option>Law</option>
+                  </select>
+                </div>
+                    
+                    
+                </div>
+
+                
+
+            </div> */}
+
           </div>
         </div>
 
