@@ -137,6 +137,30 @@
     padding-left: 15px;
    }
 
+.alphabet, .alphabet li {
+  font-size: 16px;
+  float: left;
+  margin: 5px 4px;
+  list-style: none;
+}
+ .alphabet li a { 
+  cursor:pointer; 
+  display:inline-block;
+  width:30px;
+  height:30px;
+  background-color:orange;
+  padding:3px;
+  border-radius: 5px;
+  color:white !important;
+  box-sizing:border-box;
+  text-align:center;
+  font-weight:600;
+}
+
+.alphabet li:hover{
+  opacity:0.8;
+}
+
 
     
 @media (max-width: 600px){

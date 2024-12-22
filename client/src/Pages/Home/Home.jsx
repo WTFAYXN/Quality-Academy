@@ -60,8 +60,8 @@ const Home =() =>{
                         <div className="solution-card-icon">
                            <img className="icon-quiz mb-3" src={study}/>
                         </div>
-                        <h3 className="feature-heading">Custom Quiz</h3>
-                        <p>Create personalized quizzes tailored to boost your preparation!</p>
+                        <h3 className="feature-heading">Custom Questionnaire</h3>
+                        <p>Create personalized Questionnaires tailored to boost your preparation!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">

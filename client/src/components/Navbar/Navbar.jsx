@@ -82,7 +82,7 @@ const Navbar = () => {
       <ul className={`list ${isMenuOpen ? "active" : ""}`}>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/resources">Resources</Link></li>
-        <li><Link to="/quizzes/create">Create Quiz</Link></li>
+        <li><Link to="/quizzes/create">Create Questionnaire</Link></li>
         {isLoggedIn && <li><Link to="#" onClick={handleLogout} className="list">Logout</Link></li>}
       </ul> 
 
