@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const { validateUser } = require('../user/auth.js');
 const router = express.Router();
 
-const url = process.env.FRONTEND_URL; // Add this line to get the frontend URL from environment variables
+const frontendUrl = process.env.FRONTEND_URL; // Correctly access the frontend URL from environment variables
 
 //----------------------------------------------
 router.post('/register', async (req, res) => {
@@ -57,9 +57,19 @@ router.post('/forgot-password', async (req, res) => {
   user.resetPasswordToken = hash;
   user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
   await user.save();
-  // console.log('Reset token:', url);
-  const resetUrl = `${url}/reset-password/${user._id}/${resetToken}`;
-  await sendEmail(user.email, 'Password Reset', `Please reset your password by clicking: ${resetUrl}`);
+
+  const resetUrl = `${frontendUrl}/reset-password/${user._id}/${resetToken}`;
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+      <h2 style="color: #333;">Password Reset Request</h2>
+      <p>Hi ${user.name},</p>
+      <p>You requested to reset your password. Click the link below to reset it:</p>
+      <a href="${resetUrl}" style="display: inline-block; padding: 10px 20px; margin: 10px 0; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;">Reset Password</a>
+      <p>If you did not request a password reset, please ignore this email.</p>
+      <p>Thanks,<br/>The Quality Academy Team</p>
+    </div>
+  `;
+  await sendEmail(user.email, 'Password Reset', htmlContent);
 
   res.send('Password reset email sent.');
 });

@@ -110,7 +110,7 @@ const editUser = async (userId, updates) => {
 /*********************************************************
                       Forgot Password
 *********************************************************/
-async function sendEmail(to, subject, text) {
+async function sendEmail(to, subject, html) {
   // Create a transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -124,11 +124,10 @@ async function sendEmail(to, subject, text) {
 
   // Send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Amorfume" <your_email_address>', // sender address
+    from: '"Quality Academy" <your_email_address>', // sender address
     to: to, // list of receivers
     subject: subject, // Subject line
-    text: text, // plain text body
-    // html: "<b>Hello world?</b>", // html body (optional)
+    html: html, // html body
   });
 
   // console.log('Message sent: %s', info.messageId);

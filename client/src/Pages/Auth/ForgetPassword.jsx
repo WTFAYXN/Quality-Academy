@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Notification from '../../components/Notification/Notification';
+import './Password.css';
 
 function ForgetPassword() {
   const [email, setEmail] = useState('');
@@ -42,37 +43,38 @@ function ForgetPassword() {
   };
 
   return (
-    <div className="mt-20">
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-sm mx-auto my-4 p-4 bg-white shadow-lg rounded-lg"
-      >
-        <h2 className="text-2xl mb-4 font-semibold text-gray-700 text-center">
-          Forgot Password
-        </h2>
-        <div className="mb-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300"
-        >
-          Submit
-        </button>
-      </form>
-      <Notification
-        message={notification.message}
-        type={notification.type}
-        visible={notification.visible}
-        onClose={closeNotification}
-      />
+    <div className="forget-password-container">
+      <div className="form-wrapper">
+        <h2 className="form-title">Forgot Password</h2>
+        <p className="form-subtitle">
+          Enter your email below to receive a password reset link.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
+              Email Address
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="example@example.com"
+              required
+              className="form-input"
+            />
+          </div>
+          <button type="submit" className="form-button">
+            Send Reset Link
+          </button>
+        </form>
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          visible={notification.visible}
+          onClose={closeNotification}
+        />
+      </div>
     </div>
   );
 }

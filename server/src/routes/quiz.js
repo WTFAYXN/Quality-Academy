@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Quiz = require("../models/quizModel");
 const QuizResponse = require("../models/quizResponseModel");
-const { validateUser } = require("../user/auth");
+const { validateUser, sendEmail } = require("../user/auth");
 
 // Get All Public Quizzes
 router.get("/quizzes", async (req, res) => {
@@ -17,7 +17,6 @@ router.get("/quizzes", async (req, res) => {
 // Create a New Quiz
 router.post("/quizzes", validateUser, async (req, res) => {
   try {
-    // console.log(req.body);
     const { title, description, questions = [], status, settings } = req.body;
    
     if (!title || !description || !Array.isArray(questions)) {
@@ -42,7 +41,7 @@ router.post("/quizzes", validateUser, async (req, res) => {
   }
 });
 
-//update a quiz
+// Update a quiz
 router.put("/quizzes/:id", validateUser, async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.id);
@@ -85,7 +84,6 @@ router.delete('/quizzes/:id', validateUser, async (req, res) => {
   }
 });
 
-
 // Attempt a Quiz
 router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
   try {
@@ -122,7 +120,24 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
 
     await quizResponse.save();
 
-    res.json({ score, message: "Quiz attempt recorded successfully!" });
+    // Calculate total marks
+    const totalMarks = quiz.questions.reduce((acc, question) => acc + (question.points || 1), 0);
+
+    // Send email with the score
+    const user = req.user;
+    const emailContent = `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+        <h2 style="color: #333;">Quiz Attempt Result</h2>
+        <p>Hi ${user.name},</p>
+        <p>You have successfully completed the quiz titled "${quiz.title}".</p>
+        <p>Your score: <strong>${score}</strong> out of <strong>${totalMarks}</strong></p>
+        <p>Thank you for participating!</p>
+        <p>Best regards,<br/>The Quality Academy Team</p>
+      </div>
+    `;
+    await sendEmail(user.email, 'Quiz Attempt Result', emailContent);
+
+    res.json({ score, totalMarks, message: "Quiz attempt recorded successfully!" });
   } catch (error) {
     console.error("Error handling quiz attempt:", error);
     res.status(500).json({ error: error.message });
@@ -278,8 +293,8 @@ router.delete("/quizzes/:id/questions/:questionId", async (req, res) => {
 
 router.get('/quizzes/:id/responses', validateUser, async (req, res) => {
   try {
-    // console.log("Fetching responses for quizId:", req.params.id); // Add this line for debugging
     const responses = await QuizResponse.find({ quiz: req.params.id }).populate('user');
+    console.log('responses:', responses);
     res.json(responses);
   } catch (error) {
     console.error('Error fetching responses:', error);
@@ -289,7 +304,6 @@ router.get('/quizzes/:id/responses', validateUser, async (req, res) => {
 
 router.get('/quizzes/:quizId/responses/:responseId', validateUser, async (req, res) => {
   try {
-    // console.log("Fetching response for quizId:", req.params.quizId, "responseId:", req.params.responseId); // Add this line for debugging
     const response = await QuizResponse.findById(req.params.responseId).populate('user');
     if (!response) {
       return res.status(404).json({ message: 'Response not found' });

@@ -28,7 +28,7 @@ const Home =() =>{
                 <img class="home-line" src={line} />
                 <p className="home-description">One solution for your Learning Preparation</p>
 
-                <Link className="text-decoration-none" to="/signup">
+                <Link className="text-decoration-none" to="/quizzes/create">
                     <button className="home-button">Create Questionnaire</button>
                 </Link>
             </div>

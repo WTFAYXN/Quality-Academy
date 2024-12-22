@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Notification from '../../components/Notification/Notification';
+import './Password.css';
 
 function ResetPassword() {
   const [password, setPassword] = useState('');
@@ -50,45 +51,50 @@ function ResetPassword() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 my-20 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
-        Reset Password
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="New password"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm new password"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300"
-        >
-          Reset Password
-        </button>
-      </form>
-      {message && <p className="text-red-600 text-center mt-4">{message}</p>}
-      <Notification
-        message={notification.message}
-        type={notification.type}
-        visible={notification.visible}
-        onClose={closeNotification}
-      />
+    <div className="forget-password-container">
+      <div className="form-wrapper">
+        <h2 className="form-title">Reset Password</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
+              New Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your new password"
+              required
+              className="form-input"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirmPassword" className="form-label">
+              Confirm New Password
+            </label>
+            <input
+              id="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Re-enter your new password"
+              required
+              className="form-input"
+            />
+          </div>
+          <button type="submit" className="form-button">
+            Reset Password
+          </button>
+        </form>
+        {message && <p className="form-error-message">{message}</p>}
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          visible={notification.visible}
+          onClose={closeNotification}
+        />
+      </div>
     </div>
   );
 }
