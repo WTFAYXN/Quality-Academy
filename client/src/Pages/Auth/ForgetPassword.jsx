@@ -9,7 +9,7 @@ function ForgetPassword() {
     type: '',
     visible: false,
   });
-  const url = import.meta.env.VITE_BACKEND_URL; // Use process.env in CRA
+  const url = import.meta.env.VITE_API_URL; // Use process.env in CRA
 
   const handleSubmit = async (e) => {
     e.preventDefault();

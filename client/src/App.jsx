@@ -44,7 +44,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/user" element={<User />} />
           <Route path="/admin/requests" element={<AdminRequests />} />
-          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/forgot-password" element={<ForgetPassword />} />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
 
 

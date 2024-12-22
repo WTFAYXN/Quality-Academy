@@ -13,7 +13,7 @@ function ResetPassword() {
     visible: false,
   });
   const navigate = useNavigate();
-  const url = import.meta.env.VITE_BACKEND_URL; // Use process.env in CRA
+  const url = import.meta.env.VITE_API_URL; // Use process.env in CRA
   const { id, token } = useParams();
 
   const handleSubmit = (e) => {
