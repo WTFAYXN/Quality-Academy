@@ -15,31 +15,32 @@ const AttemptQuiz = () => {
       navigate("/login", { state: { from: `/quizzes/${quizId}/attempt` } });
     } else {
       axios
-        .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}/attempts`, {
+        .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          if (response.data.attempted) {
-            navigate(`/quizzes/${quizId}/already-submitted`);
-          } else {
+          setQuiz(response.data);
+          if (!response.data.settings.allowMultipleAttempts) {
             axios
-              .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}`, {
+              .get(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}/attempts`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
               })
               .then((response) => {
-                setQuiz(response.data);
+                if (response.data.attempted) {
+                  navigate(`/quizzes/${quizId}/already-submitted`);
+                }
               })
               .catch((error) => {
-                console.error("Error fetching quiz:", error);
+                console.error("Error checking quiz attempt:", error);
               });
           }
         })
         .catch((error) => {
-          console.error("Error checking quiz attempt:", error);
+          console.error("Error fetching quiz:", error);
         });
     }
   }, [token, navigate, quizId]);

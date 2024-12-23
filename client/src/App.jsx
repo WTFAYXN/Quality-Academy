@@ -25,6 +25,7 @@ import AdminRequests from './Pages/Admin/AdminRequests';
 import AlreadySubmittedPage from './Pages/Quiz/AlreadySubmittedPage';
 import ForgetPassword from './Pages/Auth/ForgetPassword';
 import ResetPassword from './Pages/Auth/ResetPassword';
+import UploadQuiz from './Pages/Quiz/UploadQuiz';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
 
 
+          <Route path="/quizzes/upload" element={<UploadQuiz />} />
           <Route path="/quiz/:id" element={<EditQuiz />} />
           <Route path="/quizzes" element={<PublicQuizzes />} />
           <Route path="/quizzes/attempted" element={<AttemptedQuizzes />} />

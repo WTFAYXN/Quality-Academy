@@ -9,6 +9,7 @@ import line from "../../assets/svgs/Line.svg";
 const QuizResponses = () => {
   const { id: quizId } = useParams();
   const [responses, setResponses] = useState([]);
+  const [totalMarks, setTotalMarks] = useState(0);
   const [notification, setNotification] = useState({
     message: '',
     type: '',
@@ -24,6 +25,9 @@ const QuizResponses = () => {
       })
       .then((response) => {
         setResponses(response.data);
+        if (response.data.length > 0) {
+          setTotalMarks(response.data[0].quiz.totalPoints); // Assuming all responses have the same total points
+        }
       })
       .catch((error) => {
         console.error("Error fetching responses:", error);
@@ -76,7 +80,7 @@ const QuizResponses = () => {
                     <td>{response.user.email}</td>
                     <td>{new Date(response.completedAt).toLocaleDateString()}</td>
                     <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
-                    <td>{response.score}</td>
+                    <td>{response.score} / {totalMarks}</td>
                     <td>
                       <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
                     </td>

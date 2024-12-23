@@ -195,8 +195,8 @@ const CreateQuiz = () => {
             </div>
           </div>
 
-          {/* <div className="checkboxes">
-            <div className="isPublic">
+           <div className="checkboxes">
+            {/* <div className="isPublic">
               <label className="isPublic-label">Public</label>
               <input
                 type="checkbox"
@@ -211,7 +211,7 @@ const CreateQuiz = () => {
                 checked={settings.shuffleQuestions}
                 onChange={(e) => setSettings({ ...settings, shuffleQuestions: e.target.checked })}
               />
-            </div>
+            </div> */}
             <div className="attempts">
               <label className="attempts-label">Multiple Attempts</label>
               <input
@@ -220,7 +220,7 @@ const CreateQuiz = () => {
                 onChange={(e) => setSettings({ ...settings, allowMultipleAttempts: e.target.checked })}
               />
             </div>
-          </div> */}
+          </div> 
 
           <div className="added-question-main">
             {questions.map((q, index) => (

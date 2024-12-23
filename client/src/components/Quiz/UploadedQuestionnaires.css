@@ -1,0 +1,53 @@
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .toggle-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+  }
+  
+  .toggle-button.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .quiz-section {
+    padding: 20px;
+  }
+  
+  /* filepath: /c:/Users/Huzaifa/Desktop/Quality-Academy/client/src/Pages/Quiz/UploadedQuestionnaires.css */
+  .uploaded-quizzes {
+    padding: 20px;
+  }
+  
+  .uploaded-quizzes ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .uploaded-quizzes li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .uploaded-quizzes h3 {
+    margin: 0 0 10px;
+  }
+  
+  .uploaded-quizzes p {
+    margin: 0 0 10px;
+  }
+  
+  .uploaded-quizzes a {
+    color: #007bff;
+    text-decoration: none;
+  }

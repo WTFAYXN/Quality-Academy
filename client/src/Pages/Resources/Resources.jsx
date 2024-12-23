@@ -235,6 +235,7 @@ const Resources = () => {
         ? resource.category === filterOptions.category
         : true
     )
+    .filter((resource) => resource.category !== 'Quiz') // Exclude resources with category 'Quiz'
     .sort((a, b) => {
       if (filterOptions.sortOrder === "asc") {
         return a.title.localeCompare(b.title);

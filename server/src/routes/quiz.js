@@ -1,8 +1,108 @@
 const express = require("express");
 const router = express.Router();
+const Resource = require("../models/Resource");
 const Quiz = require("../models/quizModel");
 const QuizResponse = require("../models/quizResponseModel");
 const { validateUser, sendEmail } = require("../user/auth");
+const multer = require("multer");
+const path = require('path');
+const fs = require("fs");
+
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/quizzes/'); // Specify the directory to save the uploaded files
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Use a unique filename
+  }
+});
+
+const upload = multer({ storage: storage });
+
+// Upload Quiz Endpoint
+router.post("/quizzes/upload", validateUser, upload.single('file'), async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const file = req.file;
+
+    if (!title || !description || !file) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    const newResource = new Resource({
+      title,
+      imageUrl: file.path,
+      status: 'pending',
+      uploadedBy: req.user._id,
+      category: 'Quiz', // Assuming category is 'Quiz'
+    });
+
+    const savedResource = await newResource.save();
+    res.status(201).json(savedResource);
+  } catch (error) {
+    console.error("Error uploading quiz:", error);
+    res.status(500).json({ error: "Error uploading quiz" });
+  }
+});
+
+// Fetch User's Uploaded Quizzes
+router.get("/quizzes/uploaded", validateUser, async (req, res) => {
+  try {
+    const uploadedQuizzes = await Resource.find({ uploadedBy: req.user._id, category: 'Quiz' });
+    res.json(uploadedQuizzes);
+  } catch (error) {
+    console.error("Error fetching uploaded quizzes:", error);
+    res.status(500).json({ error: "Error fetching uploaded quizzes" });
+  }
+});
+
+// Download Quiz File
+router.get("/quizzes/download/:id", validateUser, async (req, res) => {
+  try {
+    const resource = await Resource.findById(req.params.id);
+    if (!resource) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    const filePath = path.resolve(resource.imageUrl);
+    res.download(filePath, resource.title, (err) => {
+      if (err) {
+        console.error("Error downloading file:", err);
+        res.status(500).json({ error: "Error downloading file" });
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching resource:", error);
+    res.status(500).json({ error: "Error fetching resource" });
+  }
+});
+
+// Delete Quiz
+router.delete("/quizzes/:id", validateUser, async (req, res) => {
+  try {
+    const resource = await Resource.findById(req.params.id);
+    if (!resource) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    const filePath = path.resolve(resource.imageUrl);
+    fs.unlink(filePath, async (err) => {
+      if (err) {
+        console.error("Error deleting file:", err);
+        return res.status(500).json({ error: "Error deleting file" });
+      }
+
+      await Resource.deleteOne({ _id: req.params.id });
+      res.json({ message: "Resource and file deleted successfully" });
+    });
+  } catch (error) {
+    console.error("Error deleting resource:", error);
+    res.status(500).json({ error: "Error deleting resource" });
+  }
+});
+
+//---------------------------------------------------------------------------------------
 
 // Get All Public Quizzes
 router.get("/quizzes", async (req, res) => {
