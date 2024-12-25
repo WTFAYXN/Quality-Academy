@@ -53,7 +53,7 @@ const CreateQuiz = () => {
       questions,
     };
     axios
-      .post(`http://localhost:5000/quizzes`, data, {
+      .post(`${import.meta.env.VITE_API_URL}/quizzes`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

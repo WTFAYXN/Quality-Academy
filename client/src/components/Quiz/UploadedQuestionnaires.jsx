@@ -9,7 +9,7 @@ const UploadedQuestionnaires = () => {
     const fetchUploadedQuizzes = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:5000/quizzes/uploaded", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/quizzes/uploaded`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

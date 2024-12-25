@@ -53,7 +53,7 @@ const Resources = () => {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const response = await fetch('http://localhost:5000/resources');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/resources`);
         const data = await response.json();
         setResources(data);
       } catch (error) {
@@ -66,7 +66,7 @@ const Resources = () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await fetch('http://localhost:5000/user', {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -101,7 +101,7 @@ const Resources = () => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/user', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -122,7 +122,7 @@ const Resources = () => {
   const handleRequestPermission = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:5000/request-permission', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/request-permission`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ const Resources = () => {
     formData.append('category', category);
 
     try {
-      const response = await fetch('http://localhost:5000/upload', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -170,7 +170,7 @@ const Resources = () => {
 
       if (response.ok) {
         showNotification('File uploaded successfully and pending for review', 'success');
-        const updatedResources = await fetch('http://localhost:5000/resources');
+        const updatedResources = await fetch('${import.meta.env.VITE_API_URL}/resources');
         const data = await updatedResources.json();
         setResources(data);
         setShowUploadPopup(false);
@@ -188,7 +188,7 @@ const Resources = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/resources/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/resources/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -197,7 +197,7 @@ const Resources = () => {
 
       if (response.ok) {
         showNotification('Resource deleted successfully', 'success');
-        const updatedResources = await fetch('http://localhost:5000/resources');
+        const updatedResources = await fetch(`${import.meta.env.VITE_API_URL}/resources`);
         const data = await updatedResources.json();
         setResources(data);
       } else {

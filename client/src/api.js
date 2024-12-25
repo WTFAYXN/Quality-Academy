@@ -28,7 +28,7 @@
 
 import axios from "axios";
 
-const API_URL = "http://localhost:5000"; // Backend URL
+const API_URL = import.meta.env.VITE_API_URL; // Backend URL
 
 // Fetch all public quizzes
 export const fetchPublicQuizzes = async () => {

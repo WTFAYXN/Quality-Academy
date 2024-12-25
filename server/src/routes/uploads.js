@@ -5,7 +5,7 @@ const fs = require('fs');
 const PermissionRequest = require('../models/PermissionRequest');
 const { validateUser, validateAdmin } = require('../user/auth');
 const Resource = require('../models/Resource');
-
+const url = process.env.BACKEND_URL || 'http://localhost:5000';
 const router = express.Router();
 
 // Set up multer for file uploads
@@ -29,7 +29,7 @@ router.post('/upload', validateUser, upload.single('file'), async (req, res) => 
 
   const resource = new Resource({
     title,
-    imageUrl: `http://localhost:5000/uploads/${req.file.filename}`,
+    imageUrl: `${url}/uploads/${req.file.filename}`,
     status: 'pending',
     uploadedBy: req.user._id,
     category,
