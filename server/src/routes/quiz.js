@@ -7,6 +7,7 @@ const { validateUser, sendEmail } = require("../user/auth");
 const multer = require("multer");
 const path = require('path');
 const fs = require("fs");
+const url = process.env.BACKEND_URL || "http://localhost:5000";
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({
@@ -32,7 +33,7 @@ router.post("/quizzes/upload", validateUser, upload.single('file'), async (req, 
 
     const newResource = new Resource({
       title,
-      imageUrl: file.path,
+      imageUrl: `${url}/uploads/quizzes/${file.filename}`,
       status: 'pending',
       uploadedBy: req.user._id,
       category: 'Quiz', // Assuming category is 'Quiz'
@@ -86,7 +87,7 @@ router.delete("/quizzes/:id", validateUser, async (req, res) => {
       return res.status(404).json({ error: "Resource not found" });
     }
 
-    const filePath = path.resolve(resource.imageUrl);
+    const filePath = path.resolve(__dirname, '../../uploads/quizzes/',path.basename(resource.imageUrl));
     fs.unlink(filePath, async (err) => {
       if (err) {
         console.error("Error deleting file:", err);

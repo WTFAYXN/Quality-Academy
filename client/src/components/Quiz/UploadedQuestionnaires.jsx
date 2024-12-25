@@ -40,30 +40,29 @@ const UploadedQuestionnaires = () => {
   const handleCopyUrl = (quizUrl) => {
     navigator.clipboard.writeText(quizUrl);
     alert("Quiz URL copied to clipboard!");
-  };
+  }
+  // const handleDownload = async (quizId, quizTitle) => {
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     const response = await axios.get(`${import.meta.env.VITE_API_URL}/quizzes/download/${quizId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       responseType: 'blob', // Important to handle binary data
+  //     });
 
-  const handleDownload = async (quizId, quizTitle) => {
-    const token = localStorage.getItem("token");
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/quizzes/download/${quizId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        responseType: 'blob', // Important to handle binary data
-      });
-
-      // Create a URL for the blob and trigger a download
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', quizTitle); // Set the file name
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error("Error downloading quiz:", error);
-    }
-  };
+  //     // Create a URL for the blob and trigger a download
+  //     const url = window.URL.createObjectURL(new Blob([response.data]));
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.setAttribute('download', quizTitle); // Set the file name
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.remove();
+  //   } catch (error) {
+  //     console.error("Error downloading quiz:", error);
+  //   }
+  // };
 
   return (
     <div className="uploaded-quizzes">
@@ -76,10 +75,10 @@ const UploadedQuestionnaires = () => {
               <h3>{quiz.title}</h3>
               <p>{quiz.description}</p>
               <div className="quiz-card-actions">
-                <button onClick={() => handleDownload(quiz._id, quiz.title)}>
+                <button onClick={() => window.open(quiz.imageUrl, '_blank')}>
                   Download
                 </button>
-                <button onClick={() => handleCopyUrl(`${import.meta.env.VITE_API_URL}/quizzes/download/${quiz._id}`)}>
+                <button onClick={() => handleCopyUrl(quiz.imageUrl)}>
                   Copy URL
                 </button>
                 <button onClick={() => handleDelete(quiz._id)}>Delete</button>

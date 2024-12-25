@@ -170,7 +170,7 @@ const Resources = () => {
 
       if (response.ok) {
         showNotification('File uploaded successfully and pending for review', 'success');
-        const updatedResources = await fetch('${import.meta.env.VITE_API_URL}/resources');
+        const updatedResources = await fetch(`${import.meta.env.VITE_API_URL}/resources`);
         const data = await updatedResources.json();
         setResources(data);
         setShowUploadPopup(false);
