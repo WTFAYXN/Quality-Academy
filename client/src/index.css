@@ -3,6 +3,10 @@
     src: url('./assets/fonts/Gilroy/Gilroy-Regular.ttf'),
 }
 @font-face {
+    font-family: 'Gilroy-Medium';
+    src: url('./assets/fonts/Gilroy/Gilroy-Medium.ttf'),
+}
+@font-face {
     font-family: 'Gilroy-Semibold';
     src: url('./assets/fonts/Gilroy/Gilroy-SemiBold.ttf'),
 }
@@ -16,7 +20,9 @@
 }
 
 
-.heading-resources-text, .heading-home-text{
+.heading-resources-text, .heading-home-text, .get-started-heading, .span-responser-info,.quiz-responses-header > h1,
+.thank-you-card h1,.quiz-setting-h1, .get-started-heading, .testimonial-heading > h1, .solution-text,
+.footer-bottom, .newsletter, .about-heading-text, .solution-text, .know-more, .heading-contact-text, .resources-heading, .heading-resources-text{
   font-family: Gilroy-ExtraBold;
 }
 h1{
@@ -59,7 +65,7 @@ li a{
 
 #root{
     margin: 0 auto;
-    max-width: 1400px;
+    /* max-width: 1400px; */
 }
 
 h1,h2,h3,h4,h6{
@@ -339,7 +345,7 @@ opacity:0.9;
   }
 
   .thank-you-card, .quiz-responses{
-    height: 50vh;
+    /* height: 50vh; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -528,4 +534,71 @@ margin-bottom: 20px;
 
 .forgotPassword > a:hover{
   text-decoration: underline;
+}
+
+.upload-file-section{
+  display: flex;
+    justify-content: center;
+    padding: 40px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    margin: 40px auto;
+    text-align: center;
+}
+.upload-file-section >img{
+  max-width: 300px;
+}
+.create-quiz{
+  display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+@media (max-width: 600px){
+
+  .quiz-setting-h1{
+    text-align: center;   
+  }
+
+  .quiz-form, .added-question-card , .added-question-main{
+    width: 400px;
+  }
+  .quiz-title-description{
+    padding: 20px 15px 40px;
+  }
+  .title-input{
+    max-width: 380px;
+  }
+
+  .checkboxes{
+    padding: 20px 5px;
+  }
+
+  .question-form-main{
+    width: 400px
+  }
+
+  .question-form{
+    padding: 20px 15px 40px;
+  }
+
+  .add-question-preview > button{
+    width: 160px;
+  }
+
+  .btn-edit{
+    gap:30px;
+  }
+
+  .option-attempt input{
+    width: 20px;
+  }
+
+  .report-questionnaire{
+    font-size: 12px;
+  }
+
+  .quiz-responses-header{
+    text-align: center;
+    margin-top: 50px;
+  }
 }

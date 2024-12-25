@@ -71,9 +71,9 @@ export default function Testimonials() {
                     </div>
                 </div>
             </div>
-            <div className="testimonial-shape-container">
+            {/* <div className="testimonial-shape-container">
             <img className="shape3" src={Shape3} alt="" />
-            </div>
+            </div> */}
         </div>
 
     </>

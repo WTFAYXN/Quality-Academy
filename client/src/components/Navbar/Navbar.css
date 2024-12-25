@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 120px;
     font-size: 17px;
   }
   
@@ -114,6 +114,11 @@
   /* Mobile styles */
 @media (max-width: 768px) {
   /* Hide the navigation links initially */
+
+  .nav-container {
+    padding: 10px;
+  }
+
   .list {
     display: none !important; /* Hide navigation links by default */
     flex-direction: column;
@@ -134,9 +139,9 @@
   }
   /* Show the hamburger menu */
   .hamburger {
-    background-image: url('https://img.icons8.com/ios-filled/50/000000/menu--v1.png');
+    background-image: url('../../assets//svgs/hamburger.svg');
     display: flex;
-    background-color: orange;
+    background-color: white;
     height: 50px;
     width: 50px;
   }

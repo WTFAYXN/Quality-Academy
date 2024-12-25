@@ -3,11 +3,15 @@
 .hero-home{
     background-image: url('../../assets/images/Bg.png');
     background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .shape-container {
-    position: relative;
-    bottom: 400px;
-    z-index: 0;
+    /* position: relative; */
+    /* bottom: 400px;
+    z-index: 0; */
 }
 
 .shape1, .shape2{
@@ -114,7 +118,7 @@
     .about-description{font-size: 22px;}
   
     .solutions{
-        margin: 60px 50px;
+        margin: 60px 100px;
     }
 
     .solution-heading{
@@ -161,6 +165,11 @@
     font-weight: 800;
     font-size: 27px !important;}
 
+
+    .know-more h5{
+        max-width: 230px;
+    }
+
 .solution-btn {
     padding: 10px 60px;
     background-color: black;
@@ -175,10 +184,17 @@
     font-weight: 600;
 }
 
-
+.about-us-container{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
 
 
 @media (max-width: 600px){
+
+    body{
+        width: 100%;
+    }
     .heading-home-text{
         font-size: 31px;
     }
@@ -207,6 +223,7 @@
     
     .solution-heading{
         flex-wrap: wrap ;
+        margin-bottom: 50px;
     }
 
     .solution-title{
@@ -214,7 +231,7 @@
     }
 
     .solution-text{
-        font-size: 22px;
+        font-size: 30px;
     }
     .solution-description{
         font-size: 16px;
@@ -240,11 +257,12 @@
         flex-direction: column;
         text-align: center;
         width: 100% !important;
-        position: static !important;
+        /* position: static !important; */
     }
 
     .resources-heading{
-        font-size: 20px !important;
+        width: 73% !important;
+        font-size: 30px !important;
     }
 
     .resources-heading > span > img {
@@ -255,11 +273,15 @@
         width: auto !important;
     }
 
+    .about-us-container{
+        margin: 20px;
+    }
     .about-heading-text {
         font-size: 30px;
     }
 
     .about-us-illustration > img{
+        margin-top: 20px;
         display: block;
         width: 100%;
     }
@@ -288,10 +310,10 @@
     }
 
     .get-started-btn{
-        width: 45% !important;
+        width: 100% !important;
     }
 
-    .testimonial-shape-container{
+    .testimonial-shape-container, .shape-container{
         display: none;
     }
 }

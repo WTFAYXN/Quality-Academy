@@ -50,6 +50,7 @@
     display: flex;
     gap: 50px;
     flex-wrap: wrap;
+    padding: 0px 40px;
 }
 
 .past-quiz-list{
@@ -103,3 +104,20 @@ input[type="checkbox"] {
     padding: 3px;
     border: 1px solid #2C75FF;
   }
+
+  
+@media (max-width: 600px){
+  
+  .create-upload{
+    display: block;
+  }
+
+  .quiz-create, .quiz-create-link{
+    text-align: left;
+  }
+  
+  .past-quiz-lists{
+    padding: 20px 50px;
+  }
+
+}

@@ -46,7 +46,7 @@ const UploadPopup = ({ file, setFile, title, setTitle, handleFileChange, handleT
       <div className="popup-content">
         <h2>Upload Resource</h2>
         <div className="upload-title-resources">
-          <label className="label-form">Title</label>
+          <label className="label-form-title">Title</label>
           <input
             className="input-space"
             type="text"
@@ -56,7 +56,7 @@ const UploadPopup = ({ file, setFile, title, setTitle, handleFileChange, handleT
           />
         </div>
         <div className="upload-category-resources">
-          <label className="label-form">Category</label>
+          <label className="label-form-category">Category</label>
           <select
             className="input-space"
             value={category}

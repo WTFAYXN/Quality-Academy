@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./UploadedQuestionnaires.css";
+import Placeholder from "../../assets/images/QuestionnairePlaceholder.png";
 
 const UploadedQuestionnaires = () => {
   const [uploadedQuizzes, setUploadedQuizzes] = useState([]);
@@ -65,15 +66,19 @@ const UploadedQuestionnaires = () => {
   // };
 
   return (
-    <div className="uploaded-quizzes">
+    <div className="">
       {uploadedQuizzes.length === 0 ? (
         <p>No uploaded questionnaires found.</p>
       ) : (
-        <div className="quiz-card-container">
+        <div className="past-quiz-list">
+          <img src={Placeholder} alt="Quiz" />
           {uploadedQuizzes.map((quiz) => (
-            <div key={quiz._id} className="quiz-card">
-              <h3>{quiz.title}</h3>
-              <p>{quiz.description}</p>
+            <div key={quiz._id} className="quiz-description">
+               <div className="title-date">
+                  <h3>{quiz.title}</h3>
+                  <p>{quiz.description}</p>
+                </div>
+             
               <div className="quiz-card-actions">
                 <button onClick={() => window.open(quiz.imageUrl, '_blank')}>
                   Download

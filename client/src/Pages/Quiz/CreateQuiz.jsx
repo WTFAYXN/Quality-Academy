@@ -226,12 +226,12 @@ const CreateQuiz = () => {
             {questions.map((q, index) => (
               <div className="added-question-card" key={index}>
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-lg-8 col-md-5 col-sm-12 text-left mb-2">
                     <div className="title-questionAdded">
                       <strong>Question:</strong> {q.question}
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-lg-4 col-md-5 col-sm-12 text-left mt-2">
                     <strong>Type:</strong> {q.type}
                     <br />
                   </div>
@@ -248,7 +248,7 @@ const CreateQuiz = () => {
                 </div>
                 <strong>Points:</strong> {q.points}
                 <br />
-                <div className="add-question-preview">
+                <div className="add-question-preview btn-edit">
                   <button type="button" onClick={() => handleEditQuestion(index)}>
                     Edit
                   </button>
@@ -267,14 +267,14 @@ const CreateQuiz = () => {
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="row">
 
-                  <div className="col-8">
+                  <div className="col-lg-8 col-md-5 col-sm-12 text-left mb-2">
                     {/* <div className="title-question" contenteditable="true">Untitled Question</div> */}
                     <input className="title-question" placeholder="Untitled Question" value={question}
                       onChange={(e) => setQuestion(e.target.value)}
                       required />
                   </div>
 
-                  <div className="col-4 text-center">
+                  <div className="col-lg-4 col-md-5 col-sm-12 text-left mt-2">
                     {/* <div className="dropdown-questions">
                         <button className="btn btn-secondary dropdown-toggle dropdown-questions" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Question Type
@@ -489,12 +489,12 @@ const CreateQuiz = () => {
               {questions.map((q, index) => (
                 <div className="added-question-card" key={index}>
                   <div className="row">
-                    <div className="col-8">
+                    <div className="col-lg-8 col-md-5 col-sm-12 text-left mb-2">
                       <div className="title-questionAdded">
                         <strong>Question:</strong> {q.question}
                       </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-lg-4 col-md-5 col-sm-12 text-left mt-2">
                       <strong>Type:</strong> {q.type}
                       <br />
                     </div>

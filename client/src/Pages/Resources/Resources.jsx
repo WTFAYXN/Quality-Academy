@@ -274,17 +274,19 @@ const Resources = () => {
             >
               <img src={upload} alt="Upload" />
             </button>
-            <label className="category-label">Category</label>
-            <select
-              className="category-select"
-              value={filterOptions.category}
-              onChange={(e) => setFilterOptions({ ...filterOptions, category: e.target.value })}
-            >
-              <option value="">All</option>
-              <option value="Tech">Tech</option>
-              <option value="Math">Math</option>
-              <option value="Law">Law</option>
-            </select>
+            <div className='category-div'>
+              <label className="category-label">Category:</label>
+              <select
+                className="category-select"
+                value={filterOptions.category}
+                onChange={(e) => setFilterOptions({ ...filterOptions, category: e.target.value })}
+              >
+                <option value="">All</option>
+                <option value="Tech">Tech</option>
+                <option value="Math">Math</option>
+                <option value="Law">Law</option>
+              </select>
+            </div>
             <FilterResource onApplyFilter={handleApplyFilter} />
           </div>
         </div>

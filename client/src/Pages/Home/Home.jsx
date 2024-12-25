@@ -32,10 +32,10 @@ const Home =() =>{
                     <button className="home-button">Create Questionnaire</button>
                 </Link>
             </div>
-            <div className="shape-container">
+            {/* <div className="shape-container">
             <img className="shape1" src={Shape1} alt="" />
             <img className="shape2" src={Shape2} alt="" />
-            </div>
+            </div> */}
 
             <img src={HomeIllustration} className="home-illustration" />
 
@@ -107,7 +107,7 @@ const Home =() =>{
 
 
         {/* About Section */}
-        <div className="container">
+        <div className="container about-us-container">
             <div className="row">
                 <div className="col-lg-6 about-heading">
                     <h3 className="about-heading-text">Empower Learning with Quality Academy<span><img src={line}/></span></h3>

@@ -1,13 +1,13 @@
 
 .resources-bg{
     background-image: url('../../../assets/svgs/Home/resources-bg.png');
-    width: 1500px;
+    /* width: 1500px;
     position: relative;
-    right: 20px;
+    right: 20px; */
     background-size: cover;
     display: flex;
     justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 
 
