@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import './Footer.css';
+import Notification from '../Notification/Notification';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [notification, setNotification] = useState({ message: '', type: '', visible: false });
+
+  const handleEnter = (e) => {
+    e.preventDefault();
+    if (email) {
+      setNotification({ message: 'Thank you for subscribing!', type: 'success', visible: true });
+      setEmail('');
+    } else {
+      setNotification({ message: 'Please enter a valid email address.', type: 'error', visible: true });
+    }
+  };
+
   return (
     <>
     <div className="footer">
@@ -26,8 +40,8 @@ const Footer = () => {
         <form>
           <label className='newsletter-label' htmlFor="newsletter">Subscribe to our newsletter</label>
           <div className='newsletter-form'>
-            <input className='newsletter-email' type="email" id="newsletter" placeholder='Enter your email' />
-            <button className='newsletter' type="submit"></button>
+            <input className='newsletter-email' type="email" id="newsletter" placeholder='Enter your email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <button className='newsletter' type="submit" onClick={handleEnter}>Enter</button>
           </div>
         </form>
 
@@ -48,6 +62,12 @@ const Footer = () => {
     </div>
     <hr></hr>
     <div className='footer-bottom'>Designed & Developed By <Link to="www.tarlose.com">Tarlose</Link></div>
+    <Notification
+        message={notification.message}
+        type={notification.type}
+        visible={notification.visible}
+        onClose={() => setNotification({ ...notification, visible: false })}
+      />
     </>
   );
 }
