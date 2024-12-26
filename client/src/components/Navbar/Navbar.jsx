@@ -103,8 +103,8 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <button className="btn-login"><Link to="/login">Login</Link></button>
-            <button className="btn-signup"><Link to="/signup">Signup</Link></button>
+            <Link to="/login" className="text-decoration-none"><button className="btn-login">Login</button></Link>
+            <Link to="/signup" className="text-decoration-none"><button className="btn-signup">Signup</button></Link>
           </>
         )}
       </div>

@@ -43,7 +43,11 @@ const Register = () => {
       showNotification("Passwords do not match", "error");
       return;
     }
-
+    if(formData.password.length < 6) {
+      showNotification("Password must be at least 6 characters long", "error");
+      return;
+    }
+    
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
         method: "POST",
