@@ -80,7 +80,7 @@ const QuizResponses = () => {
                     <td>{response.user.email}</td>
                     <td>{new Date(response.completedAt).toLocaleDateString()}</td>
                     <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
-                    <td>{response.score} / {totalMarks}</td>
+                    <td>{response.score}</td>
                     <td>
                       <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
                     </td>

@@ -74,7 +74,7 @@ const AdminRequests = () => {
         }
 
         const data = await response.json();
-        setRequests(data);
+        setRequests(data.filter(requests => requests.category.toLowerCase() !== 'quiz'));
         setLoading(false);
       } catch (error) {
         setError('Failed to fetch permission requests.');

@@ -317,7 +317,7 @@ const CreateQuiz = () => {
                             onChange={(e) => handleOptionChange(index, "optionText", e.target.value)}
                           />
                           <span className="remove-option">
-                            <img src={upload} alt="upload" />
+                            {/* <img src={upload} alt="upload" /> */}
                             <img src={Remove} onClick={() => handleRemoveOption(index)} alt="Remove" />
                           </span>
                         </div>

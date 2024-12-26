@@ -80,7 +80,7 @@ router.get("/quizzes/download/:id", validateUser, async (req, res) => {
 });
 
 // Delete Quiz
-router.delete("/quizzes/:id", validateUser, async (req, res) => {
+router.delete("/quizzes/uploaded/:id", validateUser, async (req, res) => {
   try {
     const resource = await Resource.findById(req.params.id);
     if (!resource) {
@@ -395,7 +395,6 @@ router.delete("/quizzes/:id/questions/:questionId", async (req, res) => {
 router.get('/quizzes/:id/responses', validateUser, async (req, res) => {
   try {
     const responses = await QuizResponse.find({ quiz: req.params.id }).populate('user');
-    console.log('responses:', responses);
     res.json(responses);
   } catch (error) {
     console.error('Error fetching responses:', error);

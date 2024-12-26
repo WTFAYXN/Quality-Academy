@@ -48,7 +48,8 @@ const Navbar = () => {
         },
       });
       const data = await response.json();
-      setAdminRequests(data.length); // Assuming the response is an array of requests
+      const show = data.filter(items => items.category.toLowerCase() !== 'quiz');
+      setAdminRequests(show.length); // Assuming the response is an array of requests
     } catch (error) {
       console.error("Error fetching admin requests:", error);
     }
