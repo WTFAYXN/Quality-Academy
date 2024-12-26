@@ -130,3 +130,26 @@ select.input-space {
      display: none;
     }
  }
+
+ @media (max-width: 600px){
+    .heading-text{
+        display: block;
+    }
+
+    .line_illustration{
+        position: static;
+    }
+
+    .label-form{
+        display: block;
+        position: static;
+    }
+
+    .input-space{
+        max-width: 380px;
+    }
+
+    .illustration {
+        display: none;
+    }
+ }

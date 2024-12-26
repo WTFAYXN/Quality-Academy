@@ -73,8 +73,10 @@ const Login = () => {
         visible={notification.visible}
         onClose={closeNotification}
       />
-    <div className="main">
-      <div className="form-wrapper">
+    <div className="container">
+
+    <div className="main row">
+      <div className="form-wrapper col-lg-5">
         <img className="logo mb-20" src={logo} alt="Quality Academy Logo" />
         <h1 className="heading-text">
           Welcome! Please log in to access your account.
@@ -118,7 +120,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <div className="illustration">
+      <div className="illustration col-lg-7">
         <img className="line-1" src={line1} alt="Line 1" />
         <img
           className="main-illustration"
@@ -126,6 +128,8 @@ const Login = () => {
           alt="Login Illustration"
         />
       </div>
+    </div>
+
     </div>
     </>
   );

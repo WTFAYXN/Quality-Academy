@@ -80,97 +80,101 @@ const Register = () => {
         visible={notification.visible}
         onClose={closeNotification}
       />
-    <div className="main">
-      <div className="form-wrapper">
-        <img className="logo mb-20" src={logo} alt="Quality Academy Logo" />
-        <h1 className="heading-text d-flex mb-2">
-          Register Now!
-          <img className="line_illustration" src={line} alt="Line" />
-        </h1>
-        <p className="sub-text">
-          Already have an account? <a href="/login">Login</a>
-        </p>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <label className="label-form" htmlFor="name">
-            Name
-          </label>
-          <input
-            className="input-space"
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <label className="label-form" htmlFor="email">
-            Email Address
-          </label>
-          <input
-            className="input-space"
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <label className="label-form" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="input-space"
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <label className="label-form" htmlFor="confirmPassword">
-            Confirm Password
-          </label>
-          <input
-            className="input-space"
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-          {/* <label className="label-form" htmlFor="profession">
-            Profession
-          </label>
-          <select
-            className="input-space"
-            id="profession"
-            name="profession"
-            value={formData.profession}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Select your profession
-            </option>
-            <option value="teacher">Teacher</option>
-            <option value="student">Student</option>
-            <option value="other">Other</option>
-          </select> */}
-          <button className="login-submit" type="submit">
-            Register
-          </button>
-        </form>
+      <div className="container">
+
+        <div className="main row">
+          <div className="form-wrapper col-lg-5">
+            <img className="logo mb-20" src={logo} alt="Quality Academy Logo" />
+            <h1 className="heading-text d-flex mb-2">
+              Register Now!
+              <img className="line_illustration mt-3" src={line} alt="Line" />
+            </h1>
+            <p className="sub-text">
+              Already have an account? <a href="/login">Login</a>
+            </p>
+            <form className="login-form" onSubmit={handleSubmit}>
+              <label className="label-form" htmlFor="name">
+                Name
+              </label>
+              <input
+                className="input-space"
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <label className="label-form" htmlFor="email">
+                Email Address
+              </label>
+              <input
+                className="input-space"
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <label className="label-form" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="input-space"
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <label className="label-form" htmlFor="confirmPassword">
+                Confirm Password
+              </label>
+              <input
+                className="input-space"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              {/* <label className="label-form" htmlFor="profession">
+                Profession
+              </label>
+              <select
+                className="input-space"
+                id="profession"
+                name="profession"
+                value={formData.profession}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Select your profession
+                </option>
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+                <option value="other">Other</option>
+              </select> */}
+              <button className="login-submit" type="submit">
+                Register
+              </button>
+            </form>
+          </div>
+          <div className="illustration col-lg-7">
+            <img className="line-1" src={line1} alt="Line 1" />
+            <img
+              className="main-illustration"
+              src={signupIllustration}
+              alt="Signup Illustration"
+            />
+          </div>
+        </div>
+
       </div>
-      <div className="illustration">
-        <img className="line-1" src={line1} alt="Line 1" />
-        <img
-          className="main-illustration"
-          src={signupIllustration}
-          alt="Signup Illustration"
-        />
-      </div>
-    </div>
     </>
   );
 };
