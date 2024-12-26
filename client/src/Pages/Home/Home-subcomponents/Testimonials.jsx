@@ -32,12 +32,16 @@ export default function Testimonials() {
                     </div>
 
                     <div className="testimonial-body">
-                        <p>“Their innovative strategies and customer-centric approach has helped us reach new heights. Highly recommend!"</p>
+                        <p>
+                            <i>
+                            "Quality Academy is incredibly easy to use and has streamlined our quiz creation process. It’s perfect for improving engagement"
+                            </i>
+                        </p>
                     </div>
 
                     <div className="testimonial-footer">
                         <div className="testimmonial-name"> 
-                            <h3 className="person">John Doe&nbsp;<span> CEO, Company</span></h3>
+                            <h3 className="person">Ayan Sayad&nbsp;<span> CEO, Tarlose</span></h3>
                         </div>
                         <div className="testimonial-image">
                             <img src={Placeholder} />
@@ -58,12 +62,16 @@ export default function Testimonials() {
                     </div>
 
                     <div className="testimonial-body">
-                        <p>“Their innovative strategies and customer-centric approach has helped us reach new heights. Highly recommend!"</p>
-                    </div>
+                         <p>
+                            <i>
+                        
+                            "Quality Academy has made sharing resources and creating quizzes so convenient. My team loves the intuitive interface."
+                            </i>
+                        </p>                    </div>
 
                     <div className="testimonial-footer">
                         <div className="testimmonial-name"> 
-                            <h3 className="person">John Doe&nbsp;<span> CEO, Company</span></h3>
+                            <h3 className="person">Huzaifa Ansari&nbsp;<span> COO, Tarlose</span></h3>
                         </div>
                         <div className="testimonial-image">
                             <img src={Placeholder} />

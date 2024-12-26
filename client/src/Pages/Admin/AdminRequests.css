@@ -68,10 +68,16 @@
   } */
 
 
+.no-req{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: -20px !important;
+}
 
 .admin-requests{
 max-width: 1000px;
-margin: 50px auto;
+margin: 30px auto 50px;
 }
 
 

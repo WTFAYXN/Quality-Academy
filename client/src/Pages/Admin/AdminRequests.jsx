@@ -9,6 +9,7 @@ import jpg from '../../assets/images/jpg.png';
 import mp4 from '../../assets/images/mp4.png';
 import pd from '../../assets/images/pdf.png';
 import line from '../../assets/svgs/Line.svg';
+import Footer from '../../components/Footer/Footer';
 
 const AdminRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -233,6 +234,8 @@ const AdminRequests = () => {
           </table>
         )}
       </div>
+
+      <Footer />
     </>
   );
 };

@@ -22,7 +22,7 @@
 
 .heading-resources-text, .heading-home-text, .get-started-heading, .span-responser-info,.quiz-responses-header > h1,
 .thank-you-card h1,.quiz-setting-h1, .get-started-heading, .testimonial-heading > h1, .solution-text,
-.footer-bottom, .newsletter, .about-heading-text, .solution-text, .know-more, .heading-contact-text, .resources-heading, .heading-resources-text{
+.footer-bottom, .newsletter, .about-heading-text, .solution-text, .know-more, .heading-contact-text, .resources-heading, .heading-resources-text, .heading{
   font-family: Gilroy-ExtraBold;
 }
 h1{
@@ -344,8 +344,13 @@ opacity:0.9;
     margin: 0 auto;
   }
 
+  .thank-you-card{
+    height: 50vh;
+  }
+  
   .thank-you-card, .quiz-responses{
     /* height: 50vh; */
+    padding: 50px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -358,6 +363,7 @@ opacity:0.9;
 }
 .quiz-responses-header > h1{
   font-weight: 800;
+  text-align: center;
 
 }
 

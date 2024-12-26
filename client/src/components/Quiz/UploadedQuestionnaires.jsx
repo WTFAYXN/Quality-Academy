@@ -81,20 +81,22 @@ const UploadedQuestionnaires = () => {
           {uploadedQuizzes.map((quiz) => (
             <div key={quiz._id} className="past-quiz-list">
               <img src={Placeholder} alt="Quiz" />
-              <div className="title-date">
-                <h3>{quiz.title}</h3>
-                <p>{quiz.description}</p>
-                <p>{new Date(quiz.createdAt).toLocaleDateString()}</p>
-              </div>
-              <div className="attempts-popup" onClick={() => toggleMenu(quiz._id)}>
-                <img src={dot} alt="Menu" style={{ padding: "10px", border: "none", background: "none" }} />
-                {activeMenu === quiz._id && (
-                  <div className="options-menu" ref={optionsRef}>
-                    <button onClick={() => window.open(quiz.imageUrl, '_blank')}>Download</button>
-                    <button onClick={() => handleCopyUrl(quiz.imageUrl)}>Copy URL</button>
-                    <button onClick={() => handleDelete(quiz._id)}>Delete</button>
-                  </div>
-                )}
+              <div className="quiz-description">
+                <div className="title-date">
+                  <h4>{quiz.title}</h4>
+                  <p>{quiz.description}</p>
+                  <p>{new Date(quiz.createdAt).toLocaleDateString()}</p>
+                </div>
+                <div className="attempts-popup" onClick={() => toggleMenu(quiz._id)}>
+                  <img src={dot} alt="Menu" style={{ padding: "10px", border: "none", background: "none" }} />
+                  {activeMenu === quiz._id && (
+                    <div className="options-menu" ref={optionsRef}>
+                      <button onClick={() => window.open(quiz.imageUrl, '_blank')}>Download</button>
+                      <button onClick={() => handleCopyUrl(quiz.imageUrl)}>Copy URL</button>
+                      <button onClick={() => handleDelete(quiz._id)}>Delete</button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
