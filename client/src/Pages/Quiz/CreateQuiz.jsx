@@ -42,8 +42,8 @@ const CreateQuiz = () => {
   const handleQuizSubmit = (e) => {
     e.preventDefault();
     if (questions.length === 0) {
-      setError("Please add at least one question before saving the quiz.");
-      showNotification("Please add at least one question before saving the quiz.", "error");
+      setError("Please add at least one question before saving the questionnare.");
+      showNotification("Please add at least one question before saving the questionnare.", "error");
       return;
     }
     const data = {
@@ -59,12 +59,12 @@ const CreateQuiz = () => {
         },
       })
       .then((response) => {
-        showNotification('Quiz saved successfully', 'success');
+        showNotification('QQuestionnare saved successfully', 'success');
         navigate(`/user`);
       })
       .catch((error) => {
         console.error(error);
-        showNotification('Error saving quiz', 'error');
+        showNotification('Error saving Questionnare', 'error');
       });
   };
 
