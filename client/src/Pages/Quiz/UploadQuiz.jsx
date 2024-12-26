@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
@@ -53,7 +53,7 @@ const UploadQuiz = () => {
     });
   };
 
-  const renderFilePreview = () => {
+  const filePreview = useMemo(() => {
     if (!file) return null;
 
     const fileURL = URL.createObjectURL(file);
@@ -66,14 +66,14 @@ const UploadQuiz = () => {
     } else {
       return <p className="file-preview">{file.name}</p>;
     }
-  };
+  }, [file]);
 
   return (
     <>
       <Navbar />
       <div className="quiz-create-form">
         <h1 className="quiz-setting-h1">
-          Upload Your Questionnare <span><img className="line-quiz" src={line} /></span>
+          Upload Your Questionnaire <span><img className="line-quiz" src={line} /></span>
         </h1>
         <form className="quiz-form" onSubmit={handleTitleSubmit}>
           <div className="quiz-title-description">
@@ -100,20 +100,24 @@ const UploadQuiz = () => {
             </div>
           </div>
           <div className="upload-file-section">
-            <label htmlFor="file-upload" className="custom-file-upload">
-              <img src={upload} alt="Upload" />
-              <p>Drop your file or click to upload</p>
-            </label>
+            {!file ? (
+              <label htmlFor="file-upload" className="custom-file-upload">
+                <img src={upload} alt="Upload" />
+                <p>Drop your file or click to upload</p>
+              </label>
+            ) : (
+              <p className="file-name"></p>
+            )}
             <input
               id="file-upload"
               type="file"
               onChange={handleFileChange}
               style={{ display: 'none' }}
             />
-            {renderFilePreview()}
+            {filePreview}
           </div>
           <div className="submit-clear-btn">
-            <button className="submit-attempt-btn" type="submit">Submit Quiz</button>
+            <button className="submit-attempt-btn" type="submit">Upload Quiz</button>
             <button className="clear-attempt-btn" type="button" onClick={() => setFile(null)}>Clear</button>
           </div>
         </form>
