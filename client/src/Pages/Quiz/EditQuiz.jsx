@@ -44,7 +44,7 @@ const EditQuiz = () => {
         })
         .catch((error) => {
           console.error(error);
-          showNotification("Error fetching quiz", "error");
+          showNotification("Error fetching Questionnares", "error");
         });
     }
   }, [id]);
@@ -60,8 +60,8 @@ const EditQuiz = () => {
   const handleQuizSubmit = (e) => {
     e.preventDefault();
     if (questions.length === 0) {
-      setError("Please add at least one question before saving the quiz.");
-      showNotification("Please add at least one question before saving the quiz.", "error");
+      setError("Please add at least one question before saving the questionnare.");
+      showNotification("Please add at least one question before saving the questionnare.", "error");
       return;
     }
     const data = {
@@ -84,12 +84,12 @@ const EditQuiz = () => {
 
     request
       .then((response) => {
-        showNotification('Quiz saved successfully', 'success');
+        showNotification('Questionnare saved successfully', 'success');
         navigate(`/quiz/${response.data._id}`);
       })
       .catch((error) => {
         console.error(error);
-        showNotification('Error saving quiz', 'error');
+        showNotification('Error saving questionnare', 'error');
       });
   };
 

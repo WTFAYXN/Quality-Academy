@@ -84,6 +84,7 @@ const UploadedQuestionnaires = () => {
               <div className="title-date">
                 <h3>{quiz.title}</h3>
                 <p>{quiz.description}</p>
+                <p>{new Date(quiz.createdAt).toLocaleDateString()}</p>
               </div>
               <div className="attempts-popup" onClick={() => toggleMenu(quiz._id)}>
                 <img src={dot} alt="Menu" style={{ padding: "10px", border: "none", background: "none" }} />

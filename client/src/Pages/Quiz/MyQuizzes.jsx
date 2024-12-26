@@ -25,8 +25,8 @@ const MyQuizzes = () => {
         setQuizzes(sortedQuizzes);
       })
       .catch((error) => {
-        console.error("Error fetching quizzes:", error);
-        showNotification('Error fetching quizzes', 'error');
+        console.error("Error fetching questionnares:", error);
+        showNotification('Error fetching questionnares', 'error');
       });
   }, []);
 
@@ -47,11 +47,11 @@ const MyQuizzes = () => {
       })
       .then((response) => {
         setQuizzes((prevQuizzes) => prevQuizzes.filter((quiz) => quiz._id !== quizId));
-        showNotification('Quiz deleted successfully', 'success');
+        showNotification('Questionnare deleted successfully', 'success');
       })
       .catch((error) => {
-        console.error("Error deleting quiz:", error);
-        showNotification('Error deleting quiz', 'error');
+        console.error("Error deleting questionnare:", error);
+        showNotification('Error deleting questionnare', 'error');
       });
   };
 
