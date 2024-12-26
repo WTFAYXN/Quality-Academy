@@ -20,10 +20,10 @@ return(
             <h1 className="heading-contact-text">Let us know what's on your mind - we're listening!</h1>
             <img class="contact-line" src={line} />
         </div>
-        <div className="shape-container">
+        {/* <div className="shape-container">
         <img className="shape1" src={Shape1} alt="" />
         <img className="shape2" src={Shape2} alt="" />
-        </div>
+        </div> */}
 
     <div class="support">
   
@@ -40,7 +40,7 @@ return(
             <img src={Product} />
             <h3 class="product-subheading">Product Inquiry</h3>
                 <p class="product-description">Need any clear information about our products? Send message</p>
-                <p class="product-contact"> Email us</p>
+                <button class="product-contact"> Email us</button>
             </div>
             
             <div class="developer-inquiry">

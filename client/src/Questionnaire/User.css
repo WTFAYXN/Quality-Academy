@@ -1,8 +1,6 @@
 .create-quiz{
     background-color: #F1F3F4;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 20px;
+    padding: 50px;
 }
 
 .user-greet{
@@ -47,10 +45,10 @@
 }
 
 .past-quiz-lists {
-    display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
-    padding: 0px 40px;
+  display: flex;
+  gap: 33px;
+  flex-wrap: wrap;
+  padding: 50px;
 }
 
 .past-quiz-list{
@@ -96,6 +94,10 @@
     color: black;
 }
 
+.past-quiz-container{
+  margin: 0px auto;
+  max-width: 1400px;
+}
 input[type="checkbox"] {
     width: 20px;
     height: 20px;
