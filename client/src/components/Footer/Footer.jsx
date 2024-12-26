@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import './Footer.css';
 import Notification from '../Notification/Notification';
+import facebook from '../../assets/svgs/facebook.svg';
+import instagram from '../../assets/svgs/Instagram.svg';
+import linkedin from '../../assets/svgs/Linkedin.svg';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -48,15 +51,11 @@ const Footer = () => {
         <p className="social-heading">Social Media</p>
 
         <div className="socials">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="19" cy="19" r="18.5" fill="black" stroke="black" />
-          </svg>
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="19" cy="19" r="18.5" fill="black" stroke="black" />
-          </svg>
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="19" cy="19" r="18.5" fill="black" stroke="black" />
-          </svg>
+          <img src={facebook} />
+          <img src={instagram} />
+          <img src={linkedin} />
+          
+         
         </div>
       </div>
     </div>

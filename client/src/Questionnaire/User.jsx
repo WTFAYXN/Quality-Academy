@@ -3,6 +3,7 @@ import Nav from "../components/Navbar/Navbar";
 import "./User.css";
 import Upload from "../assets/svgs/Questionnaire/upload.svg";
 import Add from "../assets/svgs/Questionnaire/add.svg";
+import uploadQuestionnaire from "../assets/svgs/Questionnaire/uploadQuestionnaire.svg";
 import { Link } from "react-router-dom";
 import MyQuizzes from "../Pages/Quiz/MyQuizzes";
 import UploadedQuestionnaires from "../components/Quiz/UploadedQuestionnaires";
@@ -78,7 +79,7 @@ const User = () => {
           <div className="quiz-create">
             <Link className="quiz-create-link" to="/quizzes/upload">
               <div className="upload-resources-btn">
-                <img src={Upload} />
+                <img src={uploadQuestionnaire} />
               </div>
               <p>Upload Questionnaire</p>
             </Link>

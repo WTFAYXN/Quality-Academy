@@ -77,7 +77,7 @@ const UploadedQuestionnaires = () => {
       {uploadedQuizzes.length === 0 ? (
         <p>No uploaded questionnaires found.</p>
       ) : (
-        <div className="past-quiz-lists">
+        <div className="past-questionnaire-lists">
           {uploadedQuizzes.map((quiz) => (
             <div key={quiz._id} className="past-quiz-list">
               <img src={Placeholder} alt="Quiz" />
