@@ -1,4 +1,4 @@
- Quality Academy
+# Quality Academy
 
 Quality Academy is a robust web application designed to facilitate quiz creation and management while providing a resource-sharing platform. It combines features similar to Google Forms and resource management applications, making it a comprehensive solution for educators, trainers, and learners.
 
@@ -30,7 +30,7 @@ Quality Academy is a robust web application designed to facilitate quiz creation
   - Delete files and control file permissions.
 
 ## Technology Stack
-- **Frontend**: React.js with TypeScript
+- **Frontend**: React.js with Vite
 - **Backend**: Node.js with Express.js
 - **Database**: MongoDB with Mongoose
 - **Authentication**: JWT (JSON Web Tokens) stored in localStorage
@@ -105,7 +105,7 @@ Quality Academy is a robust web application designed to facilitate quiz creation
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/quality-academy.git
+   git clone https://github.com/HuzaifaAnsari0/Quality-Academy.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -179,5 +179,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Contact
 For any inquiries or support, feel free to contact:
 - **Name**: Huzaifa Ansari
-- **Email**: huzaifa.ansari@example.com
-- **LinkedIn**: [linkedin.com/in/huzaifa-ansari](https://linkedin.com/in/huzaifa-ansari)
+- **Email**: huzaifa.a@somaiya.edu
+- **LinkedIn**: [linkedin.com/in/huzaifaansari0](www.linkedin.com/in/huzaifaansari0)
