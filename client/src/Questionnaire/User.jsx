@@ -47,6 +47,10 @@ const User = () => {
 
       {/* Create Quiz */}
       <div className="create-quiz">
+
+        <div className="questionnaire-container">
+          
+       
         <h1 className="user-greet">
           {greeting}, {name}
           <span className="ask-user">What do you want to do today?</span>
@@ -80,6 +84,8 @@ const User = () => {
             </Link>
           </div>
         </div>
+        </div>
+
       </div>
 
       {/* Toggle Buttons */}
@@ -99,10 +105,14 @@ const User = () => {
       </div>
 
       {/* Display Section */}
+      <div className="past-quiz-container">
+
+
       <div className="past-quiz-lists">
         {showCreated ? <MyQuizzes /> : <UploadedQuestionnaires />}
       </div>
-
+      
+      </div>
       <Footer />
     </>
   );

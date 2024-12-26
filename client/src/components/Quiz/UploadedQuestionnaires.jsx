@@ -73,13 +73,13 @@ const UploadedQuestionnaires = () => {
   }, [activeMenu]);
 
   return (
-    <div className="">
+  <>
       {uploadedQuizzes.length === 0 ? (
         <p>No uploaded questionnaires found.</p>
       ) : (
-        <div className="past-quiz-list">
+        <div className="past-quiz-lists">
           {uploadedQuizzes.map((quiz) => (
-            <div key={quiz._id} className="quiz-description">
+            <div key={quiz._id} className="past-quiz-list">
               <img src={Placeholder} alt="Quiz" />
               <div className="title-date">
                 <h3>{quiz.title}</h3>
@@ -105,7 +105,7 @@ const UploadedQuestionnaires = () => {
         visible={notification.visible}
         onClose={() => setNotification({ ...notification, visible: false })}
       />
-    </div>
+    </>
   );
 };
 
