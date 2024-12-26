@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import MyQuizzes from "../Pages/Quiz/MyQuizzes";
 import UploadedQuestionnaires from "../components/Quiz/UploadedQuestionnaires";
 import axios from "axios";
+import Footer from "../components/Footer/Footer";
 
 const User = () => {
   const [showCreated, setShowCreated] = useState(true);
@@ -101,6 +102,8 @@ const User = () => {
       <div className="past-quiz-lists">
         {showCreated ? <MyQuizzes /> : <UploadedQuestionnaires />}
       </div>
+
+      <Footer />
     </>
   );
 };
