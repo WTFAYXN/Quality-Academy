@@ -78,7 +78,7 @@ const Navbar = () => {
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
-        <span className="bar"></span>
+        {/* <span className="bar"></span> */}
       </div>
 
       {/* Navigation Links */}
@@ -87,9 +87,11 @@ const Navbar = () => {
         <li><Link to="/resources">Resources</Link></li>
         <li><Link to="/quizzes/create">Create Questionnaire</Link></li>
         {isLoggedIn && <li><Link to="#" onClick={handleLogout} className="">Logout</Link></li>}
-        {!(isLoggedIn) && <li><Link to="/login"  className="">Login</Link></li>}
-        {!(isLoggedIn) && <li><Link to="/signup" className="">Signup</Link></li>}
-        {isAdmin && <li><Link to="/admin/requests" className="hide">Requests</Link></li>}
+        {/* <div className="login-signup-flex">
+          {!(isLoggedIn) && <Link to="/login" className="text-decoration-none"><button className="btn-login">Login</button></Link>}
+          {!(isLoggedIn) && <Link to="/signup" className="text-decoration-none"><button className="btn-signup">Signup</button></Link>}
+          {isAdmin && <li><Link to="/admin/requests" className="hide">Requests</Link></li>}
+        </div> */}
       </ul> 
 
       {/* Call to Action Buttons */}

@@ -122,17 +122,28 @@
   .list {
     display: none !important; /* Hide navigation links by default */
     flex-direction: column;
-    gap: 20px;
+    gap: 0px !important;
     position: absolute;
     top: 70px; /* Adjust this based on your design */
     right: 20px;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    padding: 20px;
+    width: 320px;
+    padding: 20px 0px;
     border-radius: 8px;
   }
 
+  .list li{
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
+    align-items: center;
+    display: flex;
+
+  }
+
+  .list li a{
+    padding: 20px 10px;
+  }
   /* Show navigation links when hamburger is clicked */
   .list.active{
     display: flex !important;
@@ -147,9 +158,9 @@
   }
 
   /* Adjust CTA buttons for mobile */
-  .cta {
+  /* .cta {
     display: none;
-  }
+  } */
   .hide{
     display: block;
   }

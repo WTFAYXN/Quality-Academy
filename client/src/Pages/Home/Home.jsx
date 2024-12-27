@@ -13,7 +13,15 @@ import Shape3 from "../../assets/svgs/Home/testimonial-shape.svg";
 import "./Home.css";
 import Testimonials from "./Home-subcomponents/Testimonials";
 import Resources from "./Home-subcomponents/Resources";
-import study from "../../assets/svgs/Home/study.png";
+
+
+import urlSharing from "../../assets/svgs/Home/svg/urlSharing.svg";
+import realNotif from "../../assets/svgs/Home/svg/realNotif.png";
+import studyMaterial from "../../assets/svgs/Home/svg/studyMaterial.svg";
+import resourcesIcon from "../../assets/svgs/Home/svg/resources.svg";
+import customQuestion from "../../assets/svgs/Home/svg/customQuestion.svg";
+
+
 import { Link } from "react-router-dom";
 const Home =() =>{
     return(
@@ -58,35 +66,35 @@ const Home =() =>{
                 <div className="solution-cards">
                     <div className="solution-card">
                         <div className="solution-card-icon">
-                           <img className="icon-quiz mb-3" src={study}/>
+                           <img className="icon-quiz mb-3" src={customQuestion}/>
                         </div>
                         <h3 className="feature-heading">Custom Questionnaire</h3>
                         <p>Create personalized Questionnaires tailored to boost your preparation!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
-                            <img className="icon-notif mb-3" src={study}/>
+                            <img className="icon-notif mb-3" src={realNotif}/>
                         </div>
                         <h3 className="feature-heading">Real-time notifications</h3>
                         <p>Stay updated instantly with real-time notifications!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
-                            <img className="icon-resources mb-3" src={study}/>
+                            <img className="icon-resources mb-3" src={resourcesIcon}/>
                         </div>
                         <h3 className="feature-heading">Resources</h3>
                         <p>Access all the essential resources to support your journey!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
-                            <img className="icon-url mb-3" src={study}/>
+                            <img className="icon-url mb-3" src={urlSharing}/>
                         </div>
                         <h3 className="feature-heading">Url-based Sharing</h3>
                         <p>Share effortlessly with URL-based links!</p>
                     </div>
                     <div className="solution-card">
                         <div className="solution-card-icon">
-                            <img className="icon-study mb-3" src={study}/>
+                            <img className="icon-study mb-3" src={studyMaterial}/>
                         </div>
                         <h3 className="feature-heading">Study Material</h3>
                         <p>Explore top-notch study materials to enhance your learning!</p>
