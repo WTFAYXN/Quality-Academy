@@ -44,7 +44,7 @@ function ForgetPassword() {
 
   return (
     <div className="forget-password-container">
-      <div className="form-wrapper">
+      <div className="form-wrapper forget-password-form">
         <h2 className="form-title">Forgot Password</h2>
         <p className="form-subtitle">
           Enter your email below to receive a password reset link.
