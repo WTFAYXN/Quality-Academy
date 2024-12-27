@@ -337,4 +337,17 @@
     .testimonial-shape-container, .shape-container{
         display: none;
     }
+
+    .filter-popup{
+        width: 90% !important;
+    }
+
+    .alphabet{
+        margin: 10px auto !important;
+    }
+
+    .filter-popup .alphabet {
+        padding: 0px;
+        margin: 0px;
+    }
 }
