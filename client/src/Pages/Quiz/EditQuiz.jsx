@@ -203,7 +203,7 @@ const EditQuiz = () => {
             <div className="title">
               <label className="title-label">Title</label>
               <input
-                placeholder="Give a suitable Title for Questionnaire"
+                placeholder="Give a suitable Title"
                 className="title-input"
                 type="text"
                 value={title}
@@ -214,7 +214,7 @@ const EditQuiz = () => {
             <div className="description">
               <label className="description-label">Description</label>
               <textarea
-                placeholder="Describe Your Questionnaire"
+                placeholder="Describe it"
                 className="description-input"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

@@ -51,6 +51,8 @@ const Resources = () => {
   const [filterOptions, setFilterOptions] = useState({ alphabetFilter: "", sortOrder: "asc", category: "" });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    
     const fetchResources = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/resources`);
