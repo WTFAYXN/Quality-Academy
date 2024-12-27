@@ -104,11 +104,12 @@ const AttemptQuiz = () => {
                     </p>
                     {q.type === "short" ? (
                       <div className="d-flex gap-3 my-3 option-attempt">
-                        <input
+                        <textarea
                           type="text"
                           name={`question-${q._id}`}
                           value={answers[q._id] || ""}
                           onChange={(e) => handleAnswerChange(q._id, e.target.value, false)}
+                          placeholder="Enter your answer here"
                         />
                       </div>
                     ) : (

@@ -117,7 +117,11 @@ const QuizResponseDetail = () => {
                       </div>
 
                       <div className="infoResponse-answer">
-                        <strong>Selected Answer:</strong> {Array.isArray(answer.selectedOption) ? answer.selectedOption.join(', ') : answer.selectedOption}
+                        <strong>Written Answer:
+                        </strong>
+                        <p>
+                        {Array.isArray(answer.selectedOption) ? answer.selectedOption.join(', ') : answer.selectedOption}
+                        </p> 
                       </div>
 
                       <div className="infoResponse-options">
@@ -152,7 +156,10 @@ const QuizResponseDetail = () => {
                 </li>
               ))}
             </ol>
-            <button onClick={handleSaveScores}>Save Scores</button>
+            <button className="submit-score-btn"
+             onClick={handleSaveScores}>
+              Save Score & Send Email
+              </button>
           </div>
         </div>
       ) : (
