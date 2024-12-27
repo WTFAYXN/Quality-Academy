@@ -150,6 +150,14 @@
   .cta {
     display: none;
   }
+  .hide{
+    display: block;
+  }
 }
 
 
+@media (max-width: 1500px){
+  .hide{
+    display: none;
+  }
+}
