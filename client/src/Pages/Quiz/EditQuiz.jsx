@@ -22,7 +22,7 @@ const EditQuiz = () => {
   const [options, setOptions] = useState([{ optionText: "", isCorrect: false }]);
   const [points, setPoints] = useState(1);
   const [editIndex, setEditIndex] = useState(null);
-  const [showQuestionForm, setShowQuestionForm] = useState(true);
+  const [showQuestionForm, setShowQuestionForm] = useState(false); // Set to false by default
   const [error, setError] = useState("");
   const [notification, setNotification] = useState({
     message: '',
@@ -189,15 +189,6 @@ const EditQuiz = () => {
     setOptions(newOptions);
   };
 
-  const handleRemoveQuestionForm = () => {
-    setQuestion("");
-    setType("single");
-    setOptions([{ optionText: "", isCorrect: false }]);
-    setPoints(1);
-    setEditIndex(null);
-    setShowQuestionForm(false);
-  };
-
   return (
     <>
       <Navbar />
@@ -247,12 +238,12 @@ const EditQuiz = () => {
             {questions.map((q, index) => (
               <div className="added-question-card" key={index}>
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-lg-8 col-md-5 col-sm-12 text-left mb-2">
                     <div className="title-questionAdded">
                       <strong>Question:</strong> {q.question}
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-lg-4 col-md-5 col-sm-12 text-left mt-2">
                     <strong>Type:</strong> {q.type}
                     <br />
                   </div>
@@ -269,7 +260,7 @@ const EditQuiz = () => {
                 </div>
                 <strong>Points:</strong> {q.points}
                 <br />
-                <div className="add-question-preview">
+                <div className="add-question-preview btn-edit">
                   <button type="button" onClick={() => handleEditQuestion(index)}>
                     Edit
                   </button>
@@ -286,7 +277,7 @@ const EditQuiz = () => {
               <div className="question-form">
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-lg-8 col-md-5 col-sm-12 text-left mb-2">
                     <input
                       className="title-question"
                       placeholder="Untitled Question"
@@ -295,7 +286,7 @@ const EditQuiz = () => {
                       required
                     />
                   </div>
-                  <div className="col-4 text-center">
+                  <div className="col-lg-4 col-md-5 col-sm-12 text-left mt-2">
                     <select
                       className="btn btn-secondary dropdown-toggle dropdown-questions"
                       value={type}
@@ -358,9 +349,7 @@ const EditQuiz = () => {
                 <button type="button" onClick={handleAddQuestion}>
                   {editIndex !== null ? "Update Question" : "Add Question"}
                 </button>
-                <button type="button" onClick={handleRemoveQuestionForm}>
-                  Remove
-                </button>
+                <button type="submit">Save</button>
               </div>
             </div>
           ) : (
@@ -368,11 +357,9 @@ const EditQuiz = () => {
               <button type="button" onClick={() => setShowQuestionForm(true)}>
                 Add Question
               </button>
+              <button type="submit">Save</button>
             </div>
           )}
-          <div className="add-question-preview">
-            <button type="submit">Save Quiz</button>
-          </div>
         </form>
       </div>
       <Notification
