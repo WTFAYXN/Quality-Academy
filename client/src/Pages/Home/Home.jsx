@@ -16,7 +16,7 @@ import Resources from "./Home-subcomponents/Resources";
 
 
 import urlSharing from "../../assets/svgs/Home/svg/urlSharing.svg";
-import realNotif from "../../assets/svgs/Home/svg/realNotif.png";
+import realNotif from "../../assets/svgs/Home/svg/realNotif.svg";
 import studyMaterial from "../../assets/svgs/Home/svg/studyMaterial.svg";
 import resourcesIcon from "../../assets/svgs/Home/svg/resources.svg";
 import customQuestion from "../../assets/svgs/Home/svg/customQuestion.svg";
