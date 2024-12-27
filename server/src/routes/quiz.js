@@ -199,15 +199,18 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
     quiz.questions.forEach((q) => {
       const selectedOption = answers[q._id.toString()];
       const isCorrect = q.options.some((opt) => opt.isCorrect && selectedOption.includes(opt.optionText));
-      if (isCorrect) {
-        score += q.points || 1; // Default to 1 point if not specified
-      }
+      const points = q.points || 1; // Default to 1 point if not specified
+      const questionScore = isCorrect ? points : 0;
+      score += questionScore;
+
       responseAnswers.push({
         questionId: q._id,
         question: q.question, // Add question text
         selectedOption,
         options: q.options, // Include options in the response
         isCorrect,
+        points,
+        score: questionScore,
       });
     });
 
@@ -223,8 +226,14 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
 
     // Calculate total marks
     const totalMarks = quiz.questions.reduce((acc, question) => acc + (question.points || 1), 0);
+    
+    res.json({ score, totalMarks, message: "Quiz attempt recorded successfully!" });
 
-    // Send email with the score
+    // Check if the quiz contains any short answer questions
+    const hasShortAnswer = quiz.questions.some(q => q.type === "short");
+
+    // Send email with the score if there are no short answer questions
+    if (!hasShortAnswer) {
     const user = req.user;
     const emailContent = `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -237,8 +246,7 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
       </div>
     `;
     await sendEmail(user.email, 'Quiz Attempt Result', emailContent);
-
-    res.json({ score, totalMarks, message: "Quiz attempt recorded successfully!" });
+    }
   } catch (error) {
     console.error("Error handling quiz attempt:", error);
     res.status(500).json({ error: error.message });
@@ -414,5 +422,44 @@ router.get('/quizzes/:quizId/responses/:responseId', validateUser, async (req, r
     res.status(500).json({ message: 'Error fetching response' });
   }
 });
+
+router.put("/quizzes/:quizId/responses/:responseId", validateUser, async (req, res) => {
+  try {
+    const { quizId, responseId } = req.params;
+    const { answers } = req.body;
+
+    const quizResponse = await QuizResponse.findById(responseId).populate('quiz');
+    if (!quizResponse) return res.status(404).json({ error: "Quiz response not found" });
+
+    // Update the answers and score
+    quizResponse.answers = answers;
+    quizResponse.score = answers.reduce((total, answer) => total + answer.score, 0);
+
+    await quizResponse.save();
+
+    // Calculate total marks
+    const totalMarks = quizResponse.quiz.questions.reduce((acc, question) => acc + (question.points || 1), 0);
+
+    res.json({ message: "Quiz response updated successfully", score: quizResponse.score, totalMarks });
+    // Send email notification
+    const user = req.user;
+    const emailContent = `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+        <h2 style="color: #333;">Quiz Attempt Result</h2>
+        <p>Hi ${user.name},</p>
+        <p>Your response for the quiz titled "${quizResponse.quiz.title}" has been updated.</p>
+        <p>Your new score: <strong>${quizResponse.score}</strong> out of <strong>${totalMarks}</strong></p>
+        <p>Thank you for participating!</p>
+        <p>Best regards,<br/>The Quality Academy Team</p>
+      </div>
+    `;
+    await sendEmail(user.email, 'Quiz Response Updated', emailContent);
+
+  } catch (error) {
+    console.error("Error updating quiz response:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 module.exports = router;

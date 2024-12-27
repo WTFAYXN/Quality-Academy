@@ -83,60 +83,68 @@ const AttemptQuiz = () => {
   if (!quiz) return <p>Loading...</p>;
 
   return (
-        <>
-        <Navbar />
-        <div className="quiz-create-form">
-            <h1 className="quiz-setting-h1">
-                  Attempt Questionnaire! <span><img className="line-quiz" src={line} /></span>
-            </h1>
-        
+    <>
+      <Navbar />
+      <div className="quiz-create-form">
+        <h1 className="quiz-setting-h1">
+          Attempt Questionnaire! <span><img className="line-quiz" src={line} /></span>
+        </h1>
+
         <div className="response-body">
-        <div className="added-question-main">
+          <div className="added-question-main">
 
-         
 
-          <form onSubmit={handleSubmit}>
-            {quiz.questions.map((q, index) => (
-              <div key={q._id}>
-                <div className="question-form">
 
-                <p className="attempt-question-title">
-                  {index + 1}. {q.question}
-                </p>
-                {q.options.map((opt) => (
-                  <div className="d-flex gap-3 my-3 option-attempt" key={opt.optionText}>
-                      <input
-                        type={q.type === "multiple" ? "checkbox" : "radio"}
-                        name={`question-${q._id}`}
-                        value={opt.optionText}
-                        onChange={() => handleAnswerChange(q._id, opt.optionText, q.type === "multiple")}
-                      />
-
-                      <p>{opt.optionText}</p>
-                    
+            <form onSubmit={handleSubmit}>
+              {quiz.questions.map((q, index) => (
+                <div key={q._id}>
+                  <div className="question-form">
+                    <p className="attempt-question-title">
+                      {index + 1}. {q.question}
+                    </p>
+                    {q.type === "short" ? (
+                      <div className="d-flex gap-3 my-3 option-attempt">
+                        <input
+                          type="text"
+                          name={`question-${q._id}`}
+                          value={answers[q._id] || ""}
+                          onChange={(e) => handleAnswerChange(q._id, e.target.value, false)}
+                        />
+                      </div>
+                    ) : (
+                      q.options.map((opt) => (
+                        <div className="d-flex gap-3 my-3 option-attempt" key={opt.optionText}>
+                          <input
+                            type={q.type === "multiple" ? "checkbox" : "radio"}
+                            name={`question-${q._id}`}
+                            value={opt.optionText}
+                            onChange={() => handleAnswerChange(q._id, opt.optionText, q.type === "multiple")}
+                          />
+                          <p>{opt.optionText}</p>
+                        </div>
+                      ))
+                    )}
                   </div>
-                ))}
                 </div>
-              </div>
-            ))}
-                <div className="submit-clear-btn">
+              ))}
+              <div className="submit-clear-btn">
                 <button className="submit-attempt-btn" type="submit">Submit Answers</button>
-                <button className="clear-attempt-btn">Clear Questionnarie</button>
-                </div>
-          </form>
+                <button className="clear-attempt-btn">Clear Questionnaire</button>
+              </div>
+            </form>
           </div>
         </div>
 
 
         <div className="report-questionnaire">
 
-        <p>This content is neither created nor endorsed by Quality Academy. - <Link to="/terms">Terms of Service</Link>  - <Link to="/terms">Privacy Policy</Link></p>
-        <p>Does this form look suspicious? Report</p>
-  
+          <p>This content is neither created nor endorsed by Quality Academy. - <Link to="/terms">Terms of Service</Link>  - <Link to="/terms">Privacy Policy</Link></p>
+          <p>Does this form look suspicious? Report</p>
+
 
         </div>
-  </div>
-        </>
+      </div>
+    </>
   );
 };
 

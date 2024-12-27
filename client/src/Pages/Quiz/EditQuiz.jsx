@@ -85,7 +85,7 @@ const EditQuiz = () => {
     request
       .then((response) => {
         showNotification('Questionnare saved successfully', 'success');
-        navigate(`/quiz/${response.data._id}`);
+        navigate(`/user`);
       })
       .catch((error) => {
         console.error(error);
@@ -99,6 +99,7 @@ const EditQuiz = () => {
       showNotification("Question text must be provided", "error");
       return;
     }
+    if(type !== "short"){
     if (type !== "short" && options.some(opt => !opt.optionText.trim())) {
       setError("All options must have text");
       showNotification("All options must have text", "error");
@@ -124,13 +125,14 @@ const EditQuiz = () => {
       showNotification("There must be at least one more option than the correct options", "error");
       return;
     }
+  }
     if (points <= 0) {
       setError("Points must be greater than 0");
       showNotification("Points must be greater than 0", "error");
       return;
     }
 
-    const newQuestion = { question, type, options, points };
+    const newQuestion = { question, type, options: type === "short" ? [] : options, points };
     if (editIndex !== null) {
       const updatedQuestions = [...questions];
       updatedQuestions[editIndex] = newQuestion;
@@ -221,6 +223,17 @@ const EditQuiz = () => {
             </div>
           </div>
 
+          <div className="checkboxes">
+            <div className="attempts">
+              <label className="attempts-label">Multiple Attempts</label>
+              <input
+                type="checkbox"
+                checked={settings.allowMultipleAttempts}
+                onChange={(e) => setSettings({ ...settings, allowMultipleAttempts: e.target.checked })}
+              />
+            </div>
+          </div>
+
           <div className="added-question-main">
             {questions.map((q, index) => (
               <div className="added-question-card" key={index}>
@@ -281,7 +294,7 @@ const EditQuiz = () => {
                     >
                       <option value="single">Single Choice</option>
                       <option value="multiple">Multiple Choice</option>
-                      {/* <option value="short">Short Answer</option> */}
+                      <option value="short">Short Answer</option>
                     </select>
                   </div>
                 </div>
@@ -330,16 +343,12 @@ const EditQuiz = () => {
                       min="0"
                     />
                   </div>
-                  {/* <button className="remove-question" onClick={() => handleDeleteQuestion(editIndex)}>
-                    Remove
-                  </button> */}
                 </div>
               </div>
               <div className="add-question-preview">
                 <button type="button" onClick={handleAddQuestion}>
                   {editIndex !== null ? "Update Question" : "Add Question"}
                 </button>
-                <button type="submit">Save</button>
               </div>
             </div>
           ) : (
@@ -347,9 +356,11 @@ const EditQuiz = () => {
               <button type="button" onClick={() => setShowQuestionForm(true)}>
                 Add Question
               </button>
-              <button type="submit" onClick={()=>{navigate('/user')}}>Save</button>
             </div>
           )}
+          <div className="add-question-preview">
+            <button type="submit" >Save Quiz</button>
+          </div>
         </form>
       </div>
       <Notification

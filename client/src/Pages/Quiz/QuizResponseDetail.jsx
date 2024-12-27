@@ -42,6 +42,32 @@ const QuizResponseDetail = () => {
     setNotification({ ...notification, visible: false });
   };
 
+  const handleScoreChange = (index, newScore) => {
+    const updatedAnswers = [...response.answers];
+    if (newScore <= updatedAnswers[index].points) {
+      updatedAnswers[index].score = newScore;
+      setResponse({ ...response, answers: updatedAnswers });
+    } else {
+      showNotification('Score cannot exceed the maximum points for this question', 'error');
+    }
+  };
+  
+  const handleSaveScores = () => {
+    axios
+      .put(`${import.meta.env.VITE_API_URL}/quizzes/${quizId}/responses/${responseId}`, response, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        showNotification('Scores updated successfully', 'success');
+      })
+      .catch((error) => {
+        console.error("Error updating scores:", error);
+        showNotification('Error updating scores', 'error');
+      });
+  };
+
   return (
     <>
       <Navbar />
@@ -97,18 +123,36 @@ const QuizResponseDetail = () => {
                       <div className="infoResponse-options">
                         <strong>Options:</strong>
                         <ul>
-                          {answer.options && answer.options.map((opt, i) => (
-                            <li key={i} style={{ color: opt.isCorrect ? 'green' : 'black' }}>
-                              {opt.optionText} {opt.isCorrect && "(Correct)"}
-                            </li>
-                          ))}
+                          {answer.options && answer.options.length > 0 && (
+                            answer.options.map((opt, i) => (
+                              <li key={i} style={{ color: opt.isCorrect ? 'green' : 'black' }}>
+                                {opt.optionText} {opt.isCorrect && "(Correct)"}
+                              </li>
+                            ))
+                          )}
                         </ul>
+                      </div>
+
+                      <div className="infoResponse-points">
+                        <strong>Points:</strong> {answer.points}
+                      </div>
+
+                      <div className="infoResponse-score">
+                        <strong>Score:</strong>
+                        <input
+                          type="number"
+                          value={answer.score}
+                          onChange={(e) => handleScoreChange(index, Number(e.target.value))}
+                          min="0"
+                          max={answer.points}
+                        />
                       </div>
                     </div>
                   </div>
                 </li>
               ))}
             </ol>
+            <button onClick={handleSaveScores}>Save Scores</button>
           </div>
         </div>
       ) : (

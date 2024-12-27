@@ -25,6 +25,8 @@ const quizResponseSchema = new Schema(
           },
         ], // Options for the question
         isCorrect: { type: Boolean }, // Calculated correctness
+        points: { type: Number, required: true }, // Points awarded for the question
+        score: { type: Number, required: true }, // Score for the question
       },
     ],
     score: {
