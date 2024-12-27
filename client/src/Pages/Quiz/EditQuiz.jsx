@@ -189,6 +189,15 @@ const EditQuiz = () => {
     setOptions(newOptions);
   };
 
+  const handleRemoveQuestionForm = () => {
+    setQuestion("");
+    setType("single");
+    setOptions([{ optionText: "", isCorrect: false }]);
+    setPoints(1);
+    setEditIndex(null);
+    setShowQuestionForm(false);
+  };
+
   return (
     <>
       <Navbar />
@@ -349,6 +358,9 @@ const EditQuiz = () => {
                 <button type="button" onClick={handleAddQuestion}>
                   {editIndex !== null ? "Update Question" : "Add Question"}
                 </button>
+                <button type="button" onClick={handleRemoveQuestionForm}>
+                  Remove
+                </button>
               </div>
             </div>
           ) : (
@@ -359,7 +371,7 @@ const EditQuiz = () => {
             </div>
           )}
           <div className="add-question-preview">
-            <button type="submit" >Save Quiz</button>
+            <button type="submit">Save Quiz</button>
           </div>
         </form>
       </div>
