@@ -115,6 +115,7 @@ const AttemptQuiz = () => {
                     ) : (
                       q.options.map((opt) => (
                         <div className="d-flex gap-3 my-3 option-attempt" key={opt.optionText}>
+                          <label>
                           <input
                             type={q.type === "multiple" ? "checkbox" : "radio"}
                             name={`question-${q._id}`}
@@ -122,6 +123,7 @@ const AttemptQuiz = () => {
                             onChange={() => handleAnswerChange(q._id, opt.optionText, q.type === "multiple")}
                           />
                           <p>{opt.optionText}</p>
+                          </label>
                         </div>
                       ))
                     )}
