@@ -226,7 +226,7 @@ router.post("/quizzes/:id/attempt", validateUser, async (req, res) => {
 
     // Calculate total marks
     const totalMarks = quiz.questions.reduce((acc, question) => acc + (question.points || 1), 0);
-    
+
     res.json({ score, totalMarks, message: "Quiz attempt recorded successfully!" });
 
     // Check if the quiz contains any short answer questions
@@ -428,7 +428,7 @@ router.put("/quizzes/:quizId/responses/:responseId", validateUser, async (req, r
     const { quizId, responseId } = req.params;
     const { answers } = req.body;
 
-    const quizResponse = await QuizResponse.findById(responseId).populate('quiz');
+    const quizResponse = await QuizResponse.findById(responseId).populate('quiz user');
     if (!quizResponse) return res.status(404).json({ error: "Quiz response not found" });
 
     // Update the answers and score
@@ -441,8 +441,9 @@ router.put("/quizzes/:quizId/responses/:responseId", validateUser, async (req, r
     const totalMarks = quizResponse.quiz.questions.reduce((acc, question) => acc + (question.points || 1), 0);
 
     res.json({ message: "Quiz response updated successfully", score: quizResponse.score, totalMarks });
+
     // Send email notification
-    const user = req.user;
+    const user = quizResponse.user; 
     const emailContent = `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
         <h2 style="color: #333;">Quiz Attempt Result</h2>
