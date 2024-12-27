@@ -660,3 +660,15 @@ background-color: orange !important;
     margin-top: 50px;
   }
 }
+
+@media (max-width: 375px) {
+
+  .quiz-form, .added-question-card, .added-question-main, .question-form-main {
+    width: 310px;
+  
+  }
+
+  .add-question-preview{
+    gap: 10px;
+  }
+}
