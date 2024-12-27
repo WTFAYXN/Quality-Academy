@@ -3,6 +3,8 @@ import line from "../../../assets/svgs/Line.svg";
 import Shape3 from "../../../assets/svgs/Home/testimonial-shape.svg";
 import Star from "../../../assets/svgs/Home/star.svg";
 import Apost from "../../../assets/svgs/Home/apost.svg";
+import ayan from "../../../assets/Testimonials/ayansayad.jpg";
+import huzaifa from "../../../assets/Testimonials/huzaifaansari.jpg";
 import Placeholder from "../../../assets/images/placeholder.jpg";
 
 import "./Testimonials.css";
@@ -44,7 +46,7 @@ export default function Testimonials() {
                             <h3 className="person">Ayan Sayad&nbsp;<span> CEO, Tarlose</span></h3>
                         </div>
                         <div className="testimonial-image">
-                            <img src={Placeholder} />
+                            <img src={ayan} />
                         </div>
                     </div>
                 </div>
@@ -74,7 +76,7 @@ export default function Testimonials() {
                             <h3 className="person">Huzaifa Ansari&nbsp;<span> COO, Tarlose</span></h3>
                         </div>
                         <div className="testimonial-image">
-                            <img src={Placeholder} />
+                            <img src={huzaifa} />
                         </div>
                     </div>
                 </div>

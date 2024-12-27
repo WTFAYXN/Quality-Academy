@@ -28,6 +28,10 @@
   }
 
   .solution-card{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     padding-top: 20px;
   }
 
@@ -37,7 +41,7 @@
   }
 
   .resources-heading{
-    width: 90%;
+    /* width: 90%; */
   }
 
   .resource-button{

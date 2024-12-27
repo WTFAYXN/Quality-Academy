@@ -119,11 +119,11 @@ const Home =() =>{
         {/* About Section */}
         <div className="container about-us-container">
             <div className="row">
-                <div className="col-lg-6 about-heading">
+                <div className="col-sm-12 col-md-8 col-lg-6 about-heading">
                     <h3 className="about-heading-text">Empower Learning with Quality Academy<span><img src={line}/></span></h3>
                     <p className="about-description">Easily create questionnaires, share resources, and enhance student engagement—all in one platform, no tech skills needed!</p>
                 </div>
-                <div className="col-lg-6 about-us-illustration">
+                <div className="col-sm-12 col-md-8 col-lg-6 about-us-illustration">
                     <img src={About} alt="" />
                 </div>
             </div>

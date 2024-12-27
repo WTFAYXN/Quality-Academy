@@ -136,12 +136,13 @@
     .solution-text{
         font-size: 52px;
         font-weight: 800;
-        width: 90%;
+        /* width: 90%; */
     }
 
     .solution-description{
         font-size: 22px;
         text-align: justify;
+        
     }
 
     .solution-cards{
@@ -194,9 +195,10 @@
 
     body{
         width: 100%;
+        padding: 0px 5px !important;
     }
     .heading-home-text{
-        font-size: 31px;
+        font-size: 30px !important;
     }
     .home-line{
         width: 230px;
@@ -217,6 +219,9 @@
         display: block;
     }
 
+    .about-heading{
+        display: block;
+    }
     .solutions{
         margin: 20px;
     }
@@ -224,6 +229,7 @@
     .solution-heading{
         flex-wrap: wrap ;
         margin-bottom: 50px;
+        text-align: center;
     }
 
     .solution-title{
@@ -236,6 +242,7 @@
     .solution-description{
         font-size: 16px;
         padding-top: 4px;
+        text-align: center;
     }
 
     .solution-cards{
@@ -245,6 +252,10 @@
 
     .solution-card{
         padding-top: 20px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
     }
 
     .know-more{
@@ -261,8 +272,9 @@
     }
 
     .resources-heading{
-        width: 73% !important;
+        width: 100% !important;
         font-size: 30px !important;
+        padding: 3px;
     }
 
     .resources-heading > span > img {
@@ -297,6 +309,15 @@
         display: block !important;
     }
 
+    
+    .testimonial-heading > h1{
+
+        font-size: 30px !important;
+    }
+
+    .testimonial-heading > img{
+        width: 200px;
+    }
     .get-started{
         margin: 60px auto !important;
 
