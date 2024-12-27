@@ -19,6 +19,7 @@ const fileTypeIcons = {
   pdf: pd,
   xls: excel,
   xlsx: excel,
+  csv: excel,
   doc: docs,
   docx: docs,
   jpg: jpg,
@@ -52,7 +53,7 @@ const Resources = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
+
     const fetchResources = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/resources`);

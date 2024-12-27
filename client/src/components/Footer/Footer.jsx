@@ -54,7 +54,7 @@ const Footer = () => {
           <div className="socials">
             <img src={facebook} alt="Facebook" />
             <img src={instagram} alt="Instagram" />
-            <img src={linkedin} alt="LinkedIn" />
+            <img src={linkedin} onClick={() => { window.location.href = "https://www.linkedin.com/company/quality-academy-international" }} alt="LinkedIn" />
           </div>
         </div>
       </div>

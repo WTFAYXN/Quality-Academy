@@ -83,10 +83,10 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <ul className={`list ${isMenuOpen ? "active" : ""}`}>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/resources">Resources</Link></li>
-        <li><Link to="/quizzes/create">Create Questionnaire</Link></li>
-        {isLoggedIn && <li><Link to="#" onClick={handleLogout} className="">Logout</Link></li>}
+      <Link to="/"><li>Home</li></Link>
+      <Link to="/resources"><li>Resources</li></Link>
+      <Link to="/quizzes/create"><li>Create Questionnaire</li></Link>
+        {isLoggedIn && <Link to="#" onClick={handleLogout} className=""><li>Logout</li></Link>}
         {/* <div className="login-signup-flex">
           {!(isLoggedIn) && <Link to="/login" className="text-decoration-none"><button className="btn-login">Login</button></Link>}
           {!(isLoggedIn) && <Link to="/signup" className="text-decoration-none"><button className="btn-signup">Signup</button></Link>}
