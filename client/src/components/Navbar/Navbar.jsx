@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from "../../assets/svgs/Quality-Academy.svg";
 import userIcon from "../../assets/images/catLogo.png";
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminRequests, setAdminRequests] = useState(0);
   const navigate = useNavigate();
+  const menuRef = useRef(null);
 
   useEffect(() => {
     // Check if the user is logged in (e.g., by checking a token in localStorage)
@@ -38,6 +39,18 @@ const Navbar = () => {
 
       fetchUserData();
     }
+
+    // Add event listener to detect clicks outside the menu
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const fetchAdminRequests = async () => {
@@ -67,7 +80,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="nav-container">
+    <div className="nav-container" ref={menuRef}>
       <div className="logo">
         <Link to="/"><img src={logo} alt="Logo" /></Link>
       </div>
@@ -78,20 +91,14 @@ const Navbar = () => {
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
-        {/* <span className="bar"></span> */}
       </div>
 
       {/* Navigation Links */}
       <ul className={`list ${isMenuOpen ? "active" : ""}`}>
-      <Link to="/"><li>Home</li></Link>
-      <Link to="/resources"><li>Resources</li></Link>
-      <Link to="/quizzes/create"><li>Create Questionnaire</li></Link>
+        <Link to="/"><li>Home</li></Link>
+        <Link to="/resources"><li>Resources</li></Link>
+        <Link to="/quizzes/create"><li>Create Questionnaire</li></Link>
         {isLoggedIn && <Link to="#" onClick={handleLogout} className=""><li>Logout</li></Link>}
-        {/* <div className="login-signup-flex">
-          {!(isLoggedIn) && <Link to="/login" className="text-decoration-none"><button className="btn-login">Login</button></Link>}
-          {!(isLoggedIn) && <Link to="/signup" className="text-decoration-none"><button className="btn-signup">Signup</button></Link>}
-          {isAdmin && <li><Link to="/admin/requests" className="hide">Requests</Link></li>}
-        </div> */}
       </ul> 
 
       {/* Call to Action Buttons */}
