@@ -54,7 +54,7 @@ const Home =() =>{
         <div className="solutions">
                 <div className="solution-heading">
                     <div className="col-lg-7">
-                        <p className="solution-title">SOLUTION WE PROVIDE</p>
+                        <p className="solution-title">SOLUTIONS WE PROVIDE</p>
                         <h1 className="solution-text">Powerful  Questionnaire Builder  with lots of features</h1>
                     </div>
 
@@ -101,7 +101,9 @@ const Home =() =>{
                     </div>
                     <div className="solution-card know-more">
                         <h5 >Want to find out more? Click below</h5>
+                        <Link to="/signup" className="text-decoration-none">
                         <button className="solution-btn">Sign up</button>
+                        </Link>
                     </div>
                 </div>
         </div>

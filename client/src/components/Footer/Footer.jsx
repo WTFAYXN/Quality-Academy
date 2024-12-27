@@ -27,7 +27,7 @@ const Footer = () => {
       <div className="footer">
         <div className="left">
           <img className="logo" src={logo} alt="logo" />
-          <p className="footer-text">Bring your Learning to Next level</p>
+          <p className="footer-text">Bring your Learning to the Next level</p>
           <p className="copyright">Copyright 2024 @ Quality Academy All rights reserved.</p>
         </div>
         <div className="center">

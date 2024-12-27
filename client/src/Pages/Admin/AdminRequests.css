@@ -76,10 +76,13 @@
 }
 
 .admin-requests{
-max-width: 1000px;
+max-width: 1200px;
 margin: 30px auto 50px;
 }
 
+tr{
+  font-size: 15px;
+}
 
 .admin-requests p{
   text-align: center;

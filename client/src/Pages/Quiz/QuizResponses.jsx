@@ -62,7 +62,7 @@ const QuizResponses = () => {
           {responses.length === 0 ? (
             <p>No responses yet.</p>
           ) : (
-            <table>
+            <table >
               <thead>
                 <tr>
                   <th>Name</th>
