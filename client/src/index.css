@@ -483,10 +483,16 @@ margin-bottom: 20px;
   align-items: center;
 }
 
-.option-attempt > p{
+.option-attempt label > p{
   margin: 0;
 }
 
+
+.option-attempt label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 .response-detail{
   width: 700px;
@@ -664,7 +670,7 @@ background-color: orange !important;
 @media (max-width: 375px) {
 
   .quiz-form, .added-question-card, .added-question-main, .question-form-main {
-    width: 310px;
+    width: 310px !important;
   
   }
 
