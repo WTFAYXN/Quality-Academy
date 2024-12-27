@@ -282,9 +282,20 @@ const Resources = () => {
                 onChange={(e) => setFilterOptions({ ...filterOptions, category: e.target.value })}
               >
                 <option value="">All</option>
-                <option value="Tech">Tech</option>
                 <option value="Math">Math</option>
-                <option value="Law">Law</option>
+                <option value="Science">Science</option>
+                <option value="English">English</option>
+                <option value="Geography">Geography</option>
+                <option value="Social Studies">Social Studies</option>
+                <option value="Research">Research</option>
+                <option value="Publication">Publication</option>
+                <option value="ISO">ISO</option>
+                <option value="COPC">COPC</option>
+                <option value="Digital Transformation">Digital Transformation</option>
+                <option value="Lean Six Sigma">Lean Six Sigma</option>
+                <option value="Continuous Improvement">Continuous Improvement</option>
+                <option value="Business Process Management">Business Process Management</option>
+                <option value="Others">Others</option>
               </select>
             </div>
             <FilterResource onApplyFilter={handleApplyFilter} />
