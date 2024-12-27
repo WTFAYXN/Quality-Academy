@@ -28,11 +28,15 @@
   }
   
   .heading-contact-text{
-    max-width: 1050px;
-    text-align:center;
-    margin-bottom:0;
+    max-width: 900px;
+    text-align: center;
+    margin-bottom: 0;
     font-weight: 800;
-    font-size: 70px;
+    font-size: 50px;
+  }
+  
+  .developer-contact{
+    color: black;
   }
   
   .contact-line{

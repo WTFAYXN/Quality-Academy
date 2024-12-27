@@ -9,6 +9,7 @@ import Product from "../../assets/svgs/contact/Product.svg";
 
 import Shape1 from "../../assets/svgs/Shapes/shape_01.svg"
 import Shape2 from "../../assets/svgs/Shapes/shape_02.svg"
+import { Link } from "react-router-dom";
 
 
 const Contact =() => {
@@ -32,7 +33,6 @@ return(
                 <h3 className="support-subheading">Urgent Support</h3>
                 <p className="support-description">For urgent inquiries, don’t wait. Just make a call.</p>
                 <p className="support-contact"> +91 8291617114</p>
-                <p className="support-contact"> +91 8291617114</p>
 
             </div>
             
@@ -47,8 +47,10 @@ return(
             <img src={Developer} />
             <h3 className="developer-subheading">Developer</h3>
                 <p className="developer-description">You can contact us for any of the development queries</p>
-                <p className="developer-contact"> +91 8291617114</p>
-                <p className="developer-contact"> +91 8291617114</p>
+               <Link to="tel:+918291617114" className="text-decoration-none">
+               <p className="developer-contact"> +91 8291617114</p>
+               </Link> 
+            
             </div>
         </div>
 
