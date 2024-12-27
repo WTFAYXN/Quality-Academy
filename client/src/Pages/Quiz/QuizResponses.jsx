@@ -62,32 +62,34 @@ const QuizResponses = () => {
           {responses.length === 0 ? (
             <p>No responses yet.</p>
           ) : (
-            <table >
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Attempted Date</th>
-                  <th>Time</th>
-                  <th>Marks</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {responses.map((response) => (
-                  <tr key={response._id}>
-                    <td>{response.user.name}</td>
-                    <td>{response.user.email}</td>
-                    <td>{new Date(response.completedAt).toLocaleDateString()}</td>
-                    <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
-                    <td>{response.score}</td>
-                    <td>
-                      <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
-                    </td>
+            <div className="table-responsive">
+              <table >
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Attempted Date</th>
+                    <th>Time</th>
+                    <th>Marks</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {responses.map((response) => (
+                    <tr key={response._id}>
+                      <td>{response.user.name}</td>
+                      <td>{response.user.email}</td>
+                      <td>{new Date(response.completedAt).toLocaleDateString()}</td>
+                      <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
+                      <td>{response.score}</td>
+                      <td>
+                        <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>
