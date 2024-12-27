@@ -314,9 +314,12 @@ const CreateQuiz = () => {
                 <div className="question-functions">
                   <div className="set-marks-title d-flex">
                     <span>Marks:</span>
-                    <div className="set-marks" contentEditable="true" onInput={(e) => setPoints(Number(e.target.innerText))}>
-                      {points}
-                    </div>
+                    <input
+                      type="number"
+                      className="set-marks"
+                      value={points}
+                      onChange={(e) => setPoints(Number(e.target.value))}
+                    />
                   </div>
                 </div>
               </div>
