@@ -1,0 +1,67 @@
+@media (max-width: 768px) {
+  .home-illustration {
+    display: block;
+    max-width: 600px;
+  }
+
+  .heading-home-text, .heading-resources-text{
+    font-size: 50px !important;
+  }
+
+  .heading-resources-text{
+    max-width: 600px !important;
+  }
+  .solutions{
+    margin: 60px 8px !important;
+  }
+
+  .solution-description{
+    width: 94%;
+    font-size: 20px;
+  }
+  .solution-text{
+    font-size: 30px !important;
+  }
+
+  .solution-cards, .testimonial-cards{
+    display: block !important;
+  }
+
+  .solution-card{
+    padding-top: 20px;
+  }
+
+  .know-more{
+    padding: 36px;
+    margin: 40px auto;
+  }
+
+  .resources-heading{
+    width: 90%;
+  }
+
+  .resource-button{
+    gap: 100px;
+  }
+
+  .search-filter{
+    flex-direction: column;
+  }
+  .resources-search{
+    width: 550px;
+    margin-bottom: 20px;
+  }
+  .footer{
+    display: block !important;
+    padding: 0px !important;
+  }
+}
+
+
+
+@media (max-width: 375px) {
+
+    .quiz-form, .added-question-card , .added-question-main, .question-form-main{
+        width: 350px;
+      }
+}

@@ -559,6 +559,9 @@ margin-bottom: 20px;
     justify-content: center;
     flex-direction: column;
 }
+
+
+
 @media (max-width: 600px){
 
   .quiz-setting-h1{
