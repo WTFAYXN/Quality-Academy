@@ -84,7 +84,7 @@ const QuizResponseDetail = () => {
       </div>
       {response ? (
         <div className="quiz-create-form">
-          <div className="response-detail">
+          <div className="response-detail response-form">
             <div className="responser-info">
               <h2>
                 <span className="span-responser-info">Name:</span>

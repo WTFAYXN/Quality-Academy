@@ -665,15 +665,21 @@ background-color: orange !important;
     text-align: center;
     margin-top: 50px;
   }
+  .response-detail, .response-form{
+    width: 310px;
+  }
 }
 
 @media (max-width: 375px) {
 
-  .quiz-form, .added-question-card, .added-question-main, .question-form-main {
+  .quiz-form, .added-question-card, .added-question-main, .question-form-main, .response-detail {
     width: 310px !important;
   
   }
 
+  .response-detail, .response-form{
+    width: 310px;
+  }
   .add-question-preview{
     gap: 10px;
   }
