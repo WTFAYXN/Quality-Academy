@@ -128,7 +128,7 @@
     gap: 0px !important;
     position: absolute;
     top: 70px; /* Adjust this based on your design */
-    right: 20px;
+    right: 300px;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 320px;
@@ -137,19 +137,21 @@
   }
 
   .list li{
-    border-top: 1px solid #f3f3f3;
-    border-bottom: 1px solid #f3f3f3;
     align-items: center;
     display: flex;
-
+    
   }
-
-  .list li a{
-    padding: 20px 10px;
+  
+  .list a{
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
+    padding: 10px;
   }
   /* Show navigation links when hamburger is clicked */
   .list.active{
     display: flex !important;
+    padding: 0px;
+    width: 200px;
   }
   /* Show the hamburger menu */
   .hamburger {
@@ -173,5 +175,20 @@
 @media (max-width: 1500px){
   .hide{
     display: none;
+  }
+}
+
+@media (max-width: 425px){
+  .list{
+    top: 65px;
+        left: 132px
+  }
+
+  .cta{
+    gap: 0px;
+  }
+
+  .btn-login, .btn-signup{
+    padding: 10px !important;
   }
 }
