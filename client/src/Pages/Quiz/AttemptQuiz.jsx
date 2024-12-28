@@ -8,9 +8,10 @@ const AttemptQuiz = () => {
   const [quiz, setQuiz] = useState(null);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  
 
   useEffect(() => {
+  const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login", { state: { from: `/quizzes/${quizId}/attempt` } });
     } else {

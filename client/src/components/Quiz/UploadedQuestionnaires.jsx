@@ -83,7 +83,7 @@ const UploadedQuestionnaires = () => {
               <img src={Placeholder} alt="Quiz" />
               <div className="quiz-description">
                 <div className="title-date">
-                  <h4>{quiz.title}</h4>
+                  <h4>{decodeURIComponent(quiz.title)}</h4>
                   <p>{quiz.description}</p>
                   <p>{new Date(quiz.createdAt).toLocaleDateString()}</p>
                 </div>

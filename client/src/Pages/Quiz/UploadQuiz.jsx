@@ -33,7 +33,7 @@ const UploadQuiz = () => {
   const handleTitleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("title", title);
+    formData.append("title", encodeURIComponent(title)); // Encode the title
     formData.append("description", description);
     formData.append("file", file);
 
