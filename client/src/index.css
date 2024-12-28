@@ -87,7 +87,7 @@ h1,h2,h3,h4,h6{
   
   .quiz-setting-h1{
     font-size: 40px;
-    font-weight: 800;
+    
     margin-bottom: 26px;
   }
   .quiz-setting-h2{
@@ -358,11 +358,11 @@ opacity:0.9;
 }
   
 .thank-you-card h1{
-  font-weight: 800;
+  
   padding-bottom: 20px;
 }
 .quiz-responses-header > h1{
-  font-weight: 800;
+  
   text-align: center;
 
 }
@@ -513,7 +513,7 @@ margin-bottom: 20px;
 }
 .span-responser-info{
   padding-right: 10px;
-  font-weight: 800;
+  
   font-size: 20px;
 }
 
