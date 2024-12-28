@@ -53,45 +53,43 @@ const QuizResponses = () => {
         visible={notification.visible}
         onClose={closeNotification}
       />
-      <div className="quiz-responses">
-        <div className="quiz-responses-header">
-          <h1>Quiz Responses</h1>
-          <img src={line} alt="line" />
+      <div className="container table-responsive py-5">
+        <div className="heading-resources">
+          <h1 className="heading-resources-text">Quiz Responses</h1>
+          <img className='resources-line' src={line} alt="Line" />
         </div>
-        <div className="admin-requests">
-          {responses.length === 0 ? (
-            <p>No responses yet.</p>
-          ) : (
-            <div className="table-responsive">
-              <table >
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Attempted Date</th>
-                    <th>Time</th>
-                    <th>Marks</th>
-                    <th>Actions</th>
+        {responses.length === 0 ? (
+          <p>No responses yet.</p>
+        ) : (
+          <div className="table-responsive">
+            <table className="table table-bordered table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Attempted Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Marks</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {responses.map((response) => (
+                  <tr key={response._id}>
+                    <td>{response.user.name}</td>
+                    <td>{response.user.email}</td>
+                    <td>{new Date(response.completedAt).toLocaleDateString()}</td>
+                    <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
+                    <td>{response.score}</td>
+                    <td>
+                      <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {responses.map((response) => (
-                    <tr key={response._id}>
-                      <td>{response.user.name}</td>
-                      <td>{response.user.email}</td>
-                      <td>{new Date(response.completedAt).toLocaleDateString()}</td>
-                      <td>{new Date(response.completedAt).toLocaleTimeString()}</td>
-                      <td>{response.score}</td>
-                      <td>
-                        <Link to={`/quizzes/${quizId}/responses/${response._id}`}>See Response</Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
       <Footer />
     </>

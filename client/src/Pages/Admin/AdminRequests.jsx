@@ -173,7 +173,7 @@ const AdminRequests = () => {
   return (
     <>
       <Nav />
-      <div className="admin-requests">
+      <div className="container table-responsive py-5">
         <div className="heading-resources">
           <h1 className="heading-resources-text">Pending Resource</h1>
           <img className='resources-line' src={line} alt="Line" />
@@ -181,34 +181,36 @@ const AdminRequests = () => {
         {requests.length === 0 ? (
           <p className="no-req"><span><img src={pending} alt="Pending" /></span>No pending requests.</p>
         ) : (
-          <table>
-            <thead>
+          <table className="table table-bordered table-hover">
+            <thead className="thead-dark">
               <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Uploaded by</th>
-                <th>Email</th>
-                <th>File</th>
-                <th>Publish?</th>
-                <th>Reject?</th>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Uploaded by</th>
+                <th scope="col">Email</th>
+                <th scope="col">File</th>
+                <th scope="col">Publish?</th>
+                <th scope="col">Reject?</th>
               </tr>
             </thead>
             <tbody>
               {requests.map((request, index) => (
                 <tr key={request._id}>
-                  <td>{index + 1}</td>
+                  <th scope="row">{index + 1}</th>
                   <td>
                     <input
                       type="text"
                       value={editingTitle[request._id] || request.title}
                       onChange={(e) => handleTitleChange(request._id, e.target.value)}
+                      className="form-control title-input"
                     />
                   </td>
                   <td>
                     <select
                       value={editingCategory[request._id] || request.category}
                       onChange={(e) => handleCategoryChange(request._id, e.target.value)}
+                      className="form-control"
                     >
                       <option value="Math">Math</option>
                       <option value="Science">Science</option>
@@ -234,10 +236,10 @@ const AdminRequests = () => {
                     </a>
                   </td>
                   <td>
-                    <button className='publish-resource' onClick={() => handlePublish(request._id)}>Publish</button>
+                    <button className='btn btn-success' onClick={() => handlePublish(request._id)}>Publish</button>
                   </td>
                   <td>
-                    <button className='reject-resource' onClick={() => handleReject(request._id)}>Reject</button>
+                    <button className='btn btn-danger' onClick={() => handleReject(request._id)}>Reject</button>
                   </td>
                 </tr>
               ))}
@@ -245,7 +247,6 @@ const AdminRequests = () => {
           </table>
         )}
       </div>
-
       <Footer />
     </>
   );
