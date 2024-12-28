@@ -33,9 +33,13 @@ const UploadQuiz = () => {
   const handleTitleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("title", encodeURIComponent(title)); // Encode the title
+    formData.append("title", title);
     formData.append("description", description);
-    formData.append("file", file);
+    if (file) {
+      const encodedFileName = encodeURIComponent(file.name);
+      const renamedFile = new File([file], encodedFileName, { type: file.type });
+      formData.append("file", renamedFile);
+    }
 
     axios.post(`${import.meta.env.VITE_API_URL}/quizzes/upload`, formData, {
       headers: {

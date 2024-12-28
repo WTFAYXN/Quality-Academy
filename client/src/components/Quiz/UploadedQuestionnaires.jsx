@@ -83,7 +83,7 @@ const UploadedQuestionnaires = () => {
               <img src={Placeholder} alt="Quiz" />
               <div className="quiz-description">
                 <div className="title-date">
-                  <h4>{decodeURIComponent(quiz.title)}</h4>
+                  <h4>{quiz.title}</h4>
                   <p>{quiz.description}</p>
                   <p>{new Date(quiz.createdAt).toLocaleDateString()}</p>
                 </div>
@@ -92,7 +92,7 @@ const UploadedQuestionnaires = () => {
                   {activeMenu === quiz._id && (
                     <div className="options-menu" ref={optionsRef}>
                       <button onClick={() => window.open(quiz.imageUrl, '_blank')}>Download</button>
-                      <button onClick={() => handleCopyUrl(quiz.imageUrl)}>Copy URL</button>
+                      <button onClick={() => handleCopyUrl(decodeURIComponent(quiz.imageUrl))}>Copy URL</button>
                       <button onClick={() => handleDelete(quiz._id)}>Delete</button>
                     </div>
                   )}
