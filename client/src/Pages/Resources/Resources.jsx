@@ -203,7 +203,10 @@ const Resources = () => {
         const updatedResources = await fetch(`${import.meta.env.VITE_API_URL}/resources`);
         const data = await updatedResources.json();
         setResources(data);
-      } else {
+      } else if (response.status === 413) {
+        showNotification('File upload failed: File size is too large', 'error');
+      }
+      else {
         showNotification('Resource deletion failed', 'error');
       }
     } catch (error) {
