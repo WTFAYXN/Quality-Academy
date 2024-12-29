@@ -35,7 +35,11 @@ const UploadQuiz = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("file", file);
+    if (file) {
+      const encodedFileName = encodeURIComponent(file.name);
+      const renamedFile = new File([file], encodedFileName, { type: file.type });
+      formData.append("file", renamedFile);
+    }
 
     axios.post(`${import.meta.env.VITE_API_URL}/quizzes/upload`, formData, {
       headers: {
@@ -80,7 +84,7 @@ const UploadQuiz = () => {
             <div className="title">
               <label className="title-label">Title</label>
               <input
-                placeholder="Give a suitable Title for Quiz"
+                placeholder="Give a suitable Title"
                 className="title-input"
                 type="text"
                 value={title}
@@ -91,7 +95,7 @@ const UploadQuiz = () => {
             <div className="description">
               <label className="description-label">Description</label>
               <textarea
-                placeholder="Describe Your Quiz"
+                placeholder="Describe it"
                 className="description-input"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

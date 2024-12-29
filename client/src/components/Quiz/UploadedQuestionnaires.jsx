@@ -92,7 +92,7 @@ const UploadedQuestionnaires = () => {
                   {activeMenu === quiz._id && (
                     <div className="options-menu" ref={optionsRef}>
                       <button onClick={() => window.open(quiz.imageUrl, '_blank')}>Download</button>
-                      <button onClick={() => handleCopyUrl(quiz.imageUrl)}>Copy URL</button>
+                      <button onClick={() => handleCopyUrl(decodeURIComponent(quiz.imageUrl))}>Copy URL</button>
                       <button onClick={() => handleDelete(quiz._id)}>Delete</button>
                     </div>
                   )}

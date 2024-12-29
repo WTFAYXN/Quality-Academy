@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import line from "../../assets/svgs/Line.svg/";
+import line from "../../assets/svgs/Line.svg";
 import Navbar from "../../components/Navbar/Navbar";
+
 const AttemptQuiz = () => {
   const { id: quizId } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
+    const token = localStorage.getItem("token"); // Define token inside useEffect
     if (!token) {
       navigate("/login", { state: { from: `/quizzes/${quizId}/attempt` } });
     } else {
@@ -43,7 +44,7 @@ const AttemptQuiz = () => {
           console.error("Error fetching quiz:", error);
         });
     }
-  }, [token, navigate, quizId]);
+  }, [navigate, quizId]);
 
   const handleAnswerChange = (questionId, answer, isMultipleChoice) => {
     if (isMultipleChoice) {
@@ -62,6 +63,7 @@ const AttemptQuiz = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token"); // Define token inside handleSubmit
     axios
       .post(
         `${import.meta.env.VITE_API_URL}/quizzes/${quizId}/attempt`,
@@ -92,9 +94,6 @@ const AttemptQuiz = () => {
 
         <div className="response-body">
           <div className="added-question-main">
-
-
-
             <form onSubmit={handleSubmit}>
               {quiz.questions.map((q, index) => (
                 <div key={q._id}>
@@ -116,13 +115,13 @@ const AttemptQuiz = () => {
                       q.options.map((opt) => (
                         <div className="d-flex gap-3 my-3 option-attempt" key={opt.optionText}>
                           <label>
-                          <input
-                            type={q.type === "multiple" ? "checkbox" : "radio"}
-                            name={`question-${q._id}`}
-                            value={opt.optionText}
-                            onChange={() => handleAnswerChange(q._id, opt.optionText, q.type === "multiple")}
-                          />
-                          <p>{opt.optionText}</p>
+                            <input
+                              type={q.type === "multiple" ? "checkbox" : "radio"}
+                              name={`question-${q._id}`}
+                              value={opt.optionText}
+                              onChange={() => handleAnswerChange(q._id, opt.optionText, q.type === "multiple")}
+                            />
+                            <p>{opt.optionText}</p>
                           </label>
                         </div>
                       ))
@@ -138,13 +137,9 @@ const AttemptQuiz = () => {
           </div>
         </div>
 
-
         <div className="report-questionnaire">
-
           <p>This content is neither created nor endorsed by Quality Academy. - <Link to="/terms">Terms of Service</Link>  - <Link to="/terms">Privacy Policy</Link></p>
           <p>Does this form look suspicious? Report</p>
-
-
         </div>
       </div>
     </>

@@ -103,6 +103,17 @@ router.delete("/quizzes/uploaded/:id", validateUser, async (req, res) => {
   }
 });
 
+router.get('/uploads/quizzes/:filename', (req, res) => {
+  const filename = encodeURIComponent(req.params.filename);
+  const filePath = path.join(__dirname, '../../uploads/quizzes', filename);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error('Error sending file:', err);
+      res.status(404).send('File not found');
+    }
+  });
+});
+
 //---------------------------------------------------------------------------------------
 
 // Get All Public Quizzes
