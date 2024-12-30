@@ -31,7 +31,7 @@ const Doclist = ({ filteredResources, handleDelete, isAdmin }) => {
           >
             Download
           </li>
-          {isAdmin && <button className='delete-btn-resource' onClick={() => handleDelete(resource._id)}>Delete</button>}
+          {isAdmin && <button className='delete-btn-resource delete' onClick={() => handleDelete(resource._id)}>Delete</button>}
         </div>
       ))}
     </ul>
