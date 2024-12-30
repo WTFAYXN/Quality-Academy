@@ -76,7 +76,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setIsAdmin(false);
-    navigate("/login");
+    navigate("/");
   };
 
   return (

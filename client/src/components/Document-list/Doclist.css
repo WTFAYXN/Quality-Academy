@@ -1,6 +1,6 @@
   .document-list {
     list-style-type: none;
-    max-width: 1000px;
+    max-width: 1200px;
     font-family: system-ui, -apple-system, sans-serif;
     margin: 0 auto;
     padding: 20px;
@@ -14,11 +14,11 @@
     gap: 40px;
     font-size: 16px;
     padding: 12px 16px;
-    align-items: center;
+    align-items: start;
   }
   
-  .title {
-    width: 300px;
+  .resource-list {
+    width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -31,6 +31,9 @@
     white-space: nowrap;
   }
   
+.category, .delete{
+  width: 150px;
+}
   .download {
     width: 100px;
     text-decoration: underline;
@@ -44,10 +47,10 @@
   
   #download {
     text-decoration: none;
-    color: inherit;
+    /* color: inherit; */
   }
   
-  #title, #uploadedBy, #uploadDate, #download {
+  #title, #uploadedBy, #uploadDate, #download, #delete, #category, #fileType {
     border-left: 2px solid #ddd;
     font-weight: 600;
     padding-left: 12px;
@@ -68,3 +71,19 @@
     background-color: #fff3e6;
     transform: translateX(4px);
   }
+
+
+  .delete-btn {
+    /* text-decoration: underline; */
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 0px;
+    height: 30px;
+  }
+  
+  .delete:hover {
+    color: #003d7a;
+  }
+  

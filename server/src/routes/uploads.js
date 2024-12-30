@@ -113,7 +113,7 @@ router.post('/reject-resource/:id', validateAdmin, async (req, res) => {
 // Fetch all published resources
 router.get('/resources', async (req, res) => {
   try {
-    const resources = await Resource.find({ status: 'published' });
+    const resources = await Resource.find({ status: 'published' }).populate('uploadedBy', 'name');
     res.json(resources);
   } catch (error) {
     console.error('Error fetching resources:', error);
