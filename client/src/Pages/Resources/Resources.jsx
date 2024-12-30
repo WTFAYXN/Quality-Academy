@@ -5,33 +5,10 @@ import Footer from '../../components/Footer/Footer';
 import Notification from '../../components/Notification/Notification';
 import PermissionPopup from '../../components/PermissionPopup/PermissionPopup';
 import line from '../../assets/svgs/Line.svg';
-import download from '../../assets/images/download-icon.png';
 import upload from '../../assets/svgs/upload.svg';
-import pd from '../../assets/images/pdf.png';
-import excel from '../../assets/images/excel.png';
-import docs from '../../assets/images/docs.png';
-import jpg from '../../assets/images/jpg.png';
-import mp4 from '../../assets/images/mp4.png';
 import UploadPopup from '../../subcomponents/UploadResource/Upload-popup';
 import FilterResource from '../../subcomponents/Filter/FilterResource';
-
-const fileTypeIcons = {
-  pdf: pd,
-  xls: excel,
-  xlsx: excel,
-  csv: excel,
-  doc: docs,
-  docx: docs,
-  jpg: jpg,
-  jpeg: jpg,
-  png: jpg,
-  gif: 'path/to/image-icon.png',
-  mp4: mp4,
-  webm: 'path/to/video-icon.png',
-  ogg: 'path/to/video-icon.png',
-  mp3: 'path/to/audio-icon.png',
-  wav: 'path/to/audio-icon.png',
-};
+import Doclist from '../../components/Document-list/Doclist';
 
 const Resources = () => {
   const [file, setFile] = useState(null);
@@ -180,12 +157,18 @@ const Resources = () => {
         setTitle('');
         setFile(null);
         setCategory('');
+      } else if (response.status === 413) {
+        showNotification('File upload failed: File size is too large', 'error');
       } else {
         showNotification('File upload failed', 'error');
       }
     } catch (error) {
-      console.error('Error during file upload:', error);
-      showNotification('An error occurred during file upload', 'error');
+      if (error.response && error.response.status === 413) {
+        showNotification('File upload failed: File size is too large', 'error');
+      } else {
+        console.error('Error during file upload:', error);
+        showNotification('An error occurred during file upload', 'error');
+      }
     }
   };
 
@@ -203,24 +186,13 @@ const Resources = () => {
         const updatedResources = await fetch(`${import.meta.env.VITE_API_URL}/resources`);
         const data = await updatedResources.json();
         setResources(data);
-      } else if (response.status === 413) {
-        showNotification('File upload failed: File size is too large', 'error');
-      }
-      else {
+      } else {
         showNotification('Resource deletion failed', 'error');
       }
     } catch (error) {
       console.error('Error during resource deletion:', error);
       showNotification('An error occurred during resource deletion', 'error');
     }
-  };
-
-  const renderPreview = (resource) => {
-    const fileExtension = resource.imageUrl.split('.').pop().toLowerCase();
-
-    // Default to showing the file type icon if no specific preview is available
-    const fileTypeIcon = fileTypeIcons[fileExtension] || 'path/to/default-icon.png';
-    return <img src={fileTypeIcon} alt={resource.title} />;
   };
 
   const handleApplyFilter = (options) => {
@@ -274,6 +246,7 @@ const Resources = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <div className="resource-button">
+          <label className="category-label">Upload:</label>
             <button
               className="upload"
               onClick={handleUploadButtonClick}
@@ -320,25 +293,7 @@ const Resources = () => {
           />
         )}
 
-        <div className="resource-grid">
-          {filteredResources.map((resource) => (
-            <div key={resource._id}>
-              {renderPreview(resource)}
-              <div className='title-resources'>
-                <h3 className='title-resource-h3'>{resource.title}</h3>
-                <div className="download-resources">
-                  <img
-                    className="download-btn"
-                    src={download}
-                    alt="Download"
-                    onClick={() => window.open(resource.imageUrl, '_blank')}
-                  />
-                  {isAdmin && <button className='delete-btn-resource' onClick={() => handleDelete(resource._id)}>Delete</button>}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Doclist filteredResources={filteredResources} handleDelete={handleDelete} isAdmin={isAdmin} />
       </div>
       {showPermissionPopup && (
         <PermissionPopup
