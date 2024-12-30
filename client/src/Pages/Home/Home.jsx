@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-
-
 //illustration
 import Shape1 from "../../assets/svgs/Shapes/shape_01.svg"
 import Shape2 from "../../assets/svgs/Shapes/shape_02.svg"
@@ -14,16 +12,25 @@ import "./Home.css";
 import Testimonials from "./Home-subcomponents/Testimonials";
 import Resources from "./Home-subcomponents/Resources";
 
-
 import urlSharing from "../../assets/svgs/Home/svg/urlSharing.svg";
 import realNotif from "../../assets/svgs/Home/svg/realNotif.svg";
 import studyMaterial from "../../assets/svgs/Home/svg/studyMaterial.svg";
 import resourcesIcon from "../../assets/svgs/Home/svg/resources.svg";
 import customQuestion from "../../assets/svgs/Home/svg/customQuestion.svg";
-
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 const Home =() =>{
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
+
+    const handlebtn = () => {
+        if(token){
+            navigate("/user");
+        }else{
+            navigate("/signup");
+        }
+    }
     return(
         <>
         <Navbar/>
@@ -101,9 +108,9 @@ const Home =() =>{
                     </div>
                     <div className="solution-card know-more">
                         <h5 >Want to find out more? Click below</h5>
-                        <Link to="/signup" className="text-decoration-none">
-                        <button className="solution-btn">Sign up</button>
-                        </Link>
+                        {/* <Link to="#" className="text-decoration-none"> */}
+                        <button className="solution-btn" onClick={handlebtn}>Sign up</button>
+                        {/* </Link> */}
                     </div>
                 </div>
         </div>
