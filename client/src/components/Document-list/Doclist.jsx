@@ -5,7 +5,7 @@ const Doclist = ({ filteredResources, handleDelete, isAdmin }) => {
   return (
     <ul className="document-list">
       <div className="document-header">
-        <li id="title" className="title">Title</li>
+        <li id="title" className="resource-list">Title</li>
         <li id="category" className="category">Category</li>
         <li id="uploadedBy" className="uploadedBy">Uploaded by</li>
         <li id="uploadDate" className="uploadDate">Upload Date</li>
@@ -15,7 +15,7 @@ const Doclist = ({ filteredResources, handleDelete, isAdmin }) => {
       </div>
       {filteredResources.map((resource) => (
         <div key={resource._id} className="documents">
-          <li className="title">{resource.title}</li>
+          <li className="resource-list">{resource.title}</li>
           <li className="category">{resource.category}</li>
           <li className="uploadedBy">{resource.uploadedBy.name}</li> {/* Use resource.uploadedBy.name */}
           <li className="uploadDate">
@@ -31,7 +31,7 @@ const Doclist = ({ filteredResources, handleDelete, isAdmin }) => {
           >
             Download
           </li>
-          {isAdmin && <button className='delete-btn-resource delete' onClick={() => handleDelete(resource._id)}>Delete</button>}
+          {isAdmin && <button className='delete delete-btn' onClick={() => handleDelete(resource._id)}>Delete</button>}
         </div>
       ))}
     </ul>

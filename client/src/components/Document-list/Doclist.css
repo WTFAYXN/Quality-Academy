@@ -17,7 +17,7 @@
     align-items: start;
   }
   
-  .title {
+  .resource-list {
     width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -47,10 +47,10 @@
   
   #download {
     text-decoration: none;
-    color: inherit;
+    /* color: inherit; */
   }
   
-  #title, #uploadedBy, #uploadDate, #download, #delete, #category {
+  #title, #uploadedBy, #uploadDate, #download, #delete, #category, #fileType {
     border-left: 2px solid #ddd;
     font-weight: 600;
     padding-left: 12px;
@@ -73,17 +73,17 @@
   }
 
 
-  .delete {
-    text-decoration: underline;
-    color: red;
+  .delete-btn {
+    /* text-decoration: underline; */
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 0px;
+    height: 30px;
   }
   
   .delete:hover {
     color: #003d7a;
-  }
-  
-  #download {
-    text-decoration: none;
-    color: inherit;
   }
   

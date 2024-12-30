@@ -246,6 +246,8 @@ const Resources = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <div className="resource-button">
+
+            <div className="upload-div">
           <label className="category-label">Upload:</label>
             <button
               className="upload"
@@ -253,6 +255,7 @@ const Resources = () => {
             >
               <img src={upload} alt="Upload" />
             </button>
+          </div>
             <div className='category-div'>
               <label className="category-label">Category:</label>
               <select
