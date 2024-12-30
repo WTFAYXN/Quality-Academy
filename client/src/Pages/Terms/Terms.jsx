@@ -101,7 +101,7 @@ const Terms =() =>{
     <div className="mt-4">
         <h3>12. Contact Us</h3>
         <p>
-            If you have any questions about these Terms, please contact us at [Contact Email or Address].
+            If you have any questions about these Terms, please contact us at uma.qualityacademy@gmail.com.
         </p>
     </div>
 </div>
