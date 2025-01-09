@@ -124,6 +124,13 @@ const Resources = () => {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+
+      // Check file size (5MB limit)
+    if (selectedFile && selectedFile.size > 100 * 1024 * 1024) {
+    showNotification('File size exceeds 10MB limit', 'error');
+    return;
+    }
+
     setFile(selectedFile);
   };
 
