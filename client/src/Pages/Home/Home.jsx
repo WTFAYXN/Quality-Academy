@@ -66,7 +66,7 @@ const Home =() =>{
                     </div>
 
                     <div className="solution-description">
-                        <p>Take advantage of Quality Academy’s streamlined & effective features to create a Questionnaire that helps your preparatioon</p>
+                        <p>Take advantage of Quality Academy’s streamlined & effective features to create a Questionnaire that helps your preparation</p>
                     </div>
                 </div>
 
