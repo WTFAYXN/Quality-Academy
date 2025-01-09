@@ -127,7 +127,7 @@ const Resources = () => {
 
       // Check file size (5MB limit)
     if (selectedFile && selectedFile.size > 100 * 1024 * 1024) {
-    showNotification('File size exceeds 10MB limit', 'error');
+    showNotification('File size exceeds 100MB limit', 'error');
     return;
     }
 
