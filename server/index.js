@@ -68,6 +68,14 @@ app.get('/', (req, res) => {
     res.send('Hello, Backend!');
 });
 
+app.use((req, res, next) => {
+    res.setTimeout(300000, () => {
+        console.log('Request has timed out.');
+        res.status(408).send('Request has timed out.');
+    });
+    next();
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
