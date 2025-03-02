@@ -172,7 +172,7 @@ const CreateQuiz = () => {
         <h1 className="quiz-setting-h1">
           Setup Your Questionnaire <span><img className="line-quiz" src={line} /></span>
         </h1>
-
+        <p>Create powerful, customized questionnaires to supercharge your preparation!</p>
         {/* Questionnaire  */}
 
 
