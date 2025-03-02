@@ -41,7 +41,7 @@ const Home =() =>{
             <div className="heading-home">
                 <h1 className="heading-home-text">Boost Your Learning With Quality Academy</h1>
                 <img class="home-line" src={line} />
-                <p className="home-description">One solution for your Learning Preparation</p>
+                <p className="home-description">Everything you need to prepare smarter from custom questionnaires to quality resources and real-time updates!</p>
 
                 <Link className="text-decoration-none" to="/quizzes/create">
                     <button className="home-button">Create Questionnaire</button>

@@ -241,7 +241,7 @@ const Resources = () => {
       <div className="heading-resources">
         <h1 className="heading-resources-text">Elevate your knowledge with Our Resources</h1>
         <img className='resources-line' src={line} alt="Line" />
-        <p className="heading-p">One solution for your Learning Preparation</p>
+        <p className="heading-p">Discover, share, and download helpful resources. Your one-stop hub for knowledge and tools.</p>
       </div>
       <div className="resources">
         <div className="search-filter">
